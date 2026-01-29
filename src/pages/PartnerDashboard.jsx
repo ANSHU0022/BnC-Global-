@@ -5,15 +5,52 @@ import Header from '../Component/Header';
 import Footer from '../Component/Footer';
 import AIProfileModal from '../Component/AIProfileModal';
 import ReferralModal from '../Component/ReferralModal';
+import ServiceDetailsModal from '../Component/ServiceDetailsModal';
 
 const PartnerDashboard = () => {
   const [partnerData, setPartnerData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [isAIModalOpen, setIsAIModalOpen] = useState(false);
   const [isReferralModalOpen, setIsReferralModalOpen] = useState(false);
+  const [isServiceModalOpen, setIsServiceModalOpen] = useState(false);
+  const [serviceData, setServiceData] = useState(null);
   const navigate = useNavigate();
 
-  const fetchPartnerData = async (email) => {
+  const fetchServiceData = async (email) => {
+    try {
+      const params = new URLSearchParams({
+        action: 'getServiceData',
+        email: email
+      });
+      
+      const url = `https://script.google.com/macros/s/AKfycby-worRSM90xQ6Ekb-axlZKY_c45-p4uXJkJfkFDtIDx6a33X-fjbZIZqOzk5kj2LPh8Q/exec?${params}`;
+      
+      const response = await fetch(url, {
+        method: 'GET',
+        mode: 'cors'
+      });
+      
+      const result = await response.json();
+      
+      if (result.success) {
+        return result.data;
+      } else {
+        console.error('Failed to fetch service data:', result.message);
+        return null;
+      }
+    } catch (error) {
+      console.error('Error fetching service data:', error);
+      return null;
+    }
+  };
+
+  const handleViewServices = async () => {
+    if (partnerData?.email) {
+      const services = await fetchServiceData(partnerData.email);
+      setServiceData(services);
+      setIsServiceModalOpen(true);
+    }
+  };
     try {
       const params = new URLSearchParams({
         action: 'getPartnerData',
@@ -211,7 +248,10 @@ const PartnerDashboard = () => {
               <p className="text-gray-600 mb-4">
                 View and manage the services you provide to clients.
               </p>
-              <button className="w-full bg-gray-200 hover:bg-gray-300 text-gray-700 py-2 px-4 rounded-lg font-medium transition-colors">
+              <button 
+                onClick={handleViewServices}
+                className="w-full bg-gray-200 hover:bg-gray-300 text-gray-700 py-2 px-4 rounded-lg font-medium transition-colors"
+              >
                 View Services
               </button>
             </div>
@@ -326,10 +366,10 @@ const PartnerDashboard = () => {
         partnerData={partnerData}
       />
       
-      <ReferralModal 
-        isOpen={isReferralModalOpen} 
-        onClose={() => setIsReferralModalOpen(false)}
-        partnerData={partnerData}
+      <ServiceDetailsModal 
+        isOpen={isServiceModalOpen} 
+        onClose={() => setIsServiceModalOpen(false)}
+        serviceData={serviceData}
       />
     </>
   );

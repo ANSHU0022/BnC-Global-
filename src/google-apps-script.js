@@ -23,6 +23,8 @@ function doGet(e) {
       return checkEmailExists(data);
     } else if (action === 'getPartnerData') {
       return getPartnerData(data);
+    } else if (action === 'getServiceData') {
+      return getServiceData(data);
     } else if (action === 'submitAIProfile') {
       return submitAIProfile(data);
     }
@@ -348,6 +350,49 @@ function handleAdminLogin(data) {
     console.error('Error in handleAdminLogin:', error);
     return ContentService
       .createTextOutput(JSON.stringify({success: false, message: 'Admin login failed: ' + error.toString()}))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+function getServiceData(data) {
+  try {
+    const sheet = SpreadsheetApp.openById('1Tds1b8C3VDj1aS5J41Wal7oNknDNaoIJSZEcsCBOyss').getSheetByName('AI Profile Details');
+    const dataRange = sheet.getDataRange().getValues();
+    
+    // Skip header row, check from row 2
+    for (let i = 1; i < dataRange.length; i++) {
+      const row = dataRange[i];
+      const email = row[1]; // Column B (Email)
+      
+      if (email === data.email) {
+        return ContentService
+          .createTextOutput(JSON.stringify({
+            success: true,
+            data: {
+              partnerType: row[2],
+              services: row[3],
+              industries: row[4],
+              experienceIndustries: row[5],
+              experienceYears: row[6],
+              workType: row[7],
+              organisationName: row[8],
+              bio: row[9],
+              meetingDate: row[10],
+              meetingTime: row[11]
+            }
+          }))
+          .setMimeType(ContentService.MimeType.JSON);
+      }
+    }
+    
+    return ContentService
+      .createTextOutput(JSON.stringify({success: false, message: 'Service data not found'}))
+      .setMimeType(ContentService.MimeType.JSON);
+      
+  } catch (error) {
+    console.error('Error in getServiceData:', error);
+    return ContentService
+      .createTextOutput(JSON.stringify({success: false, message: 'Error fetching service data: ' + error.toString()}))
       .setMimeType(ContentService.MimeType.JSON);
   }
 }
