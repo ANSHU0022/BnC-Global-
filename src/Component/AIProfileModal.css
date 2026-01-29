@@ -1,0 +1,16 @@
+/* AI Profile Modal Custom Styles */
+.ai-profile-modal input[type="radio"]:checked {
+  accent-color: #2C5AA0;
+}
+
+.ai-profile-modal input[type="checkbox"]:checked {
+  accent-color: #2C5AA0;
+}
+
+.ai-profile-modal input[type="radio"] {
+  accent-color: #2C5AA0;
+}
+
+.ai-profile-modal input[type="checkbox"] {
+  accent-color: #2C5AA0;
+}
