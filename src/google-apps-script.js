@@ -356,35 +356,42 @@ function handleAdminLogin(data) {
 
 function getServiceData(data) {
   try {
+    console.log('getServiceData called with email:', data.email);
     const sheet = SpreadsheetApp.openById('1Tds1b8C3VDj1aS5J41Wal7oNknDNaoIJSZEcsCBOyss').getSheetByName('AI Profile Details');
     const dataRange = sheet.getDataRange().getValues();
+    
+    console.log('AI Profile sheet rows:', dataRange.length);
     
     // Skip header row, check from row 2
     for (let i = 1; i < dataRange.length; i++) {
       const row = dataRange[i];
       const email = row[1]; // Column B (Email)
       
-      if (email === data.email) {
+      console.log('Checking row', i, 'email:', email, 'against:', data.email);
+      
+      if (email && email.toString().trim().toLowerCase() === data.email.toString().trim().toLowerCase()) {
+        console.log('Match found! Returning service data');
         return ContentService
           .createTextOutput(JSON.stringify({
             success: true,
             data: {
-              partnerType: row[2],
-              services: row[3],
-              industries: row[4],
-              experienceIndustries: row[5],
-              experienceYears: row[6],
-              workType: row[7],
-              organisationName: row[8],
-              bio: row[9],
-              meetingDate: row[10],
-              meetingTime: row[11]
+              partnerType: row[2] || '',
+              services: row[3] || '',
+              industries: row[4] || '',
+              experienceIndustries: row[5] || '',
+              experienceYears: row[6] || '',
+              workType: row[7] || '',
+              organisationName: row[8] || '',
+              bio: row[9] || '',
+              meetingDate: row[10] || '',
+              meetingTime: row[11] || ''
             }
           }))
           .setMimeType(ContentService.MimeType.JSON);
       }
     }
     
+    console.log('No matching email found');
     return ContentService
       .createTextOutput(JSON.stringify({success: false, message: 'Service data not found'}))
       .setMimeType(ContentService.MimeType.JSON);

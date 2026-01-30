@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaUser, FaShieldAlt, FaLock, FaIdCard, FaArrowLeft, FaEye, FaEyeSlash } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Login = () => {
+  const location = useLocation();
   const [activeTab, setActiveTab] = useState('partner');
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -11,6 +12,14 @@ const Login = () => {
     email: '',
     password: ''
   });
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const loginType = searchParams.get('type');
+    if (loginType === 'admin') {
+      setActiveTab('admin');
+    }
+  }, [location]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -73,7 +82,7 @@ const Login = () => {
         });
       }
       
-      url = `https://script.google.com/macros/s/AKfycby-worRSM90xQ6Ekb-axlZKY_c45-p4uXJkJfkFDtIDx6a33X-fjbZIZqOzk5kj2LPh8Q/exec?${params}`;
+      url = `https://script.google.com/macros/s/AKfycbzVBOWgY3Qmgau1THM3lWq0u_7hH6RPVgBc6eXaWUYyBApkBZZm6u4LxY6HsUpUOtIzzw/exec?${params}`;
       
       const response = await fetch(url, {
         method: 'GET',

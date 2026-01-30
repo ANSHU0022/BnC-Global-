@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import PartnerFormModal from './PartnerFormModal';
 
 const Hero = () => {
@@ -6,7 +7,7 @@ const Hero = () => {
 
   return (
     <>
-      <section className="relative min-h-screen flex items-center justify-center text-white overflow-hidden mb-0" style={{marginTop: '-120px', paddingTop: '170px'}}>
+      <section className="relative min-h-screen flex items-center justify-center text-white overflow-hidden mb-0" style={{marginTop: '-120px', paddingTop: '140px'}}>
         {/* Background Image */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat pt-20"
@@ -17,19 +18,19 @@ const Hero = () => {
         
         
         
-        <div className="relative container mx-auto px-4 text-center z-10">
+        <div className="relative container mx-auto px-4 text-center z-10" style={{paddingBottom: '0px'}}>
           {/* Badge */}
-          <div className="inline-flex items-center gap-2  bg-opacity-30 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium mb-8 border border-gray-600">
+          <div className="inline-flex items-center gap-2  bg-opacity-30 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium mb-6 border border-gray-600">
             🤝 Join Our Growing Network
           </div>
           
           {/* Main Heading */}
-          <h1 className="font-poppins text-4xl md:text-6xl font-bold mb-6 leading-tight">
+          <h1 className="font-poppins text-4xl md:text-6xl font-bold mb-1 leading-tight">
             Partner with <span style={{color: '#2C5AA0'}}>BnC Global</span>
           </h1>
           
           {/* Subtitle */}
-          <p className="font-geist text-lg md:text-xl mb-12 max-w-4xl mx-auto text-gray-300">
+          <p className="font-geist text-lg md:text-xl mb-8 max-w-4xl mx-auto text-gray-300">
             Join India's leading accounting outsourcing network and unlock limitless revenue opportunities
           </p>
           
@@ -37,21 +38,27 @@ const Hero = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
             <button 
               onClick={() => setIsModalOpen(true)}
-              className="bg-[#2C5AA0] hover:bg-[#1e3f73] text-white px-8 py-3 rounded-full font-medium transition-all duration-300 text-base flex items-center justify-center gap-2"
+              className="bg-[#2C5AA0] hover:bg-[#1e3f73] text-white px-10 py-4 rounded-full font-medium transition-all duration-300 text-lg flex items-center justify-center gap-2 hover:scale-105 transform"
             >
-              Become a Partner →
+              🤝 Become a Partner →
             </button>
-            <button className="bg-white hover:bg-gray-100 text-gray-800 px-8 py-3 rounded-full font-medium transition-all duration-300 text-base flex items-center justify-center gap-2">
-              🔐 Partner Login
-            </button>
+            <Link 
+              to="/login"
+              className="bg-white hover:bg-gray-100 text-gray-800 px-10 py-4 rounded-full font-medium transition-all duration-300 text-lg flex items-center justify-center gap-2 hover:scale-105 transform"
+            >
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+              </svg>
+              Partner Login
+            </Link>
           </div>
           
           {/* Stats Cards */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto mt-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto mt-4 mb-0">
             <div className=" bg-opacity-40 backdrop-blur-sm border border-gray-600 rounded-2xl p-6 text-center hover:bg-opacity-50 transition-all duration-300">
               <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4" style={{backgroundColor: '#2C5AA0'}}>
-                <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"/>
+                <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M16 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2zM4 18v-4h3v4h2v-7.5c0-1.1.9-2 2-2s2 .9 2 2V18h2v-4h3v4h4v2H0v-2h4z"/>
                 </svg>
               </div>
               <div className="text-3xl font-bold mb-1 text-white">200+</div>
@@ -60,8 +67,8 @@ const Hero = () => {
             
             <div className=" bg-opacity-40 backdrop-blur-sm border border-gray-600 rounded-2xl p-6 text-center hover:bg-opacity-50 transition-all duration-300">
               <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4" style={{backgroundColor: '#2C5AA0'}}>
-                <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                 </svg>
               </div>
               <div className="text-3xl font-bold mb-1 text-white">25+</div>
@@ -70,8 +77,8 @@ const Hero = () => {
             
             <div className="bg-opacity-40 backdrop-blur-sm border border-gray-600 rounded-2xl p-6 text-center hover:bg-opacity-50 transition-all duration-300">
               <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4" style={{backgroundColor: '#2C5AA0'}}>
-                <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                 </svg>
               </div>
               <div className="text-3xl font-bold mb-1 text-white">5,000+</div>
@@ -80,8 +87,8 @@ const Hero = () => {
             
             <div className=" bg-opacity-40 backdrop-blur-sm border border-gray-600 rounded-2xl p-6 text-center hover:bg-opacity-50 transition-all duration-300">
               <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4" style={{backgroundColor: '#2C5AA0'}}>
-                <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
                 </svg>
               </div>
               <div className="text-3xl font-bold mb-1 text-white">95%</div>

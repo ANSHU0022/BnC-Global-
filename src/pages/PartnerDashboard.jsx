@@ -14,6 +14,7 @@ const PartnerDashboard = () => {
   const [isReferralModalOpen, setIsReferralModalOpen] = useState(false);
   const [isServiceModalOpen, setIsServiceModalOpen] = useState(false);
   const [serviceData, setServiceData] = useState(null);
+  const [isLoadingServices, setIsLoadingServices] = useState(false);
   const navigate = useNavigate();
 
   const fetchServiceData = async (email) => {
@@ -23,7 +24,7 @@ const PartnerDashboard = () => {
         email: email
       });
       
-      const url = `https://script.google.com/macros/s/AKfycby-worRSM90xQ6Ekb-axlZKY_c45-p4uXJkJfkFDtIDx6a33X-fjbZIZqOzk5kj2LPh8Q/exec?${params}`;
+      const url = `https://script.google.com/macros/s/AKfycbzVBOWgY3Qmgau1THM3lWq0u_7hH6RPVgBc6eXaWUYyBApkBZZm6u4LxY6HsUpUOtIzzw/exec?${params}`;
       
       const response = await fetch(url, {
         method: 'GET',
@@ -46,18 +47,22 @@ const PartnerDashboard = () => {
 
   const handleViewServices = async () => {
     if (partnerData?.email) {
+      setIsLoadingServices(true);
       const services = await fetchServiceData(partnerData.email);
       setServiceData(services);
       setIsServiceModalOpen(true);
+      setIsLoadingServices(false);
     }
   };
+
+  const fetchPartnerData = async (email) => {
     try {
       const params = new URLSearchParams({
         action: 'getPartnerData',
         email: email
       });
       
-      const url = `https://script.google.com/macros/s/AKfycby-worRSM90xQ6Ekb-axlZKY_c45-p4uXJkJfkFDtIDx6a33X-fjbZIZqOzk5kj2LPh8Q/exec?${params}`;
+      const url = `https://script.google.com/macros/s/AKfycbzVBOWgY3Qmgau1THM3lWq0u_7hH6RPVgBc6eXaWUYyBApkBZZm6u4LxY6HsUpUOtIzzw/exec?${params}`;
       
       const response = await fetch(url, {
         method: 'GET',
@@ -131,29 +136,28 @@ const PartnerDashboard = () => {
       <div className="min-h-screen bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* Welcome Section */}
-          <div className="bg-white rounded-lg shadow-sm p-6 mb-8">
-            <div className="flex justify-between items-start">
+          <div className="bg-gradient-to-r from-[#2C5AA0] to-[#1e3a8a] rounded-xl shadow-lg p-8 mb-8 text-white">
+            <div className="flex justify-between items-center">
               <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-2">
+                <h2 className="text-4xl font-bold mb-3">
                   Welcome back, {partnerData?.firstName}! 👋
                 </h2>
-                <p className="text-gray-600 text-lg">Ready to grow your Services with BnC Global?</p>
-                <div className="mt-4">
-                  <span className="text-sm text-gray-500">ID: </span>
-                  <span className="text-sm font-mono text-gray-700">
-                    {partnerData?.email || 'N/A'}
-                  </span>
-                  <span className="ml-4 text-sm text-gray-500">Status: </span>
-                  <span className={`text-sm font-medium ${
-                    partnerData?.status === 'Active' ? 'text-green-600' : 
-                    partnerData?.status === 'Pending' ? 'text-yellow-600' : 'text-gray-600'
-                  }`}>
-                    {partnerData?.status || 'Pending'}
-                  </span>
+                <p className="text-blue-100 text-xl mb-4">Ready to grow your Services with BnC Global?</p>
+                <div className="flex flex-wrap gap-4 text-sm">
+                  <div className=" bg-opacity-20 border border-white px-3 py-1 rounded-full">
+                    <span className="text-white">ID: </span>
+                    <span className="font-mono text-white">{partnerData?.email || 'N/A'}</span>
+                  </div>
+                  <div className=" bg-opacity-20 border border-white px-3 py-1 rounded-full">
+                    <span className="text-white">Status: </span>
+                    <span className="font-medium text-white">
+                      {partnerData?.status || 'Pending'}
+                    </span>
+                  </div>
                 </div>
               </div>
-              <div className="bg-gray-100 p-6 rounded-full mt-4">
-                <FaUser className="h-12 w-12 text-gray-600" />
+              <div className="bg-white  bg-opacity-20 p-6 rounded-full">
+                <FaUser className="h-13 w-13 text-black" />
               </div>
             </div>
           </div>
@@ -214,23 +218,23 @@ const PartnerDashboard = () => {
           {/* Main Dashboard Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
             {/* AI Profile Card */}
-            <div className="bg-white rounded-lg shadow-sm p-6">
+            <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition-shadow duration-300">
               <div className="flex items-start justify-between mb-4">
-                <div className="bg-blue-100 p-3 rounded-lg">
-                  <FaUser className="h-6 w-6 text-blue-600" />
+                <div className="bg-gradient-to-br from-blue-100 to-blue-200 p-4 rounded-xl">
+                  <FaUser className="h-8 w-8 text-[#2C5AA0]" />
                 </div>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">AI Profile</h3>
-              <p className="text-gray-600 mb-4">
+              <h3 className="text-xl font-bold text-gray-900 mb-3">AI Profile</h3>
+              <p className="text-gray-600 mb-6 leading-relaxed">
                 Complete your partner profile with our AI-powered questionnaire system.
               </p>
               <button 
                 onClick={() => setIsAIModalOpen(true)}
                 disabled={partnerData?.aiProfileCompleted}
-                className={`w-full py-2 px-4 rounded-lg font-medium transition-colors ${
+                className={`w-full py-3 px-4 rounded-xl font-semibold transition-all duration-300 ${
                   partnerData?.aiProfileCompleted 
-                    ? 'bg-green-600 text-white cursor-not-allowed' 
-                    : 'bg-blue-600 hover:bg-blue-700 text-white'
+                    ? 'bg-gradient-to-r from-green-500 to-green-600 text-white cursor-not-allowed' 
+                    : 'bg-gradient-to-r from-[#2C5AA0] to-[#1e3a8a] hover:from-[#1e3a8a] hover:to-[#2C5AA0] text-white transform hover:scale-105 hover:shadow-lg'
                 }`}
               >
                 {partnerData?.aiProfileCompleted ? 'Completed ✓' : 'Start AI Profile'}
@@ -238,21 +242,34 @@ const PartnerDashboard = () => {
             </div>
 
             {/* Services Card */}
-            <div className="bg-white rounded-lg shadow-sm p-6">
+            <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition-shadow duration-300">
               <div className="flex items-start justify-between mb-4">
-                <div className="bg-orange-100 p-3 rounded-lg">
-                  <FaServicestack className="h-6 w-6 text-orange-600" />
+                <div className="bg-gradient-to-br from-orange-100 to-orange-200 p-4 rounded-xl">
+                  <FaServicestack className="h-8 w-8 text-orange-600" />
                 </div>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Services</h3>
-              <p className="text-gray-600 mb-4">
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Services</h3>
+              <p className="text-gray-600 mb-6 leading-relaxed">
                 View and manage the services you provide to clients.
               </p>
               <button 
                 onClick={handleViewServices}
-                className="w-full bg-gray-200 hover:bg-gray-300 text-gray-700 py-2 px-4 rounded-lg font-medium transition-colors"
+                disabled={isLoadingServices}
+                className="w-full bg-gradient-to-r from-[#2C5AA0] to-[#1e3a8a] hover:from-[#1e3a8a] hover:to-[#2C5AA0] text-white py-3 px-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
               >
-                View Services
+                {isLoadingServices ? (
+                  <>
+                    <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
+                    <span>Loading...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>View Services</span>
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </>
+                )}
               </button>
             </div>
 
@@ -317,9 +334,12 @@ const PartnerDashboard = () => {
               </p>
               <button 
                 onClick={() => setIsReferralModalOpen(true)}
-                className="w-full bg-white border-2 border-gray-300 text-gray-700 py-2 px-4 rounded-lg font-medium transition-all duration-200 hover:border-[#2C5AA0] hover:text-[#2C5AA0] hover:shadow-md active:scale-95"
+                className="w-full bg-gradient-to-r from-[#2C5AA0] to-[#1e3a8a] hover:from-[#1e3a8a] hover:to-[#2C5AA0] text-white py-3 px-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center justify-center space-x-2"
               >
-                Start Referring
+                <span>Start Referring</span>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                </svg>
               </button>
             </div>
           </div>
@@ -363,6 +383,12 @@ const PartnerDashboard = () => {
       <AIProfileModal 
         isOpen={isAIModalOpen} 
         onClose={() => setIsAIModalOpen(false)}
+        partnerData={partnerData}
+      />
+      
+      <ReferralModal 
+        isOpen={isReferralModalOpen} 
+        onClose={() => setIsReferralModalOpen(false)}
         partnerData={partnerData}
       />
       

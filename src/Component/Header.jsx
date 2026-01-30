@@ -57,24 +57,24 @@ const Header = () => {
             {/* Right Section */}
             <div className="flex items-center space-x-8">
               {/* Desktop Navigation */}
-              <nav className="hidden md:flex items-center gap-6 ml-8">
-                <Link to="/" className="font-geist text-lg text-gray-700 hover:text-[#2C5AA0] relative group transition-colors duration-300">
+              <nav className="hidden md:flex items-center gap-4 ml-8 whitespace-nowrap">
+                <Link to="/" className="font-geist text-base text-gray-700 hover:text-[#2C5AA0] relative group transition-colors duration-300">
                   Home
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2C5AA0] group-hover:w-full transition-all duration-300"></span>
                 </Link>
-                <Link to="/partnerships" className="font-geist text-lg text-gray-700 hover:text-[#2C5AA0] relative group transition-colors duration-300">
+                <Link to="/partnerships" className="font-geist text-base text-gray-700 hover:text-[#2C5AA0] relative group transition-colors duration-300">
                   Partnerships
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2C5AA0] group-hover:w-full transition-all duration-300"></span>
                 </Link>
-                <Link to="/events" className="font-geist text-lg text-gray-700 hover:text-[#2C5AA0] relative group transition-colors duration-300">
+                <Link to="/events" className="font-geist text-base text-gray-700 hover:text-[#2C5AA0] relative group transition-colors duration-300">
                   Events
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2C5AA0] group-hover:w-full transition-all duration-300"></span>
                 </Link>
-                <Link to="/why-choose-us" className="font-geist text-lg text-gray-700 hover:text-[#2C5AA0] relative group transition-colors duration-300">
+                <Link to="/why-choose-us" className="font-geist text-base text-gray-700 hover:text-[#2C5AA0] relative group transition-colors duration-300 whitespace-nowrap">
                   Why Choose Us
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2C5AA0] group-hover:w-full transition-all duration-300"></span>
                 </Link>
-                <button onClick={() => setIsModalOpen(true)} className="font-geist text-lg text-gray-700 hover:text-[#2C5AA0] relative group transition-colors duration-300">
+                <button onClick={() => setIsModalOpen(true)} className="font-geist text-base text-gray-700 hover:text-[#2C5AA0] relative group transition-colors duration-300 whitespace-nowrap">
                   Apply Now
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2C5AA0] group-hover:w-full transition-all duration-300"></span>
                 </button>

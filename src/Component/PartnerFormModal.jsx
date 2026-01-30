@@ -44,7 +44,7 @@ const PartnerFormModal = ({ isOpen, onClose }) => {
         email: email
       });
       
-      const url = `https://script.google.com/macros/s/AKfycby-worRSM90xQ6Ekb-axlZKY_c45-p4uXJkJfkFDtIDx6a33X-fjbZIZqOzk5kj2LPh8Q/exec?${params}`;
+      const url = `https://script.google.com/macros/s/AKfycbzVBOWgY3Qmgau1THM3lWq0u_7hH6RPVgBc6eXaWUYyBApkBZZm6u4LxY6HsUpUOtIzzw/exec?${params}`;
       
       const response = await fetch(url, {
         method: 'GET',
@@ -158,7 +158,7 @@ const PartnerFormModal = ({ isOpen, onClose }) => {
           password: formData.password
         });
         
-        const url = `https://script.google.com/macros/s/AKfycby-worRSM90xQ6Ekb-axlZKY_c45-p4uXJkJfkFDtIDx6a33X-fjbZIZqOzk5kj2LPh8Q/exec?${params}`;
+        const url = `https://script.google.com/macros/s/AKfycbzVBOWgY3Qmgau1THM3lWq0u_7hH6RPVgBc6eXaWUYyBApkBZZm6u4LxY6HsUpUOtIzzw/exec?${params}`;
         
         // Use fetch with GET method
         const response = await fetch(url, {
@@ -177,7 +177,7 @@ const PartnerFormModal = ({ isOpen, onClose }) => {
           password: formData.password
         });
         
-        const verifyUrl = `https://script.google.com/macros/s/AKfycby-worRSM90xQ6Ekb-axlZKY_c45-p4uXJkJfkFDtIDx6a33X-fjbZIZqOzk5kj2LPh8Q/exec?${verifyParams}`;
+        const verifyUrl = `https://script.google.com/macros/s/AKfycbzVBOWgY3Qmgau1THM3lWq0u_7hH6RPVgBc6eXaWUYyBApkBZZm6u4LxY6HsUpUOtIzzw/exec?${verifyParams}`;
         
         const verifyResponse = await fetch(verifyUrl, {
           method: 'GET',

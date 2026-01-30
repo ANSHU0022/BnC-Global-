@@ -8,11 +8,14 @@ const CTA = () => {
     <>
       <section className="text-white py-16" style={{backgroundColor: '#2C3544'}}>
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Ready to Launch Your <span style={{color: '#2C5AA0'}}>Partnership Journey?</span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 relative" style={{}}>
+            <span className="block">
+              Ready to Launch Your <span style={{color: '#2C5AA0'}}>Partnership Journey?</span>
+            </span>
+            <div className="w-60 h-0.5 bg-white mx-auto mt-2"></div>
           </h2>
           <p className="text-xl mb-8 max-w-3xl mx-auto">
-            Join 5000+ entrepreneurs who successfully registered their business with BnC Global. Get started in just 7-10 days!
+            Join 5000+ entrepreneurs who successfully registered their business with BnC Global. Get started in just 4-7 days!
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">

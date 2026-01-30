@@ -36,12 +36,12 @@ const PartnershipOpportunities = () => {
   ];
 
   return (
-    <section className="bg-gray-50 mt-30">
+    <section className="bg-gray-50 -mt-20 pt-20 pb-16">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-8">
-          <h2 className="font-poppins text-4xl md:text-5xl font-bold text-gray-800 mb-4 relative inline-block">
+        <div className="text-center mb-12 pt-8">
+          <h2 className="font-poppins text-3xl md:text-4xl font-bold text-gray-800 mb-4 relative inline-block">
             Partnership <span style={{color: '#2C5AA0'}}>Opportunities</span>
-            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-32 h-0.5 rounded-full" style={{backgroundColor: '#2C5AA0'}}></div>
+            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-0.5 rounded-full" style={{backgroundColor: '#2C5AA0'}}></div>
           </h2>
         </div>
         

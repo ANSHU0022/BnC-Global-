@@ -120,7 +120,7 @@ const AIProfileModal = ({ isOpen, onClose, partnerData }) => {
         meetingTime: formData.meetingTime
       });
       
-      const url = `https://script.google.com/macros/s/AKfycby-worRSM90xQ6Ekb-axlZKY_c45-p4uXJkJfkFDtIDx6a33X-fjbZIZqOzk5kj2LPh8Q/exec?${params}`;
+      const url = `https://script.google.com/macros/s/AKfycbzVBOWgY3Qmgau1THM3lWq0u_7hH6RPVgBc6eXaWUYyBApkBZZm6u4LxY6HsUpUOtIzzw/exec?${params}`;
       
       const response = await fetch(url, {
         method: 'GET',

@@ -2,12 +2,12 @@ import React from 'react';
 
 const FinancialEcosystem = () => {
   return (
-    <section className="bg-white mt-30">
+    <section className="bg-white mt-12">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-8">
+        <div className="text-center mb-3">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4 relative inline-block">
             Complete Financial <span style={{color: '#2C5AA0'}}>Ecosystem</span>
-            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-32 h-0.5 rounded-full" style={{backgroundColor: '#2C5AA0'}}></div>
+            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-0.5 rounded-full" style={{backgroundColor: '#2C5AA0'}}></div>
           </h2>
         </div>
         

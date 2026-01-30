@@ -21,7 +21,7 @@ const WhyChooseUs = () => {
     {
       icon: <FaBolt className="text-4xl mb-4" style={{color: '#2C5AA0'}} />,
       title: "Fast Turnaround",
-      description: "Complete registration in just 7-10 working days."
+      description: "Complete registration in just 4-7 working days."
     },
     {
       icon: <FaShieldAlt className="text-4xl mb-4" style={{color: '#2C5AA0'}} />,
@@ -50,12 +50,15 @@ const WhyChooseUs = () => {
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {features.map((feature, index) => (
-            <div key={index} className="bg-white p-6 rounded-2xl shadow-lg text-center hover:shadow-2xl hover:-translate-y-2 hover:scale-105 transition-all duration-150 border border-gray-100">
-              <div className="flex justify-center mb-4">
-                {feature.icon}
+            <div key={index} className="bg-gradient-to-br from-white via-blue-50 to-indigo-100 p-6 rounded-2xl shadow-lg text-center hover:shadow-2xl hover:-translate-y-3 hover:scale-105 hover:bg-gradient-to-br hover:from-blue-50 hover:via-indigo-100 hover:to-purple-100 transition-all duration-300 border border-gray-100 relative overflow-hidden group">
+              <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/20 to-blue-200/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="relative z-10">
+                <div className="flex justify-center mb-4">
+                  {feature.icon}
+                </div>
+                <h3 className="font-poppins text-xl font-bold text-gray-800 mb-4">{feature.title}</h3>
+                <p className="font-geist text-gray-600">{feature.description}</p>
               </div>
-              <h3 className="font-poppins text-xl font-bold text-gray-800 mb-4">{feature.title}</h3>
-              <p className="font-geist text-gray-600">{feature.description}</p>
             </div>
           ))}
         </div>
