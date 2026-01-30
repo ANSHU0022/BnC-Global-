@@ -28,6 +28,7 @@ function App() {
                   <Route path="/partnerships" element={<Partnerships />} />
                   <Route path="/events" element={<EventsPage />} />
                   <Route path="/why-choose-us" element={<WhyChooseUsPage />} />
+                  <Route path="/partner-form" element={<Home />} />
                 </Routes>
               </main>
               <Footer />

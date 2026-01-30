@@ -1,9 +1,16 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import PartnerFormModal from './PartnerFormModal';
 
 const Hero = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname === '/partner-form') {
+      setIsModalOpen(true);
+    }
+  }, [location]);
 
   return (
     <>
