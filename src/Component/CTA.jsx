@@ -25,7 +25,10 @@ const CTA = () => {
             >
               🤝 Become a Partner
             </button>
-            <button className="bg-white text-[#2C3544] px-8 py-3 rounded-full font-semibold transition-colors hover:bg-gray-100 flex items-center justify-center gap-2">
+            <button 
+              onClick={() => window.location.href = 'tel:+919958711796'}
+              className="bg-white text-[#2C3544] px-8 py-3 rounded-full font-semibold transition-colors hover:bg-gray-100 flex items-center justify-center gap-2"
+            >
               📞 Talk to Expert
             </button>
           </div>
