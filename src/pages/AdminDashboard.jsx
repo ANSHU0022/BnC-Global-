@@ -94,8 +94,8 @@ const AdminDashboard = () => {
                 <FaUsers className="h-6 w-6 text-blue-600" />
               </div>
               <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">Total Partners</p>
-                <p className="text-2xl font-bold text-gray-900">{dashboardData?.kpis?.totalPartners || 0}</p>
+                <p className="font-geist text-sm font-medium text-gray-600">Total Partners</p>
+                <p className="font-poppins text-2xl font-bold text-gray-900">{dashboardData?.kpis?.totalPartners || 0}</p>
               </div>
             </div>
           </div>
@@ -106,8 +106,8 @@ const AdminDashboard = () => {
                 <FaCheckCircle className="h-6 w-6 text-green-600" />
               </div>
               <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">Active Partners</p>
-                <p className="text-2xl font-bold text-gray-900">{dashboardData?.kpis?.activePartners || 0}</p>
+                <p className="font-geist text-sm font-medium text-gray-600">Active Partners</p>
+                <p className="font-poppins text-2xl font-bold text-gray-900">{dashboardData?.kpis?.activePartners || 0}</p>
               </div>
             </div>
           </div>
@@ -118,8 +118,8 @@ const AdminDashboard = () => {
                 <FaClock className="h-6 w-6 text-yellow-600" />
               </div>
               <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">Pending</p>
-                <p className="text-2xl font-bold text-gray-900">{dashboardData?.kpis?.pendingPartners || 0}</p>
+                <p className="font-geist text-sm font-medium text-gray-600">Pending</p>
+                <p className="font-poppins text-2xl font-bold text-gray-900">{dashboardData?.kpis?.pendingPartners || 0}</p>
               </div>
             </div>
           </div>
@@ -130,8 +130,8 @@ const AdminDashboard = () => {
                 <FaCalendarAlt className="h-6 w-6 text-purple-600" />
               </div>
               <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">This Month</p>
-                <p className="text-2xl font-bold text-gray-900">{dashboardData?.kpis?.thisMonth || 0}</p>
+                <p className="font-geist text-sm font-medium text-gray-600">This Month</p>
+                <p className="font-poppins text-2xl font-bold text-gray-900">{dashboardData?.kpis?.thisMonth || 0}</p>
               </div>
             </div>
           </div>
@@ -140,29 +140,29 @@ const AdminDashboard = () => {
         {/* Partners Table */}
         <div className="bg-white rounded-lg shadow-sm overflow-hidden">
           <div className="px-6 py-4 border-b border-gray-200">
-            <h3 className="text-lg font-semibold text-gray-900">All Partners</h3>
+            <h3 className="font-poppins text-lg font-semibold text-gray-900">All Partners</h3>
           </div>
           
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="font-geist px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Name
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="font-geist px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Email
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="font-geist px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Phone
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="font-geist px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Country
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="font-geist px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     City
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="font-geist px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Status
                   </th>
                 </tr>
@@ -170,23 +170,23 @@ const AdminDashboard = () => {
               <tbody className="bg-white divide-y divide-gray-200">
                 {dashboardData?.partners?.map((partner, index) => (
                   <tr key={index} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    <td className="font-geist px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                       {partner.name}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="font-geist px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                       {partner.email}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="font-geist px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                       {partner.phone}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="font-geist px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                       {partner.country}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="font-geist px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                       {partner.city}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
+                      <span className={`font-geist inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
                         partner.status === 'Complete' 
                           ? 'bg-green-100 text-green-800' 
                           : 'bg-yellow-100 text-yellow-800'

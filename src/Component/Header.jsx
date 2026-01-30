@@ -55,9 +55,9 @@ const Header = () => {
             </div>
             
             {/* Right Section */}
-            <div className="flex items-center space-x-8">
+            <div className="flex items-center space-x-12 ml-12">
               {/* Desktop Navigation */}
-              <nav className="hidden md:flex items-center gap-4 ml-8 whitespace-nowrap">
+              <nav className="hidden md:flex items-center gap-4 whitespace-nowrap">
                 <Link to="/" className="font-geist text-base text-gray-700 hover:text-[#2C5AA0] relative group transition-colors duration-300">
                   Home
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2C5AA0] group-hover:w-full transition-all duration-300"></span>

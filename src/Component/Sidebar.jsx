@@ -107,7 +107,7 @@ const Sidebar = ({ isOpen, onClose, isLoggedIn, user, onLogout }) => {
                       <FaUser size={20} className="text-white" />
                       <div>
                         <div className="font-geist font-semibold text-white">{user?.firstName} {user?.lastName}</div>
-                        <div className="text-sm text-blue-100 truncate">{user?.email}</div>
+                        <div className="font-geist text-sm text-blue-100 truncate">{user?.email}</div>
                       </div>
                     </div>
                     

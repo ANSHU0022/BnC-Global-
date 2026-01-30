@@ -139,10 +139,10 @@ const PartnerDashboard = () => {
           <div className="bg-gradient-to-r from-[#2C5AA0] to-[#1e3a8a] rounded-xl shadow-lg p-8 mb-8 text-white">
             <div className="flex justify-between items-center">
               <div>
-                <h2 className="text-4xl font-bold mb-3">
+                <h2 className="font-poppins text-4xl font-bold mb-3">
                   Welcome back, {partnerData?.firstName}! 👋
                 </h2>
-                <p className="text-blue-100 text-xl mb-4">Ready to grow your Services with BnC Global?</p>
+                <p className="font-geist text-blue-100 text-xl mb-4">Ready to grow your Services with BnC Global?</p>
                 <div className="flex flex-wrap gap-4 text-sm">
                   <div className=" bg-opacity-20 border border-white px-3 py-1 rounded-full">
                     <span className="text-white">ID: </span>
@@ -165,7 +165,7 @@ const PartnerDashboard = () => {
           {/* Partner Profile Section */}
           <div className="bg-white rounded-lg shadow-sm p-6 mb-8">
             <div className="flex justify-between items-center mb-6">
-              <h3 className="text-2xl font-semibold text-gray-900">Partner Profile</h3>
+              <h3 className="font-poppins text-2xl font-semibold text-gray-900">Partner Profile</h3>
               <span className={`px-3 py-1 rounded-full text-sm font-medium ${
                 partnerData?.status === 'Active' ? 'bg-green-100 text-green-800' :
                 partnerData?.status === 'Pending' ? 'bg-yellow-100 text-yellow-800' :
@@ -224,8 +224,8 @@ const PartnerDashboard = () => {
                   <FaUser className="h-8 w-8 text-[#2C5AA0]" />
                 </div>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">AI Profile</h3>
-              <p className="text-gray-600 mb-6 leading-relaxed">
+              <h3 className="font-poppins text-xl font-bold text-gray-900 mb-3">AI Profile</h3>
+              <p className="font-geist text-gray-600 mb-6 leading-relaxed">
                 Complete your partner profile with our AI-powered questionnaire system.
               </p>
               <button 
@@ -248,8 +248,8 @@ const PartnerDashboard = () => {
                   <FaServicestack className="h-8 w-8 text-orange-600" />
                 </div>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Services</h3>
-              <p className="text-gray-600 mb-6 leading-relaxed">
+              <h3 className="font-poppins text-xl font-bold text-gray-900 mb-3">Services</h3>
+              <p className="font-geist text-gray-600 mb-6 leading-relaxed">
                 View and manage the services you provide to clients.
               </p>
               <button 
@@ -280,8 +280,8 @@ const PartnerDashboard = () => {
                   <FaHeadset className="h-6 w-6 text-yellow-600" />
                 </div>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Support</h3>
-              <p className="text-gray-600 mb-4">
+              <h3 className="font-poppins text-xl font-semibold text-gray-900 mb-2">Support</h3>
+              <p className="font-geist text-gray-600 mb-4">
                 Get assistance from our dedicated partner support team.
               </p>
               <button className="w-full bg-gray-200 hover:bg-gray-300 text-gray-700 py-2 px-4 rounded-lg font-medium transition-colors">
@@ -296,8 +296,8 @@ const PartnerDashboard = () => {
                   <FaGlobe className="h-6 w-6 text-green-600" />
                 </div>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">International Networking</h3>
-              <p className="text-gray-600 mb-4">
+              <h3 className="font-poppins text-xl font-semibold text-gray-900 mb-2">International Networking</h3>
+              <p className="font-geist text-gray-600 mb-4">
                 Join our global network and collaborate with international clients. Expand your business reach worldwide.
               </p>
               <button className="w-full bg-gray-200 hover:bg-gray-300 text-gray-700 py-2 px-4 rounded-lg font-medium transition-colors">
@@ -312,8 +312,8 @@ const PartnerDashboard = () => {
                   <FaUsers className="h-6 w-6 text-purple-600" />
                 </div>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Manpower Requirements</h3>
-              <p className="text-gray-600 mb-4">
+              <h3 className="font-poppins text-xl font-semibold text-gray-900 mb-2">Manpower Requirements</h3>
+              <p className="font-geist text-gray-600 mb-4">
                 Find skilled professionals or offer your expertise to meet project requirements.
               </p>
               <button className="w-full bg-gray-200 hover:bg-gray-300 text-gray-700 py-2 px-4 rounded-lg font-medium transition-colors">
@@ -328,8 +328,8 @@ const PartnerDashboard = () => {
                   <FaDollarSign className="h-6 w-6 text-red-600" />
                 </div>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Earn from Referral</h3>
-              <p className="text-gray-600 mb-4">
+              <h3 className="font-poppins text-xl font-semibold text-gray-900 mb-2">Earn from Referral</h3>
+              <p className="font-geist text-gray-600 mb-4">
                 Refer new partners and clients to earn attractive commissions and rewards.
               </p>
               <button 
@@ -346,7 +346,7 @@ const PartnerDashboard = () => {
 
           {/* Recent Activity Section */}
           <div className="bg-white rounded-lg shadow-sm p-6">
-            <h3 className="text-2xl font-semibold text-gray-900 mb-6">Recent Activity</h3>
+            <h3 className="font-poppins text-2xl font-semibold text-gray-900 mb-6">Recent Activity</h3>
             
             <div className="space-y-4">
               <div className="flex items-start space-x-4">
@@ -354,8 +354,8 @@ const PartnerDashboard = () => {
                   <FaCheckCircle className="h-5 w-5 text-green-600" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900">Account Created</h4>
-                  <p className="text-gray-600 text-sm">
+                  <h4 className="font-poppins font-semibold text-gray-900">Account Created</h4>
+                  <p className="font-geist text-gray-600 text-sm">
                     Your partner account has been successfully created and activated
                   </p>
                 </div>
@@ -367,8 +367,8 @@ const PartnerDashboard = () => {
                     <FaCheckCircle className="h-5 w-5 text-blue-600" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900">AI Profile Completed</h4>
-                    <p className="text-gray-600 text-sm">
+                    <h4 className="font-poppins font-semibold text-gray-900">AI Profile Completed</h4>
+                    <p className="font-geist text-gray-600 text-sm">
                       You have successfully completed your AI partner profile
                     </p>
                   </div>

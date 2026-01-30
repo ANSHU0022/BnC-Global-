@@ -8,6 +8,7 @@ const Chatbot = () => {
   ]);
   const [inputText, setInputText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [sessionId] = useState(() => 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9));
   const messagesEndRef = useRef(null);
 
   const quickButtons = [
@@ -33,23 +34,27 @@ const Chatbot = () => {
     setIsLoading(true);
 
     try {
-      // Replace with your n8n webhook URL
-      const response = await fetch('YOUR_N8N_WEBHOOK_URL', {
+      const response = await fetch('https://ai2266.app.n8n.cloud/webhook/ae482a94-9f32-48d4-95cf-3b722d81bfd5', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           message: text,
-          timestamp: new Date().toISOString()
+          sessionId: sessionId
         })
       });
 
-      const data = await response.json();
-      const botMessage = { type: 'bot', text: data.response || 'Sorry, I could not process your request.' };
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+
+      const data = await response.text();
+      const botMessage = { type: 'bot', text: data || 'No response from server.' };
       setMessages(prev => [...prev, botMessage]);
     } catch (error) {
-      const errorMessage = { type: 'bot', text: 'Sorry, something went wrong. Please try again.' };
+      console.error('Webhook error:', error);
+      const errorMessage = { type: 'bot', text: `Error: ${error.message}. Please check webhook configuration.` };
       setMessages(prev => [...prev, errorMessage]);
     } finally {
       setIsLoading(false);
@@ -97,8 +102,8 @@ const Chatbot = () => {
                 <FaRocketchat className="text-xl" style={{ color: '#2C5AA0' }} />
               </div>
               <div>
-                <h3 className="font-semibold text-lg">BnC AI Assistant</h3>
-                <p className="text-blue-100 text-sm">Online • Ready to help</p>
+                <h3 className="font-poppins font-semibold text-lg">BnC AI Assistant</h3>
+                <p className="font-geist text-blue-100 text-sm">Online • Ready to help</p>
               </div>
             </div>
             <button onClick={() => setIsOpen(false)} className="text-white hover:text-gray-200">
@@ -115,7 +120,7 @@ const Chatbot = () => {
                     <FaRocketchat className="text-white text-sm" />
                   </div>
                 )}
-                <div className={`max-w-xs p-3 rounded-2xl ${
+                <div className={`max-w-xs p-3 rounded-2xl font-geist ${
                   message.type === 'user' 
                     ? 'text-white rounded-br-sm' 
                     : 'bg-white text-gray-800 rounded-bl-sm shadow-sm'
@@ -170,7 +175,7 @@ const Chatbot = () => {
                 <button
                   key={index}
                   onClick={() => handleQuickButtonClick(button)}
-                  className="px-3 py-1.5 text-xs bg-gray-100 hover:bg-gray-200 rounded-full transition-colors flex-1 text-center text-gray-700"
+                  className="font-geist px-3 py-1.5 text-xs bg-gray-100 hover:bg-gray-200 rounded-full transition-colors flex-1 text-center text-gray-700"
                 >
                   {button}
                 </button>
