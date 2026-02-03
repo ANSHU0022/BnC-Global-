@@ -222,13 +222,18 @@ const Login = () => {
               disabled={isLoading}
               className="w-full bg-[#2C5AA0] hover:bg-[#1e3f73] text-white py-3 px-4 rounded-lg font-semibold transition-colors flex items-center justify-center disabled:opacity-50"
             >
-              <span className="mr-2">→</span>
               {isLoading ? 'Signing in...' : `Sign In as ${activeTab === 'partner' ? 'Partner' : 'Admin'}`}
             </button>
+            <Link
+              to="/?open=partner"
+              className="w-full bg-[#2C5AA0] hover:bg-[#1e3f73] text-white py-3 px-4 rounded-lg font-semibold transition-colors flex items-center justify-center -mt-2"
+            >
+              Create an account
+            </Link>
           </form>
 
           {/* Back Link */}
-          <div className="mt-6 text-center">
+          <div className="mt-4 text-center">
             <Link 
               to="/" 
               className="inline-flex items-center text-[#2C5AA0] hover:text-[#1e3f73] font-medium"
@@ -237,6 +242,7 @@ const Login = () => {
               Back to Registration
             </Link>
           </div>
+
         </div>
       </div>
     </div>

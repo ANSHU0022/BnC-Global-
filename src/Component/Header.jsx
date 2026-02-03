@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import PartnerFormModal from './PartnerFormModal';
 
 const Header = () => {
+  const location = useLocation();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -17,6 +18,13 @@ const Header = () => {
     }
   }, []);
 
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    if (params.get('open') === 'partner') {
+      setIsModalOpen(true);
+    }
+  }, [location.search]);
+
   const handleLogout = () => {
     localStorage.removeItem('partnerUser');
     setIsLoggedIn(false);
@@ -26,7 +34,7 @@ const Header = () => {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 bg-white shadow-lg z-40">
+      <header className="fixed top-0 left-0 right-0 bg-white shadow-lg z-40 rounded-b-3xl">
         <div className="max-w-6xl mx-auto px-5">
           <div className="flex items-center justify-between h-30">
             {/* Left Section */}

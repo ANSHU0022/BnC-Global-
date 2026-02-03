@@ -10,6 +10,7 @@ import WhyChooseUsPage from './pages/WhyChooseUsPage';
 import Login from './pages/Login';
 import PartnerDashboard from './pages/PartnerDashboard';
 import AdminDashboard from './pages/AdminDashboard';
+import BncServices from './pages/BncServices';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<PartnerDashboard />} />
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
+          <Route path="/bnc-services" element={<BncServices />} />
           <Route path="/*" element={
             <>
               <Header />

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaUser, FaServicestack, FaHeadset, FaGlobe, FaUsers, FaDollarSign, FaCheckCircle } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Header from '../Component/Header';
 import Footer from '../Component/Footer';
 import AIProfileModal from '../Component/AIProfileModal';
@@ -16,6 +16,7 @@ const PartnerDashboard = () => {
   const [serviceData, setServiceData] = useState(null);
   const [isLoadingServices, setIsLoadingServices] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const fetchServiceData = async (email) => {
     try {
@@ -113,6 +114,17 @@ const PartnerDashboard = () => {
       navigate('/login');
     }
   }, [navigate]);
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const open = params.get('open');
+    if (open === 'ai-profile') {
+      setIsAIModalOpen(true);
+    }
+    if (open === 'referral') {
+      setIsReferralModalOpen(true);
+    }
+  }, [location.search]);
 
   const handleLogout = () => {
     localStorage.removeItem('partnerUser');
@@ -218,7 +230,7 @@ const PartnerDashboard = () => {
           {/* Main Dashboard Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
             {/* AI Profile Card */}
-            <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+            <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
               <div className="flex items-start justify-between mb-4">
                 <div className="bg-gradient-to-br from-blue-100 to-blue-200 p-4 rounded-xl">
                   <FaUser className="h-8 w-8 text-[#2C5AA0]" />
@@ -231,7 +243,7 @@ const PartnerDashboard = () => {
               <button 
                 onClick={() => setIsAIModalOpen(true)}
                 disabled={partnerData?.aiProfileCompleted}
-                className={`w-full py-3 px-4 rounded-xl font-semibold transition-all duration-300 ${
+                className={`w-full py-3 px-4 rounded-xl font-semibold transition-all duration-300 mt-auto ${
                   partnerData?.aiProfileCompleted 
                     ? 'bg-gradient-to-r from-green-500 to-green-600 text-white cursor-not-allowed' 
                     : 'bg-gradient-to-r from-[#2C5AA0] to-[#1e3a8a] hover:from-[#1e3a8a] hover:to-[#2C5AA0] text-white transform hover:scale-105 hover:shadow-lg'
@@ -242,7 +254,7 @@ const PartnerDashboard = () => {
             </div>
 
             {/* Services Card */}
-            <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+            <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
               <div className="flex items-start justify-between mb-4">
                 <div className="bg-gradient-to-br from-orange-100 to-orange-200 p-4 rounded-xl">
                   <FaServicestack className="h-8 w-8 text-orange-600" />
@@ -255,7 +267,7 @@ const PartnerDashboard = () => {
               <button 
                 onClick={handleViewServices}
                 disabled={isLoadingServices}
-                className="w-full bg-gradient-to-r from-[#2C5AA0] to-[#1e3a8a] hover:from-[#1e3a8a] hover:to-[#2C5AA0] text-white py-3 px-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                className="w-full bg-gradient-to-r from-[#2C5AA0] to-[#1e3a8a] hover:from-[#1e3a8a] hover:to-[#2C5AA0] text-white py-3 px-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none mt-auto"
               >
                 {isLoadingServices ? (
                   <>
@@ -273,24 +285,30 @@ const PartnerDashboard = () => {
               </button>
             </div>
 
-            {/* Support Card */}
-            <div className="bg-white rounded-lg shadow-sm p-6">
+            {/* BnC Services Card */}
+            <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
               <div className="flex items-start justify-between mb-4">
-                <div className="bg-yellow-100 p-3 rounded-lg">
-                  <FaHeadset className="h-6 w-6 text-yellow-600" />
+                <div className="bg-yellow-100 p-3 rounded-xl">
+                  <FaServicestack className="h-6 w-6 text-yellow-700" />
                 </div>
               </div>
-              <h3 className="font-poppins text-xl font-semibold text-gray-900 mb-2">Support</h3>
-              <p className="font-geist text-gray-600 mb-4">
-                Get assistance from our dedicated partner support team.
+              <h3 className="font-poppins text-xl font-bold text-gray-900 mb-3">BnC Services</h3>
+              <p className="font-geist text-gray-600 mb-6 leading-relaxed">
+                Explore our full suite of services with dedicated videos for each offering.
               </p>
-              <button className="w-full bg-gray-200 hover:bg-gray-300 text-gray-700 py-2 px-4 rounded-lg font-medium transition-colors">
-                Contact Support
+              <button
+                onClick={() => navigate('/bnc-services')}
+                className="w-full bg-gradient-to-r from-[#2C5AA0] to-[#1e3a8a] hover:from-[#1e3a8a] hover:to-[#2C5AA0] text-white py-3 px-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center justify-center space-x-2 mt-auto"
+              >
+                <span>View BnC Services</span>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
               </button>
             </div>
 
             {/* International Networking Card */}
-            <div className="bg-white rounded-lg shadow-sm p-6">
+            <div className="bg-white rounded-lg shadow-sm p-6 flex flex-col h-full">
               <div className="flex items-start justify-between mb-4">
                 <div className="bg-green-100 p-3 rounded-lg">
                   <FaGlobe className="h-6 w-6 text-green-600" />
@@ -300,13 +318,13 @@ const PartnerDashboard = () => {
               <p className="font-geist text-gray-600 mb-4">
                 Join our global network and collaborate with international clients. Expand your business reach worldwide.
               </p>
-              <button className="w-full bg-gray-200 hover:bg-gray-300 text-gray-700 py-2 px-4 rounded-lg font-medium transition-colors">
+              <button className="w-full bg-gray-200 hover:bg-gray-300 text-gray-700 py-2 px-4 rounded-lg font-medium transition-colors mt-auto">
                 Join Network
               </button>
             </div>
 
             {/* Manpower Requirements Card */}
-            <div className="bg-white rounded-lg shadow-sm p-6">
+            <div className="bg-white rounded-lg shadow-sm p-6 flex flex-col h-full">
               <div className="flex items-start justify-between mb-4">
                 <div className="bg-purple-100 p-3 rounded-lg">
                   <FaUsers className="h-6 w-6 text-purple-600" />
@@ -316,13 +334,13 @@ const PartnerDashboard = () => {
               <p className="font-geist text-gray-600 mb-4">
                 Find skilled professionals or offer your expertise to meet project requirements.
               </p>
-              <button className="w-full bg-gray-200 hover:bg-gray-300 text-gray-700 py-2 px-4 rounded-lg font-medium transition-colors">
+              <button className="w-full bg-gray-200 hover:bg-gray-300 text-gray-700 py-2 px-4 rounded-lg font-medium transition-colors mt-auto">
                 View Opportunities
               </button>
             </div>
 
             {/* Earn from Referral Card */}
-            <div className="bg-white rounded-lg shadow-sm p-6">
+            <div className="bg-white rounded-lg shadow-sm p-6 flex flex-col h-full">
               <div className="flex items-start justify-between mb-4">
                 <div className="bg-red-100 p-3 rounded-lg">
                   <FaDollarSign className="h-6 w-6 text-red-600" />
@@ -334,7 +352,7 @@ const PartnerDashboard = () => {
               </p>
               <button 
                 onClick={() => setIsReferralModalOpen(true)}
-                className="w-full bg-gradient-to-r from-[#2C5AA0] to-[#1e3a8a] hover:from-[#1e3a8a] hover:to-[#2C5AA0] text-white py-3 px-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center justify-center space-x-2"
+                className="w-full bg-gradient-to-r from-[#2C5AA0] to-[#1e3a8a] hover:from-[#1e3a8a] hover:to-[#2C5AA0] text-white py-3 px-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center justify-center space-x-2 mt-auto"
               >
                 <span>Start Referring</span>
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
