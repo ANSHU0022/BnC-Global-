@@ -1,7 +1,5 @@
 import React from 'react';
 import PartnershipOpportunities from '../Component/PartnershipOpportunities';
-import FinancialEcosystem from '../Component/FinancialEcosystem';
-import WhyChooseUs from '../Component/WhyChooseUs';
 import CTA from '../Component/CTA';
 
 const Partnerships = () => {
@@ -16,8 +14,6 @@ const Partnerships = () => {
         </div>
       </section>
       <PartnershipOpportunities />
-      <FinancialEcosystem />
-      <WhyChooseUs />
       <CTA />
     </div>
   );

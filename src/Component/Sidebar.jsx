@@ -57,7 +57,7 @@ const Sidebar = ({ isOpen, onClose, isLoggedIn, user, onLogout }) => {
                     <Link 
                       key={item.to}
                       to={item.to} 
-                      className="group flex items-center space-x-4 py-3.5 px-4 rounded-xl border border-white/70 bg-white/70 shadow-sm transition-all duration-300 hover:text-white hover:border-[#2C5AA0] hover:bg-gradient-to-r hover:from-[#2C5AA0] hover:to-[#1e3a8a] hover:-translate-y-0.5"
+                      className="group flex items-center space-x-4 py-3.5 px-4 rounded-xl border border-slate-200 bg-white/80 shadow-sm transition-all duration-200 hover:border-slate-300 hover:bg-slate-50 hover:shadow-md"
                       onClick={onClose}
                     >
                       <Icon size={20} className="transition-colors duration-300" />
@@ -72,7 +72,7 @@ const Sidebar = ({ isOpen, onClose, isLoggedIn, user, onLogout }) => {
                 <>
                   <Link 
                     to={isLoggedIn ? "/dashboard" : "/login"}
-                    className="flex items-center space-x-4 py-3.5 px-4 rounded-xl border border-white/70 bg-white/70 shadow-sm transition-all duration-300 hover:text-white hover:border-[#2C5AA0] hover:bg-gradient-to-r hover:from-[#2C5AA0] hover:to-[#1e3a8a] hover:-translate-y-0.5"
+                    className="flex items-center space-x-4 py-3.5 px-4 rounded-xl border border-slate-200 bg-white/80 shadow-sm transition-all duration-200 hover:border-slate-300 hover:bg-slate-50 hover:shadow-md"
                     onClick={onClose}
                   >
                     <FaTachometerAlt size={20} className="transition-colors duration-300" />
@@ -80,7 +80,7 @@ const Sidebar = ({ isOpen, onClose, isLoggedIn, user, onLogout }) => {
                   </Link>
                   <Link
                     to={isLoggedIn ? "/dashboard?open=ai-profile" : "/login"}
-                    className="flex items-center space-x-4 py-3.5 px-4 rounded-xl border border-white/70 bg-white/70 shadow-sm transition-all duration-300 hover:text-white hover:border-[#2C5AA0] hover:bg-gradient-to-r hover:from-[#2C5AA0] hover:to-[#1e3a8a] hover:-translate-y-0.5"
+                    className="flex items-center space-x-4 py-3.5 px-4 rounded-xl border border-slate-200 bg-white/80 shadow-sm transition-all duration-200 hover:border-slate-300 hover:bg-slate-50 hover:shadow-md"
                     onClick={onClose}
                   >
                     <FaRobot size={20} className="transition-colors duration-300" />
@@ -88,7 +88,7 @@ const Sidebar = ({ isOpen, onClose, isLoggedIn, user, onLogout }) => {
                   </Link>
                   <Link
                     to="/bnc-services?from=sidebar"
-                    className="flex items-center space-x-4 py-3.5 px-4 rounded-xl border border-white/70 bg-white/70 shadow-sm transition-all duration-300 hover:text-white hover:border-[#2C5AA0] hover:bg-gradient-to-r hover:from-[#2C5AA0] hover:to-[#1e3a8a] hover:-translate-y-0.5"
+                    className="flex items-center space-x-4 py-3.5 px-4 rounded-xl border border-slate-200 bg-white/80 shadow-sm transition-all duration-200 hover:border-slate-300 hover:bg-slate-50 hover:shadow-md"
                     onClick={onClose}
                   >
                     <FaServicestack size={20} className="transition-colors duration-300" />
@@ -96,7 +96,7 @@ const Sidebar = ({ isOpen, onClose, isLoggedIn, user, onLogout }) => {
                   </Link>
                   <Link
                     to={isLoggedIn ? "/dashboard?open=referral" : "/login"}
-                    className="flex items-center space-x-4 py-3.5 px-4 rounded-xl border border-white/70 bg-white/70 shadow-sm transition-all duration-300 hover:text-white hover:border-[#2C5AA0] hover:bg-gradient-to-r hover:from-[#2C5AA0] hover:to-[#1e3a8a] hover:-translate-y-0.5"
+                    className="flex items-center space-x-4 py-3.5 px-4 rounded-xl border border-slate-200 bg-white/80 shadow-sm transition-all duration-200 hover:border-slate-300 hover:bg-slate-50 hover:shadow-md"
                     onClick={onClose}
                   >
                     <FaDollarSign size={20} className="transition-colors duration-300" />
@@ -106,7 +106,7 @@ const Sidebar = ({ isOpen, onClose, isLoggedIn, user, onLogout }) => {
                 {!isLoggedIn && (
                   <button 
                     onClick={handleApplyNowClick} 
-                    className="group flex items-center space-x-4 py-3.5 px-4 rounded-xl border border-blue-200 transition-all duration-300 text-blue-800 bg-blue-50 w-full text-left hover:text-white hover:border-blue-500 hover:bg-gradient-to-r hover:from-[#2C5AA0] hover:to-[#1e3a8a] hover:-translate-y-0.5"
+                    className="group flex items-center space-x-4 py-3.5 px-4 rounded-xl border border-slate-200 transition-all duration-200 text-slate-700 bg-white/80 w-full text-left hover:border-slate-300 hover:bg-slate-50 hover:shadow-md"
                   >
                     <FaPaperPlane size={20} className="transition-colors duration-300" />
                     <span className="font-geist font-medium transition-colors duration-300">Apply Now</span>
@@ -142,7 +142,7 @@ const Sidebar = ({ isOpen, onClose, isLoggedIn, user, onLogout }) => {
                 ) : (
                   <>
                     <div className="flex justify-center">
-                      <div className="h-16 w-16 rounded-full bg-white/90 shadow-[0_10px_20px_rgba(44,90,160,0.25)] border border-white/70 flex items-center justify-center transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_14px_26px_rgba(44,90,160,0.35)]">
+                      <div className="h-16 w-16 rounded-full bg-white/90 shadow-[0_10px_20px_rgba(44,90,160,0.25)] border border-black/30 flex items-center justify-center transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_14px_26px_rgba(44,90,160,0.35)]">
                         <img
                           src="/favicon/download.png"
                           alt="BnC Global"

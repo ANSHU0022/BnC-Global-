@@ -5,8 +5,6 @@ import Footer from './Component/Footer';
 import Chatbot from './Component/Chatbot';
 import Home from './pages/Home';
 import Partnerships from './pages/Partnerships';
-import EventsPage from './pages/EventsPage';
-import WhyChooseUsPage from './pages/WhyChooseUsPage';
 import Login from './pages/Login';
 import PartnerDashboard from './pages/PartnerDashboard';
 import AdminDashboard from './pages/AdminDashboard';
@@ -36,8 +34,6 @@ function App() {
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/partnerships" element={<Partnerships />} />
-                  <Route path="/events" element={<EventsPage />} />
-                  <Route path="/why-choose-us" element={<WhyChooseUsPage />} />
                   <Route path="/partner-form" element={<Home />} />
                 </Routes>
               </main>
