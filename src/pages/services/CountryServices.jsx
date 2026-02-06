@@ -10,6 +10,7 @@ const CountryServices = ({ country, title, description }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchError, setSearchError] = useState('');
   const [activeTag, setActiveTag] = useState('');
+  const [isSuggestionsOpen, setIsSuggestionsOpen] = useState(false);
 
   const tagOptions = [
     { key: 'high-demand', label: 'High Demand Service' },
@@ -23,6 +24,22 @@ const CountryServices = ({ country, title, description }) => {
     }
     return services.filter((service) => (service.tags || []).includes(activeTag));
   }, [activeTag, services]);
+
+  const filteredServices = useMemo(() => {
+    const term = searchQuery.trim().toLowerCase();
+    if (!term) {
+      return visibleServices;
+    }
+    return visibleServices.filter((service) => {
+      if (service.title.toLowerCase().includes(term)) {
+        return true;
+      }
+      if (service.id.toLowerCase().includes(term)) {
+        return true;
+      }
+      return service.bullets.some((item) => item.toLowerCase().includes(term));
+    });
+  }, [searchQuery, visibleServices]);
 
   const suggestions = useMemo(() => {
     const term = searchQuery.trim().toLowerCase();
@@ -136,7 +153,9 @@ const CountryServices = ({ country, title, description }) => {
                   onChange={(event) => {
                     setSearchQuery(event.target.value);
                     setSearchError('');
+                    setIsSuggestionsOpen(true);
                   }}
+                  onFocus={() => setIsSuggestionsOpen(true)}
                   placeholder="Search by service name or Keyword..."
                   className="w-full bg-white border border-black rounded-2xl px-4 py-3 text-sm font-geist shadow-sm focus:outline-none focus:ring-2 focus:ring-[#2C5AA0]/20"
                 />
@@ -146,8 +165,11 @@ const CountryServices = ({ country, title, description }) => {
                 >
                   Search
                 </button>
-                {suggestions.length > 0 && (
-                  <div className="absolute left-0 right-0 mt-2 bg-white border border-slate-200 rounded-2xl shadow-lg overflow-hidden z-20">
+                {isSuggestionsOpen && suggestions.length > 0 && (
+                  <div
+                    className="absolute left-0 right-0 mt-2 bg-white border border-slate-200 rounded-2xl shadow-lg overflow-hidden z-20"
+                    onMouseLeave={() => setIsSuggestionsOpen(false)}
+                  >
                     {suggestions.map((suggestion) => (
                       <button
                         key={suggestion.id}
@@ -193,7 +215,7 @@ const CountryServices = ({ country, title, description }) => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-            {visibleServices.map((service) => (
+            {filteredServices.map((service) => (
               <div
                 key={service.id}
                 className="group relative bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
