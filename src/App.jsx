@@ -11,6 +11,10 @@ import Login from './pages/Login';
 import PartnerDashboard from './pages/PartnerDashboard';
 import AdminDashboard from './pages/AdminDashboard';
 import BncServices from './pages/BncServices';
+import IndiaServices from './pages/services/india/IndiaServices';
+import SaudiArabiaServices from './pages/services/saudi-arabia/SaudiArabiaServices';
+import OtherServices from './pages/services/other/OtherServices';
+import ServiceDetail from './pages/services/ServiceDetail';
 
 function App() {
   return (
@@ -21,6 +25,10 @@ function App() {
           <Route path="/dashboard" element={<PartnerDashboard />} />
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
           <Route path="/bnc-services" element={<BncServices />} />
+          <Route path="/services/india" element={<IndiaServices />} />
+          <Route path="/services/saudi-arabia" element={<SaudiArabiaServices />} />
+          <Route path="/services/other" element={<OtherServices />} />
+          <Route path="/services/:country/:serviceId" element={<ServiceDetail />} />
           <Route path="/*" element={
             <>
               <Header />

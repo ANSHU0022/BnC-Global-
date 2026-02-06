@@ -131,6 +131,10 @@ const PartnerDashboard = () => {
     navigate('/login');
   };
 
+  const aiProfileStatus = partnerData?.aiProfileCompleted
+    ? 'View Partner Services'
+    : 'Complete your AI Profile';
+
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -163,7 +167,7 @@ const PartnerDashboard = () => {
                   <div className=" bg-opacity-20 border border-white px-3 py-1 rounded-full">
                     <span className="text-white">Status: </span>
                     <span className="font-medium text-white">
-                      {partnerData?.status || 'Pending'}
+                      {aiProfileStatus}
                     </span>
                   </div>
                 </div>
@@ -174,58 +178,7 @@ const PartnerDashboard = () => {
             </div>
           </div>
 
-          {/* Partner Profile Section */}
-          <div className="bg-white rounded-lg shadow-sm p-6 mb-8">
-            <div className="flex justify-between items-center mb-6">
-              <h3 className="font-poppins text-2xl font-semibold text-gray-900">Partner Profile</h3>
-              <span className={`px-3 py-1 rounded-full text-sm font-medium ${
-                partnerData?.status === 'Active' ? 'bg-green-100 text-green-800' :
-                partnerData?.status === 'Pending' ? 'bg-yellow-100 text-yellow-800' :
-                'bg-gray-100 text-gray-800'
-              }`}>
-                {partnerData?.status || 'Pending'}
-              </span>
-            </div>
-            
-            <div className="border-2 border-gray-200 rounded-lg overflow-hidden">
-              <table className="w-full">
-                <tbody>
-                  <tr className="border-b border-gray-200">
-                    <td className="px-4 py-3 bg-gray-50 font-medium text-gray-700 w-1/3">Profile ID</td>
-                    <td className="px-4 py-3 text-gray-900">{partnerData?.email || '-'}</td>
-                  </tr>
-                  <tr className="border-b border-gray-200">
-                    <td className="px-4 py-3 bg-gray-50 font-medium text-gray-700">Partner Name</td>
-                    <td className="px-4 py-3 text-gray-900">{partnerData?.firstName} {partnerData?.lastName || '-'}</td>
-                  </tr>
-                  <tr className="border-b border-gray-200">
-                    <td className="px-4 py-3 bg-gray-50 font-medium text-gray-700">Email Address</td>
-                    <td className="px-4 py-3 text-gray-900">{partnerData?.email || '-'}</td>
-                  </tr>
-                  <tr className="border-b border-gray-200">
-                    <td className="px-4 py-3 bg-gray-50 font-medium text-gray-700">Phone Number</td>
-                    <td className="px-4 py-3 text-gray-900">{partnerData?.phone || '-'}</td>
-                  </tr>
-                  <tr className="border-b border-gray-200">
-                    <td className="px-4 py-3 bg-gray-50 font-medium text-gray-700">Country</td>
-                    <td className="px-4 py-3 text-gray-900">{partnerData?.country || '-'}</td>
-                  </tr>
-                  <tr className="border-b border-gray-200">
-                    <td className="px-4 py-3 bg-gray-50 font-medium text-gray-700">City</td>
-                    <td className="px-4 py-3 text-gray-900">{partnerData?.city || '-'}</td>
-                  </tr>
-                  <tr>
-                    <td className="px-4 py-3 bg-gray-50 font-medium text-gray-700">Bio</td>
-                    <td className="px-4 py-3 text-gray-900">
-                      {partnerData?.bio ? partnerData.bio : 
-                        partnerData?.aiProfileCompleted ? 'Bio not available' : 'Complete AI Profile to add bio'
-                      }
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
+         
 
           {/* Main Dashboard Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
