@@ -53,7 +53,7 @@ const PartnerLogin = () => {
         password: formData.password
       });
       
-      const url = `https://script.google.com/macros/s/AKfycbyDY8NV1PSED6wmYu-IV-1FRvbR3dHfZ6pR73XlNzZl4JBtQ906XIGt9dBrk1LnfvCvtQ/exec?${params}`;
+      const url = `https://script.google.com/macros/s/AKfycbxzBlON2yrLD6uqHaSybZutsndvgpsZFoA2HMOBY4bfynBKQdz6LHp13dXDD4CUlnY6Hw/exec?${params}`;
       
       const response = await fetch(url, {
         method: 'GET',
@@ -157,3 +157,4 @@ const PartnerLogin = () => {
 };
 
 export default PartnerLogin;
+

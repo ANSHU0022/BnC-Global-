@@ -35,7 +35,7 @@ const Header = () => {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 bg-white shadow-lg z-40 rounded-b-3xl">
-        <div className="max-w-6xl mx-auto px-5">
+        <div className="w-full pl-20 pr-4">
           <div className="flex items-center justify-between h-30">
             {/* Left Section */}
             <div className="flex items-center space-x-4 pr-0">
@@ -64,14 +64,21 @@ const Header = () => {
             </div>
             
             {/* Center Section */}
-            <div className="hidden md:flex flex-1 justify-center">
+            <div className="hidden md:flex flex-1 justify-start pl-40">
               <nav className="flex items-center gap-6 whitespace-nowrap">
                 <Link to="/" className="font-geist text-base text-gray-700 hover:text-[#2C5AA0] relative group transition-colors duration-300">
                   Home
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2C5AA0] group-hover:w-full transition-all duration-300"></span>
                 </Link>
-                <Link to="/partnerships" className="font-geist text-base text-gray-700 hover:text-[#2C5AA0] relative group transition-colors duration-300">
-                  Partnerships
+                <Link to="/bnc-services" className="font-geist text-base text-gray-700 hover:text-[#2C5AA0] relative group transition-colors duration-300">
+                  BnC Services
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2C5AA0] group-hover:w-full transition-all duration-300"></span>
+                </Link>
+                <Link
+                  to={isLoggedIn ? "/dashboard?open=ai-profile" : "/login"}
+                  className="font-geist text-base text-gray-700 hover:text-[#2C5AA0] relative group transition-colors duration-300"
+                >
+                  AI Profiling
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2C5AA0] group-hover:w-full transition-all duration-300"></span>
                 </Link>
                 <button onClick={() => setIsModalOpen(true)} className="font-geist text-base text-gray-700 hover:text-[#2C5AA0] relative group transition-colors duration-300 whitespace-nowrap">
@@ -82,7 +89,7 @@ const Header = () => {
             </div>
 
             {/* Right Section */}
-            <div className="flex items-center pl-10">
+            <div className="flex items-center pl-2 mr-20">
               {isLoggedIn ? (
                 <div className="flex items-center space-x-3">
                   <Link 

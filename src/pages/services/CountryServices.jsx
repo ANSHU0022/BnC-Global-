@@ -14,7 +14,7 @@ const CountryServices = ({ country, title, description }) => {
 
   const tagOptions = [
     { key: 'high-demand', label: 'High Demand Service' },
-    { key: 'high-selling', label: 'High Selling' },
+    { key: 'high-selling', label: 'Hot Selling' },
     { key: 'specialized', label: 'Specialized' }
   ];
 

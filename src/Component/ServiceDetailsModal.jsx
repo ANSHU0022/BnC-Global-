@@ -53,11 +53,6 @@ const ServiceDetailsModal = ({ isOpen, onClose, serviceData }) => {
                     )) : <span className="text-gray-500">No industries specified</span>}
                   </div>
                 </div>
-
-                <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg border border-blue-200">
-                  <h3 className="text-lg font-semibold text-[#2C5AA0] mb-2">Experience Years</h3>
-                  <p className="text-gray-700 text-xl font-bold">{serviceData.experienceYears || 'Not specified'} years</p>
-                </div>
               </div>
 
               <div className="space-y-4">
@@ -72,11 +67,6 @@ const ServiceDetailsModal = ({ isOpen, onClose, serviceData }) => {
                   </div>
                 </div>
 
-                <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg border border-blue-200">
-                  <h3 className="text-lg font-semibold text-[#2C5AA0] mb-2">Work Type</h3>
-                  <p className="text-gray-700 font-medium capitalize">{serviceData.workType || 'Not specified'}</p>
-                </div>
-
                 {serviceData.organisationName && (
                   <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg border border-blue-200">
                     <h3 className="text-lg font-semibold text-[#2C5AA0] mb-2">Organisation Name</h3>
@@ -84,14 +74,10 @@ const ServiceDetailsModal = ({ isOpen, onClose, serviceData }) => {
                   </div>
                 )}
 
-                {serviceData.meetingDate && serviceData.meetingTime && (
-                  <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg border border-blue-200">
-                    <h3 className="text-lg font-semibold text-[#2C5AA0] mb-2">Meeting Schedule</h3>
-                    <p className="text-gray-700">
-                      <span className="font-medium">{serviceData.meetingDate}</span> at <span className="font-medium">{serviceData.meetingTime}</span>
-                    </p>
-                  </div>
-                )}
+                <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg border border-blue-200">
+                  <h3 className="text-lg font-semibold text-[#2C5AA0] mb-2">Experience Years</h3>
+                  <p className="text-gray-700 text-xl font-bold">{serviceData.experienceYears || 'Not specified'}</p>
+                </div>
               </div>
             </div>
 

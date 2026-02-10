@@ -15,6 +15,7 @@ const PartnerDashboard = () => {
   const [isServiceModalOpen, setIsServiceModalOpen] = useState(false);
   const [serviceData, setServiceData] = useState(null);
   const [isLoadingServices, setIsLoadingServices] = useState(false);
+  const [viewMode, setViewMode] = useState('grid');
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -25,7 +26,7 @@ const PartnerDashboard = () => {
         email: email
       });
       
-      const url = `https://script.google.com/macros/s/AKfycbzVBOWgY3Qmgau1THM3lWq0u_7hH6RPVgBc6eXaWUYyBApkBZZm6u4LxY6HsUpUOtIzzw/exec?${params}`;
+      const url = `https://script.google.com/macros/s/AKfycbxzBlON2yrLD6uqHaSybZutsndvgpsZFoA2HMOBY4bfynBKQdz6LHp13dXDD4CUlnY6Hw/exec?${params}`;
       
       const response = await fetch(url, {
         method: 'GET',
@@ -63,7 +64,7 @@ const PartnerDashboard = () => {
         email: email
       });
       
-      const url = `https://script.google.com/macros/s/AKfycbzVBOWgY3Qmgau1THM3lWq0u_7hH6RPVgBc6eXaWUYyBApkBZZm6u4LxY6HsUpUOtIzzw/exec?${params}`;
+      const url = `https://script.google.com/macros/s/AKfycbxzBlON2yrLD6uqHaSybZutsndvgpsZFoA2HMOBY4bfynBKQdz6LHp13dXDD4CUlnY6Hw/exec?${params}`;
       
       const response = await fetch(url, {
         method: 'GET',
@@ -118,13 +119,13 @@ const PartnerDashboard = () => {
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const open = params.get('open');
-    if (open === 'ai-profile') {
+    if (open === 'ai-profile' && !partnerData?.aiProfileCompleted) {
       setIsAIModalOpen(true);
     }
     if (open === 'referral') {
       setIsReferralModalOpen(true);
     }
-  }, [location.search]);
+  }, [location.search, partnerData?.aiProfileCompleted]);
 
   const handleLogout = () => {
     localStorage.removeItem('partnerUser');
@@ -134,6 +135,7 @@ const PartnerDashboard = () => {
   const aiProfileStatus = partnerData?.aiProfileCompleted
     ? 'View Partner Services'
     : 'Complete your AI Profile';
+  const isSingleView = viewMode === 'single';
 
   if (loading) {
     return (
@@ -180,23 +182,66 @@ const PartnerDashboard = () => {
 
          
 
+          {/* View Toggle */}
+          <div className="flex items-center justify-end mb-4">
+            <div className="flex items-center rounded-xl border border-slate-200 bg-white p-1 shadow-sm">
+              <button
+                type="button"
+                onClick={() => setViewMode('grid')}
+                aria-label="Grid view"
+                className={`flex h-9 w-10 items-center justify-center rounded-lg transition-colors ${
+                  !isSingleView ? 'bg-slate-100 text-slate-900' : 'text-slate-500 hover:text-slate-800'
+                }`}
+              >
+                <svg viewBox="0 0 20 20" className="h-4 w-4" aria-hidden="true">
+                  <rect x="3" y="3" width="5" height="5" rx="1" className="fill-current" />
+                  <rect x="12" y="3" width="5" height="5" rx="1" className="fill-current" />
+                  <rect x="3" y="12" width="5" height="5" rx="1" className="fill-current" />
+                  <rect x="12" y="12" width="5" height="5" rx="1" className="fill-current" />
+                </svg>
+              </button>
+              <button
+                type="button"
+                onClick={() => setViewMode('single')}
+                aria-label="Single view"
+                className={`flex h-9 w-10 items-center justify-center rounded-lg transition-colors ${
+                  isSingleView ? 'bg-slate-100 text-slate-900' : 'text-slate-500 hover:text-slate-800'
+                }`}
+              >
+                <svg viewBox="0 0 20 20" className="h-4 w-4" aria-hidden="true">
+                  <rect x="3" y="4" width="14" height="2.6" rx="1.3" className="fill-current" />
+                  <rect x="3" y="9" width="14" height="2.6" rx="1.3" className="fill-current" />
+                  <rect x="3" y="14" width="14" height="2.6" rx="1.3" className="fill-current" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
           {/* Main Dashboard Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+          <div
+            className={`grid gap-6 mb-8 ${
+              isSingleView ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
+            }`}
+          >
             {/* AI Profile Card */}
-            <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
+            <div className="bg-white rounded-2xl border border-slate-200/70 p-6 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col h-full">
               <div className="flex items-start justify-between mb-4">
                 <div className="bg-gradient-to-br from-blue-100 to-blue-200 p-4 rounded-xl">
-                  <FaUser className="h-8 w-8 text-[#2C5AA0]" />
+                  <FaUser className="h-7 w-7 text-[#2C5AA0]" />
                 </div>
               </div>
-              <h3 className="font-poppins text-xl font-bold text-gray-900 mb-3">AI Profile</h3>
-              <p className="font-geist text-gray-600 mb-6 leading-relaxed">
+              <h3 className="font-poppins text-lg font-semibold text-slate-900 mb-2">AI Profile</h3>
+              <p className="font-geist text-sm text-slate-600 mb-6 leading-relaxed">
                 Complete your partner profile with our AI-powered questionnaire system.
               </p>
               <button 
-                onClick={() => setIsAIModalOpen(true)}
+                onClick={() => {
+                  if (!partnerData?.aiProfileCompleted) {
+                    setIsAIModalOpen(true);
+                  }
+                }}
                 disabled={partnerData?.aiProfileCompleted}
-                className={`w-full py-3 px-4 rounded-xl font-semibold transition-all duration-300 mt-auto ${
+                className={`${isSingleView ? 'w-48 self-end text-base px-5 py-2.5 rounded-lg' : 'w-full py-3 px-4 rounded-xl'} font-semibold transition-all duration-300 mt-auto ${
                   partnerData?.aiProfileCompleted 
                     ? 'bg-gradient-to-r from-green-500 to-green-600 text-white cursor-not-allowed' 
                     : 'bg-gradient-to-r from-[#2C5AA0] to-[#1e3a8a] hover:from-[#1e3a8a] hover:to-[#2C5AA0] text-white transform hover:scale-105 hover:shadow-lg'
@@ -207,20 +252,20 @@ const PartnerDashboard = () => {
             </div>
 
             {/* Services Card */}
-            <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
+            <div className="bg-white rounded-2xl border border-slate-200/70 p-6 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col h-full">
               <div className="flex items-start justify-between mb-4">
                 <div className="bg-gradient-to-br from-orange-100 to-orange-200 p-4 rounded-xl">
-                  <FaServicestack className="h-8 w-8 text-orange-600" />
+                  <FaServicestack className="h-7 w-7 text-orange-600" />
                 </div>
               </div>
-              <h3 className="font-poppins text-xl font-bold text-gray-900 mb-3">Services</h3>
-              <p className="font-geist text-gray-600 mb-6 leading-relaxed">
+              <h3 className="font-poppins text-lg font-semibold text-slate-900 mb-2">Services</h3>
+              <p className="font-geist text-sm text-slate-600 mb-6 leading-relaxed">
                 View and manage the services you provide to clients.
               </p>
               <button 
                 onClick={handleViewServices}
                 disabled={isLoadingServices}
-                className="w-full bg-gradient-to-r from-[#2C5AA0] to-[#1e3a8a] hover:from-[#1e3a8a] hover:to-[#2C5AA0] text-white py-3 px-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none mt-auto"
+                className={`${isSingleView ? 'w-48 self-end text-base px-5 py-2.5 rounded-lg' : 'w-full py-3 px-4 rounded-lg'} bg-gradient-to-r from-[#2C5AA0] to-[#1e3a8a] hover:from-[#1e3a8a] hover:to-[#2C5AA0] text-white font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none mt-auto`}
               >
                 {isLoadingServices ? (
                   <>
@@ -239,19 +284,19 @@ const PartnerDashboard = () => {
             </div>
 
             {/* BnC Services Card */}
-            <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
+            <div className="bg-white rounded-2xl border border-slate-200/70 p-6 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col h-full">
               <div className="flex items-start justify-between mb-4">
                 <div className="bg-yellow-100 p-3 rounded-xl">
                   <FaServicestack className="h-6 w-6 text-yellow-700" />
                 </div>
               </div>
-              <h3 className="font-poppins text-xl font-bold text-gray-900 mb-3">BnC Services</h3>
-              <p className="font-geist text-gray-600 mb-6 leading-relaxed">
+              <h3 className="font-poppins text-lg font-semibold text-slate-900 mb-2">BnC Services</h3>
+              <p className="font-geist text-sm text-slate-600 mb-6 leading-relaxed">
                 Explore our full suite of services with dedicated videos for each offering.
               </p>
               <button
                 onClick={() => navigate('/bnc-services')}
-                className="w-full bg-gradient-to-r from-[#2C5AA0] to-[#1e3a8a] hover:from-[#1e3a8a] hover:to-[#2C5AA0] text-white py-3 px-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center justify-center space-x-2 mt-auto"
+                className={`${isSingleView ? 'w-48 self-end text-base px-5 py-2.5 rounded-lg' : 'w-full py-3 px-4 rounded-lg'} bg-gradient-to-r from-[#2C5AA0] to-[#1e3a8a] hover:from-[#1e3a8a] hover:to-[#2C5AA0] text-white font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center justify-center space-x-2 mt-auto`}
               >
                 <span>View BnC Services</span>
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -271,7 +316,7 @@ const PartnerDashboard = () => {
               <p className="font-geist text-gray-600 mb-4">
                 Join our global network and collaborate with international clients. Expand your business reach worldwide.
               </p>
-              <button className="w-full bg-gray-200 hover:bg-gray-300 text-gray-700 py-2 px-4 rounded-lg font-medium transition-colors mt-auto">
+              <button className={`${isSingleView ? 'w-48 self-end text-base px-5 py-2.5 rounded-lg' : 'w-full py-2 px-4 rounded-lg'} bg-gray-200 hover:bg-gray-300 text-gray-700 font-medium transition-colors mt-auto`}>
                 Join Network
               </button>
             </div>
@@ -287,7 +332,7 @@ const PartnerDashboard = () => {
               <p className="font-geist text-gray-600 mb-4">
                 Find skilled professionals or offer your expertise to meet project requirements.
               </p>
-              <button className="w-full bg-gray-200 hover:bg-gray-300 text-gray-700 py-2 px-4 rounded-lg font-medium transition-colors mt-auto">
+              <button className={`${isSingleView ? 'w-48 self-end text-base px-5 py-2.5 rounded-lg' : 'w-full py-2 px-4 rounded-lg'} bg-gray-200 hover:bg-gray-300 text-gray-700 font-medium transition-colors mt-auto`}>
                 View Opportunities
               </button>
             </div>
@@ -305,7 +350,7 @@ const PartnerDashboard = () => {
               </p>
               <button 
                 onClick={() => setIsReferralModalOpen(true)}
-                className="w-full bg-gradient-to-r from-[#2C5AA0] to-[#1e3a8a] hover:from-[#1e3a8a] hover:to-[#2C5AA0] text-white py-3 px-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center justify-center space-x-2 mt-auto"
+                className={`${isSingleView ? 'w-48 self-end text-base px-5 py-2.5 rounded-lg' : 'w-full py-3 px-4 rounded-lg'} bg-gradient-to-r from-[#2C5AA0] to-[#1e3a8a] hover:from-[#1e3a8a] hover:to-[#2C5AA0] text-white font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center justify-center space-x-2 mt-auto`}
               >
                 <span>Start Referring</span>
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -354,6 +399,13 @@ const PartnerDashboard = () => {
       <AIProfileModal 
         isOpen={isAIModalOpen} 
         onClose={() => setIsAIModalOpen(false)}
+        onSubmitted={() => {
+          setPartnerData(prev => {
+            const updated = { ...(prev || {}), aiProfileCompleted: true };
+            localStorage.setItem('partnerUser', JSON.stringify(updated));
+            return updated;
+          });
+        }}
         partnerData={partnerData}
       />
       
@@ -373,3 +425,5 @@ const PartnerDashboard = () => {
 };
 
 export default PartnerDashboard;
+
+

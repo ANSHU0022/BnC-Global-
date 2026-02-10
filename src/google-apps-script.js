@@ -289,6 +289,23 @@ function submitAIProfile(data) {
   try {
     const sheet = SpreadsheetApp.openById('1Tds1b8C3VDj1aS5J41Wal7oNknDNaoIJSZEcsCBOyss').getSheetByName('AI Profile Details');
     
+    let experienceYears = data.experienceYears || '';
+    let organisationName = data.organisationName || '';
+    try {
+      if (data.experienceDetails) {
+        const details = JSON.parse(data.experienceDetails);
+        const industries = Object.keys(details || {});
+        experienceYears = industries
+          .map(industry => `${industry.replace(/-/g, ' ')}: ${details[industry]?.years || ''}`)
+          .join(', ');
+        organisationName = industries
+          .map(industry => `${industry.replace(/-/g, ' ')}: ${details[industry]?.organisationName || ''}`)
+          .join(', ');
+      }
+    } catch (parseError) {
+      console.error('Error parsing experienceDetails:', parseError);
+    }
+
     const timestamp = new Date();
     const newRow = [
       timestamp, // A: Timestamp
@@ -297,12 +314,9 @@ function submitAIProfile(data) {
       data.services, // D: Services (comma separated)
       data.industries, // E: Industries (comma separated)
       data.experienceIndustries, // F: Experience Industries (comma separated)
-      data.experienceYears, // G: Experience Years
-      data.workType, // H: Work Type
-      data.organisationName || '', // I: Organisation Name
-      data.bio, // J: Bio
-      data.meetingDate, // K: Meeting Date
-      data.meetingTime // L: Meeting Time
+      experienceYears, // G: Experience Years
+      organisationName, // H: Organisation Name
+      data.bio // I: Bio
     ];
     
     sheet.appendRow(newRow);
@@ -380,11 +394,8 @@ function getServiceData(data) {
               industries: row[4] || '',
               experienceIndustries: row[5] || '',
               experienceYears: row[6] || '',
-              workType: row[7] || '',
-              organisationName: row[8] || '',
-              bio: row[9] || '',
-              meetingDate: row[10] || '',
-              meetingTime: row[11] || ''
+              organisationName: row[7] || '',
+              bio: row[8] || ''
             }
           }))
           .setMimeType(ContentService.MimeType.JSON);

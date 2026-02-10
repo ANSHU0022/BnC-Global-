@@ -17,7 +17,7 @@ const AdminDashboard = () => {
         action: 'getAdminData'
       });
       
-      const url = `https://script.google.com/macros/s/AKfycbzVBOWgY3Qmgau1THM3lWq0u_7hH6RPVgBc6eXaWUYyBApkBZZm6u4LxY6HsUpUOtIzzw/exec?${params}`;
+      const url = `https://script.google.com/macros/s/AKfycbxzBlON2yrLD6uqHaSybZutsndvgpsZFoA2HMOBY4bfynBKQdz6LHp13dXDD4CUlnY6Hw/exec?${params}`;
       
       const response = await fetch(url, {
         method: 'GET',
@@ -208,3 +208,4 @@ const AdminDashboard = () => {
 };
 
 export default AdminDashboard;
+
