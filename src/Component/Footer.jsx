@@ -1,6 +1,9 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 const Footer = () => {
+  const { t } = useTranslation();
+
   return (
     <footer className="bg-white py-16">
       <div className="container mx-auto px-4 text-center">
@@ -15,7 +18,7 @@ const Footer = () => {
         
         {/* Copyright */}
         <div className="text-gray-600">
-          <p className="font-geist">Copyrights © 2026 Bnc Global Pvt. Ltd.</p>
+          <p className="font-geist">{t('footer.copyright')}</p>
         </div>
       </div>
     </footer>

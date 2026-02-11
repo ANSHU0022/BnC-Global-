@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaHome, FaPaperPlane, FaUser, FaShieldAlt, FaTimes, FaTachometerAlt, FaServicestack, FaRobot, FaDollarSign } from 'react-icons/fa';
+import { useTranslation } from 'react-i18next';
 import PartnerFormModal from './PartnerFormModal';
 
 const Sidebar = ({ isOpen, onClose, isLoggedIn, user, onLogout }) => {
+  const { t, i18n } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleApplyNowClick = () => {
@@ -12,7 +14,7 @@ const Sidebar = ({ isOpen, onClose, isLoggedIn, user, onLogout }) => {
   };
 
   const navigationItems = [
-    { to: '/', icon: FaHome, label: 'Home' }
+    { to: '/', icon: FaHome, label: t('sidebar.home') }
   ];
 
   return (
@@ -76,7 +78,7 @@ const Sidebar = ({ isOpen, onClose, isLoggedIn, user, onLogout }) => {
                     onClick={onClose}
                   >
                     <FaTachometerAlt size={20} className="transition-colors duration-300" />
-                    <span className="font-geist font-medium transition-colors duration-300">Dashboard</span>
+                    <span className="font-geist font-medium transition-colors duration-300">{t('sidebar.dashboard')}</span>
                   </Link>
                   <Link
                     to={isLoggedIn ? "/dashboard?open=ai-profile" : "/login"}
@@ -84,7 +86,7 @@ const Sidebar = ({ isOpen, onClose, isLoggedIn, user, onLogout }) => {
                     onClick={onClose}
                   >
                     <FaRobot size={20} className="transition-colors duration-300" />
-                    <span className="font-geist font-medium transition-colors duration-300">AI Profiling</span>
+                    <span className="font-geist font-medium transition-colors duration-300">{t('sidebar.aiProfiling')}</span>
                   </Link>
                   <Link
                     to="/bnc-services?from=sidebar"
@@ -92,7 +94,7 @@ const Sidebar = ({ isOpen, onClose, isLoggedIn, user, onLogout }) => {
                     onClick={onClose}
                   >
                     <FaServicestack size={20} className="transition-colors duration-300" />
-                    <span className="font-geist font-medium transition-colors duration-300">BnC Services</span>
+                    <span className="font-geist font-medium transition-colors duration-300">{t('sidebar.services')}</span>
                   </Link>
                   <Link
                     to={isLoggedIn ? "/dashboard?open=referral" : "/login"}
@@ -100,7 +102,7 @@ const Sidebar = ({ isOpen, onClose, isLoggedIn, user, onLogout }) => {
                     onClick={onClose}
                   >
                     <FaDollarSign size={20} className="transition-colors duration-300" />
-                    <span className="font-geist font-medium transition-colors duration-300">Earn from Referral</span>
+                    <span className="font-geist font-medium transition-colors duration-300">{t('sidebar.earnReferral')}</span>
                   </Link>
                 </>
                 {!isLoggedIn && (
@@ -109,7 +111,7 @@ const Sidebar = ({ isOpen, onClose, isLoggedIn, user, onLogout }) => {
                     className="group flex items-center space-x-4 py-3.5 px-4 rounded-xl border border-slate-200 transition-all duration-200 text-slate-700 bg-white/80 w-full text-left hover:border-slate-300 hover:bg-slate-50 hover:shadow-md"
                   >
                     <FaPaperPlane size={20} className="transition-colors duration-300" />
-                    <span className="font-geist font-medium transition-colors duration-300">Apply Now</span>
+                    <span className="font-geist font-medium transition-colors duration-300">{t('sidebar.applyNow')}</span>
                   </button>
                 )}
               </nav>
@@ -136,7 +138,7 @@ const Sidebar = ({ isOpen, onClose, isLoggedIn, user, onLogout }) => {
                       className="flex items-center space-x-3 py-3 px-4 rounded-xl border border-red-200 transition-all duration-300 hover:bg-red-500 hover:text-white hover:border-red-500 text-red-700 bg-red-100 w-full text-left"
                     >
                       <FaUser size={20} className="transition-colors duration-300" />
-                      <span className="font-geist font-medium transition-colors duration-300">Logout</span>
+                      <span className="font-geist font-medium transition-colors duration-300">{t('sidebar.logout')}</span>
                     </button>
                   </>
                 ) : (
@@ -156,7 +158,7 @@ const Sidebar = ({ isOpen, onClose, isLoggedIn, user, onLogout }) => {
                       className="flex items-center space-x-3 py-3 px-4 rounded-xl border border-[#2C5AA0] bg-gradient-to-r from-[#2C5AA0] to-[#1e3a8a] text-white shadow-md"
                     >
                       <FaUser size={20} className="transition-colors duration-300" />
-                      <span className="font-geist font-medium transition-colors duration-300">Partner Login</span>
+                      <span className="font-geist font-medium transition-colors duration-300">{t('sidebar.partnerLogin')}</span>
                     </Link>
                     
                     <Link 
@@ -165,11 +167,36 @@ const Sidebar = ({ isOpen, onClose, isLoggedIn, user, onLogout }) => {
                       className="flex items-center space-x-3 py-3 px-4 rounded-xl border border-gray-200 transition-all duration-300 hover:text-white hover:border-blue-500 text-gray-700 bg-white/70 hover:bg-gradient-to-r hover:from-[#2C5AA0] hover:to-[#1e3a8a]"
                     >
                       <FaShieldAlt size={20} className="transition-colors duration-300" />
-                      <span className="font-geist font-medium transition-colors duration-300">Admin Login</span>
+                      <span className="font-geist font-medium transition-colors duration-300">{t('sidebar.adminLogin')}</span>
                     </Link>
                   </>
                 )}
               </div>
+            </div>
+
+            <div className="mt-6 flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => i18n.changeLanguage('en')}
+                className={`px-3 py-1 rounded-full text-xs font-semibold border transition ${
+                  i18n.language === 'en'
+                    ? 'bg-[#2C5AA0]/10 text-[#1e3a8a] border-[#2C5AA0]/30'
+                    : 'bg-white text-slate-600 border-slate-200 hover:border-slate-300'
+                }`}
+              >
+                {t('language.english')}
+              </button>
+              <button
+                type="button"
+                onClick={() => i18n.changeLanguage('ar')}
+                className={`px-3 py-1 rounded-full text-xs font-semibold border transition ${
+                  i18n.language === 'ar'
+                    ? 'bg-[#2C5AA0]/10 text-[#1e3a8a] border-[#2C5AA0]/30'
+                    : 'bg-white text-slate-600 border-slate-200 hover:border-slate-300'
+                }`}
+              >
+                {t('language.arabic')}
+              </button>
             </div>
           </div>
         </div>

@@ -1,21 +1,23 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import PartnerFormModal from './PartnerFormModal';
 
 const CTA = () => {
+  const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <>
       <section className="text-white py-16" style={{backgroundColor: '#2C3544'}}>
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 relative" style={{}}>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 relative">
             <span className="block">
-              Ready to Launch Your <span style={{color: '#2C5AA0'}}>Partnership Journey?</span>
+              {t('cta.title')} <span style={{color: '#2C5AA0'}}>{t('cta.highlight')}</span>
             </span>
             <div className="w-60 h-0.5 bg-white mx-auto mt-2"></div>
           </h2>
           <p className="text-xl mb-8 max-w-3xl mx-auto">
-            Join 5000+ entrepreneurs who successfully registered their business with BnC Global. Get started in just 4-7 days!
+            {t('cta.subtitle')}
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
@@ -23,13 +25,13 @@ const CTA = () => {
               onClick={() => setIsModalOpen(true)}
               className="bg-[#2C5AA0] text-white px-8 py-3 rounded-full font-semibold transition-colors hover:bg-[#1e3f73] flex items-center justify-center gap-2"
             >
-              🤝 Become a Partner
+              {t('cta.becomePartner')}
             </button>
             <button 
               onClick={() => window.location.href = 'tel:+919958711796'}
               className="bg-white text-[#2C3544] px-8 py-3 rounded-full font-semibold transition-colors hover:bg-gray-100 flex items-center justify-center gap-2"
             >
-              📞 Talk to Expert
+              {t('cta.talkToExpert')}
             </button>
           </div>
           

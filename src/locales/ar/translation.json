@@ -1,0 +1,218 @@
+{
+  "language": {
+    "english": "English",
+    "arabic": "العربية"
+  },
+  "header": {
+    "home": "الرئيسية",
+    "services": "خدمات BnC",
+    "aiProfiling": "التحليل بالذكاء الاصطناعي",
+    "applyNow": "قدّم الآن",
+    "dashboard": "لوحة التحكم",
+    "logout": "تسجيل الخروج",
+    "login": "تسجيل الدخول"
+  },
+  "sidebar": {
+    "home": "الرئيسية",
+    "dashboard": "لوحة التحكم",
+    "aiProfiling": "التحليل بالذكاء الاصطناعي",
+    "services": "خدمات BnC",
+    "earnReferral": "اكسب من الإحالات",
+    "applyNow": "قدّم الآن",
+    "partnerLogin": "دخول الشريك",
+    "adminLogin": "دخول المسؤول",
+    "logout": "تسجيل الخروج"
+  },
+  "hero": {
+    "badge": "انضم إلى شبكتنا المتنامية",
+    "titlePrefix": "تعاون مع",
+    "subtitle": "انضم إلى شبكة المحاسبة الرائدة في الهند واستفد من فرص نمو غير محدودة",
+    "becomePartner": "كن شريكاً",
+    "partnerLogin": "دخول الشريك"
+  },
+  "partnershipsPage": {
+    "heroTitle": "فرص الشراكة",
+    "heroSubtitle": "اكتشف طرقاً متعددة للشراكة مع BnC Global وتنمية أعمالك"
+  },
+  "partnershipOpportunities": {
+    "title": "فرص الشراكة",
+    "learnMore": "اعرف المزيد",
+    "cards": {
+      "strategic": {
+        "title": "شركاء استراتيجيون",
+        "description": "تحالفات استراتيجية طويلة المدى للنمو المشترك وتوسيع السوق",
+        "features": [
+          "فرص المشاريع المشتركة",
+          "تكامل التكنولوجيا",
+          "تطوير الأسواق بشكل مشترك"
+        ]
+      },
+      "channel": {
+        "title": "شركاء القنوات",
+        "description": "وسع نطاق وصولك عبر شبكة التوزيع المعتمدة لدينا",
+        "features": [
+          "برامج الموزعين",
+          "شبكة توزيع",
+          "دعم المبيعات"
+        ]
+      },
+      "technology": {
+        "title": "شركاء التكنولوجيا",
+        "description": "التكامل والابتكار مع حلول تقنية متقدمة",
+        "features": [
+          "تكاملات واجهات برمجة التطبيقات",
+          "شراكات المنصات",
+          "مختبرات الابتكار"
+        ]
+      }
+    }
+  },
+  "cta": {
+    "title": "هل أنت جاهز لإطلاق",
+    "highlight": "رحلة الشراكة؟",
+    "subtitle": "انضم إلى أكثر من 5000 رائد أعمال سجلوا أعمالهم بنجاح مع BnC Global. ابدأ خلال 4-7 أيام!",
+    "becomePartner": "كن شريكاً",
+    "talkToExpert": "تحدث مع خبير"
+  },
+  "footer": {
+    "copyright": "حقوق النشر © 2026 شركة BnC Global المحدودة"
+  },
+  "bncServices": {
+    "title": "خدمات BnC",
+    "subtitle": "اختر دولة لاستكشاف الخدمات المتاحة في تلك المنطقة.",
+    "viewServices": "عرض الخدمات",
+    "countries": {
+      "india": {
+        "title": "الهند",
+        "description": "جميع الخدمات المتاحة للمشاريع في الهند.",
+        "servicesTitle": "خدمات الهند",
+        "servicesDescription": "استكشف محفظة خدماتنا المصممة للهند."
+      },
+      "saudi": {
+        "title": "السعودية",
+        "description": "خدمات متوافقة مع المتطلبات التنظيمية في السعودية.",
+        "servicesTitle": "خدمات السعودية",
+        "servicesDescription": "استكشف الخدمات المصممة للسعودية."
+      },
+      "other": {
+        "title": "مناطق أخرى",
+        "description": "خدمات للمناطق خارج الهند والسعودية.",
+        "servicesTitle": "خدمات المناطق الأخرى",
+        "servicesDescription": "استكشف الخدمات للمناطق الأخرى حول العالم."
+      }
+    }
+  },
+  "countryServices": {
+    "label": "خدمات الدولة",
+    "searchPlaceholder": "ابحث باسم الخدمة أو بالكلمة المفتاحية...",
+    "searchButton": "بحث",
+    "searchErrorEmpty": "يرجى إدخال اسم خدمة أو خدمة فرعية.",
+    "searchErrorNoMatch": "لم يتم العثور على خدمة مطابقة.",
+    "tags": {
+      "highDemand": "خدمة عالية الطلب",
+      "highSelling": "الأكثر مبيعاً",
+      "specialized": "متخصصة"
+    },
+    "suggestions": {
+      "subService": "خدمة فرعية",
+      "serviceId": "معرّف الخدمة",
+      "service": "خدمة"
+    },
+    "videoComingSoon": "الفيديو قريباً",
+    "servicesComingSoon": "ستتوفر الخدمات قريباً.",
+    "viewMore": "عرض المزيد",
+    "backToCountries": "العودة إلى الدول"
+  },
+  "serviceDetail": {
+    "backToServices": "العودة إلى الخدمات",
+    "notFoundTitle": "الخدمة غير موجودة",
+    "notFoundText": "لم نتمكن من العثور على هذه الخدمة في الدولة المحددة.",
+    "backToBncServices": "العودة إلى خدمات BnC",
+    "videoComingSoon": "فيديو تعريفي قريباً",
+    "overview": "نظرة عامة",
+    "serviceDetails": "تفاصيل الخدمة",
+    "documents": "المستندات",
+    "documentsComingSoon": "ستتوفر المستندات قريباً.",
+    "servicesComingSoon": "ستتوفر الخدمات قريباً.",
+    "manpowerSupport": "دعم القوى العاملة",
+    "howWeHelp": "كيف نساعد",
+    "requestMoreInfo": "طلب المزيد من المعلومات",
+    "submitEnquiry": "إرسال الاستفسار",
+    "requestMoreInfoDesc": "شارك متطلباتك وسنعود إليك.",
+    "enquiryDesc": "أخبرنا باستفسارك حول {{service}} وسنعود إليك.",
+    "submitRequest": "إرسال الطلب",
+    "thankYou": "شكرًا لك! تم تسجيل طلبك لخدمة {{service}} في {{country}}.",
+    "enquiryDetails": "تفاصيل الاستفسار",
+    "enquiryDetailsDesc": "شارك استفسارك حول {{service}} وسنرد عليك بالنطاق والجدول الزمني والخطوات التالية المناسبة.",
+    "sections": {
+      "knowMore": {
+        "label": "اعرف المزيد عن الخدمات",
+        "heading": "اعرف المزيد عن الخدمات",
+        "description": "نظرة تفصيلية على هذه الخدمة ونطاقها وآلية تقديمها."
+      },
+      "manpower": {
+        "label": "هل تريد توريد العمالة",
+        "heading": "هل تريد توريد العمالة",
+        "description": "أخبرنا بمتطلبات القوى العاملة وسننسق الفريق المناسب."
+      },
+      "enquiry": {
+        "label": "استفسار عن خدمة {{service}}",
+        "heading": "استفسار عن خدمة {{service}}",
+        "description": "شارك استفسارك وسنرد عليك بالإرشاد المناسب."
+      },
+      "contact": {
+        "label": "تواصل",
+        "heading": "التواصل الفوري",
+        "description": "تواصل معنا بسرعة عبر البريد أو واتساب أو الهاتف."
+      }
+    },
+    "contact": {
+      "title": "التواصل الفوري",
+      "description": "تواصل معنا بسرعة عبر البريد أو واتساب أو الهاتف.",
+      "email": "البريد الإلكتروني",
+      "whatsapp": "واتساب",
+      "call": "اتصال"
+    },
+    "form": {
+      "fullName": "الاسم الكامل",
+      "email": "البريد الإلكتروني",
+      "phone": "رقم الهاتف",
+      "company": "اسم الشركة",
+      "message": "أخبرنا بمتطلباتك"
+    }
+  },
+  "countries": {
+    "india": "الهند",
+    "saudi": "المملكة العربية السعودية",
+    "other": "مناطق أخرى"
+  },
+  "login": {
+    "welcomeBack": "مرحباً بعودتك",
+    "subtitle": "سجّل الدخول إلى حسابك في BnC Global",
+    "partnerLogin": "دخول الشريك",
+    "adminLogin": "دخول المسؤول",
+    "adminId": "معرّف المسؤول",
+    "userIdEmail": "معرّف المستخدم (البريد الإلكتروني)",
+    "enterAdminId": "أدخل معرّف المسؤول",
+    "enterEmail": "أدخل بريدك الإلكتروني",
+    "useAdminId": "استخدم معرّف المسؤول",
+    "useRegisteredEmail": "استخدم البريد الإلكتروني الذي سجلت به",
+    "password": "كلمة المرور",
+    "enterPassword": "أدخل كلمة المرور",
+    "signingIn": "جارٍ تسجيل الدخول...",
+    "signInAs": "تسجيل الدخول كـ {{role}}",
+    "createAccount": "إنشاء حساب",
+    "backToRegistration": "العودة إلى التسجيل",
+    "errors": {
+      "adminIdRequired": "معرّف المسؤول مطلوب",
+      "emailRequired": "البريد الإلكتروني مطلوب",
+      "emailInvalid": "يرجى إدخال بريد إلكتروني صحيح",
+      "passwordRequired": "كلمة المرور مطلوبة",
+      "loginFailed": "فشل تسجيل الدخول. يرجى المحاولة مرة أخرى."
+    },
+    "alerts": {
+      "adminSuccess": "تم تسجيل دخول المسؤول بنجاح!",
+      "partnerSuccess": "تم تسجيل الدخول بنجاح! مرحباً {{name}}"
+    }
+  }
+}
