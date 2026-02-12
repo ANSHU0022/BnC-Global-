@@ -5,7 +5,7 @@ import Footer from './Component/Footer';
 import Chatbot from './Component/Chatbot';
 import Home from './pages/Home';
 import Partnerships from './pages/Partnerships';
-import Login from './pages/Login';
+import Login from './auth/Login';
 import PartnerDashboard from './pages/PartnerDashboard';
 import AdminDashboard from './pages/AdminDashboard';
 import BncServices from './pages/BncServices';

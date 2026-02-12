@@ -52,18 +52,44 @@ const Sidebar = ({ isOpen, onClose, isLoggedIn, user, onLogout }) => {
             
             {/* Navigation */}
             <div className="flex-1">
-              <nav className="space-y-2">
+              <div className="mb-4">
+                <div className="inline-flex items-center rounded-full border border-slate-200 bg-white/80 p-1 shadow-sm">
+                  <button
+                    type="button"
+                    onClick={() => i18n.changeLanguage('en')}
+                    className={`px-3 py-1 rounded-full text-xs font-semibold transition ${
+                      i18n.language === 'en'
+                        ? 'bg-[#2C5AA0] text-white shadow'
+                        : 'text-slate-600 hover:text-[#1e3a8a]'
+                    }`}
+                  >
+                    {t('language.english')}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => i18n.changeLanguage('ar')}
+                    className={`px-3 py-1 rounded-full text-xs font-semibold transition ${
+                      i18n.language === 'ar'
+                        ? 'bg-[#2C5AA0] text-white shadow'
+                        : 'text-slate-600 hover:text-[#1e3a8a]'
+                    }`}
+                  >
+                    {t('language.arabic')}
+                  </button>
+                </div>
+              </div>
+              <nav className="space-y-1">
                 {navigationItems.map((item) => {
                   const Icon = item.icon;
                   return (
                     <Link 
                       key={item.to}
                       to={item.to} 
-                      className="group flex items-center space-x-4 py-3.5 px-4 rounded-xl border border-slate-200 bg-white/80 shadow-sm transition-all duration-200 hover:border-slate-300 hover:bg-slate-50 hover:shadow-md"
+                      className="group flex items-center gap-3 px-2 py-2.5 rounded-lg transition-all duration-200 hover:bg-white/70"
                       onClick={onClose}
                     >
-                      <Icon size={20} className="transition-colors duration-300" />
-                      <span className="font-geist font-medium transition-colors duration-300">
+                      <Icon size={18} className="text-[#2C5AA0]/80 transition-colors duration-300 group-hover:text-[#1e3a8a]" />
+                      <span className="font-geist font-semibold text-slate-700 transition-colors duration-300 group-hover:text-[#1e3a8a]">
                         {item.label}
                       </span>
                     </Link>
@@ -74,44 +100,44 @@ const Sidebar = ({ isOpen, onClose, isLoggedIn, user, onLogout }) => {
                 <>
                   <Link 
                     to={isLoggedIn ? "/dashboard" : "/login"}
-                    className="flex items-center space-x-4 py-3.5 px-4 rounded-xl border border-slate-200 bg-white/80 shadow-sm transition-all duration-200 hover:border-slate-300 hover:bg-slate-50 hover:shadow-md"
+                    className="group flex items-center gap-3 px-2 py-2.5 rounded-lg transition-all duration-200 hover:bg-white/70"
                     onClick={onClose}
                   >
-                    <FaTachometerAlt size={20} className="transition-colors duration-300" />
-                    <span className="font-geist font-medium transition-colors duration-300">{t('sidebar.dashboard')}</span>
+                    <FaTachometerAlt size={18} className="text-[#2C5AA0]/80 transition-colors duration-300 group-hover:text-[#1e3a8a]" />
+                    <span className="font-geist font-semibold text-slate-700 transition-colors duration-300 group-hover:text-[#1e3a8a]">{t('sidebar.dashboard')}</span>
                   </Link>
                   <Link
                     to={isLoggedIn ? "/dashboard?open=ai-profile" : "/login"}
-                    className="flex items-center space-x-4 py-3.5 px-4 rounded-xl border border-slate-200 bg-white/80 shadow-sm transition-all duration-200 hover:border-slate-300 hover:bg-slate-50 hover:shadow-md"
+                    className="group flex items-center gap-3 px-2 py-2.5 rounded-lg transition-all duration-200 hover:bg-white/70"
                     onClick={onClose}
                   >
-                    <FaRobot size={20} className="transition-colors duration-300" />
-                    <span className="font-geist font-medium transition-colors duration-300">{t('sidebar.aiProfiling')}</span>
+                    <FaRobot size={18} className="text-[#2C5AA0]/80 transition-colors duration-300 group-hover:text-[#1e3a8a]" />
+                    <span className="font-geist font-semibold text-slate-700 transition-colors duration-300 group-hover:text-[#1e3a8a]">{t('sidebar.aiProfiling')}</span>
                   </Link>
                   <Link
                     to="/bnc-services?from=sidebar"
-                    className="flex items-center space-x-4 py-3.5 px-4 rounded-xl border border-slate-200 bg-white/80 shadow-sm transition-all duration-200 hover:border-slate-300 hover:bg-slate-50 hover:shadow-md"
+                    className="group flex items-center gap-3 px-2 py-2.5 rounded-lg transition-all duration-200 hover:bg-white/70"
                     onClick={onClose}
                   >
-                    <FaServicestack size={20} className="transition-colors duration-300" />
-                    <span className="font-geist font-medium transition-colors duration-300">{t('sidebar.services')}</span>
+                    <FaServicestack size={18} className="text-[#2C5AA0]/80 transition-colors duration-300 group-hover:text-[#1e3a8a]" />
+                    <span className="font-geist font-semibold text-slate-700 transition-colors duration-300 group-hover:text-[#1e3a8a]">{t('sidebar.services')}</span>
                   </Link>
                   <Link
                     to={isLoggedIn ? "/dashboard?open=referral" : "/login"}
-                    className="flex items-center space-x-4 py-3.5 px-4 rounded-xl border border-slate-200 bg-white/80 shadow-sm transition-all duration-200 hover:border-slate-300 hover:bg-slate-50 hover:shadow-md"
+                    className="group flex items-center gap-3 px-2 py-2.5 rounded-lg transition-all duration-200 hover:bg-white/70"
                     onClick={onClose}
                   >
-                    <FaDollarSign size={20} className="transition-colors duration-300" />
-                    <span className="font-geist font-medium transition-colors duration-300">{t('sidebar.earnReferral')}</span>
+                    <FaDollarSign size={18} className="text-[#2C5AA0]/80 transition-colors duration-300 group-hover:text-[#1e3a8a]" />
+                    <span className="font-geist font-semibold text-slate-700 transition-colors duration-300 group-hover:text-[#1e3a8a]">{t('sidebar.earnReferral')}</span>
                   </Link>
                 </>
                 {!isLoggedIn && (
                   <button 
                     onClick={handleApplyNowClick} 
-                    className="group flex items-center space-x-4 py-3.5 px-4 rounded-xl border border-slate-200 transition-all duration-200 text-slate-700 bg-white/80 w-full text-left hover:border-slate-300 hover:bg-slate-50 hover:shadow-md"
+                    className="group flex items-center gap-3 px-2 py-2.5 rounded-lg transition-all duration-200 text-slate-700 hover:bg-white/70 w-full text-left"
                   >
-                    <FaPaperPlane size={20} className="transition-colors duration-300" />
-                    <span className="font-geist font-medium transition-colors duration-300">{t('sidebar.applyNow')}</span>
+                    <FaPaperPlane size={18} className="text-[#2C5AA0]/80 transition-colors duration-300 group-hover:text-[#1e3a8a]" />
+                    <span className="font-geist font-semibold transition-colors duration-300 group-hover:text-[#1e3a8a]">{t('sidebar.applyNow')}</span>
                   </button>
                 )}
               </nav>
@@ -174,30 +200,7 @@ const Sidebar = ({ isOpen, onClose, isLoggedIn, user, onLogout }) => {
               </div>
             </div>
 
-            <div className="mt-6 flex items-center gap-2">
-              <button
-                type="button"
-                onClick={() => i18n.changeLanguage('en')}
-                className={`px-3 py-1 rounded-full text-xs font-semibold border transition ${
-                  i18n.language === 'en'
-                    ? 'bg-[#2C5AA0]/10 text-[#1e3a8a] border-[#2C5AA0]/30'
-                    : 'bg-white text-slate-600 border-slate-200 hover:border-slate-300'
-                }`}
-              >
-                {t('language.english')}
-              </button>
-              <button
-                type="button"
-                onClick={() => i18n.changeLanguage('ar')}
-                className={`px-3 py-1 rounded-full text-xs font-semibold border transition ${
-                  i18n.language === 'ar'
-                    ? 'bg-[#2C5AA0]/10 text-[#1e3a8a] border-[#2C5AA0]/30'
-                    : 'bg-white text-slate-600 border-slate-200 hover:border-slate-300'
-                }`}
-              >
-                {t('language.arabic')}
-              </button>
-            </div>
+            <div className="mt-6" />
           </div>
         </div>
       </div>
