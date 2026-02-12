@@ -270,9 +270,12 @@ const CountryServices = ({ country, title, description }) => {
                 <button
                   type="button"
                   onClick={() => handleOpenService(service.id)}
-                  className="absolute bottom-4 right-6 text-sm font-semibold font-geist text-slate-700 border border-slate-200 rounded-full px-5 py-2.5 bg-white/70 shadow-sm hover:bg-white hover:border-slate-300 hover:text-slate-900 transition-all"
+                  className="absolute bottom-4 right-6 inline-flex items-center gap-2 text-sm font-semibold font-geist text-white rounded-full px-5 py-2.5 bg-gradient-to-r from-[#2C5AA0] to-[#1e3a8a] shadow-lg shadow-[#2C5AA0]/20 transition-all duration-300 hover:shadow-xl hover:shadow-[#2C5AA0]/30 hover:-translate-y-0.5 hover:from-[#1e3a8a] hover:to-[#163062] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2C5AA0]/40"
                 >
                   View more
+                  <span className="inline-flex items-center justify-center h-5 w-5 rounded-full bg-white/20 text-white text-xs transition-transform duration-300 group-hover:translate-x-0.5">
+                    →
+                  </span>
                 </button>
               </div>
             ))}
