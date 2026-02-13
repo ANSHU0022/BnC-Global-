@@ -5,9 +5,9 @@ import { useTranslation } from 'react-i18next';
 const PartnershipOpportunities = () => {
   const { t } = useTranslation();
   const opportunities = [
-    { key: 'strategic', icon: <FaHandshake className="text-5xl mb-6" style={{color: '#2C5AA0'}} /> },
-    { key: 'channel', icon: <FaUsers className="text-5xl mb-6" style={{color: '#2C5AA0'}} /> },
-    { key: 'technology', icon: <FaCogs className="text-5xl mb-6" style={{color: '#2C5AA0'}} /> }
+    { key: 'strategic', icon: FaHandshake },
+    { key: 'channel', icon: FaUsers },
+    { key: 'technology', icon: FaCogs }
   ];
 
   return (
@@ -16,37 +16,46 @@ const PartnershipOpportunities = () => {
         <div className="text-center mb-12 pt-8">
           <h2 className="font-poppins text-3xl md:text-4xl font-bold text-gray-800 mb-4 relative inline-block">
             {t('partnershipOpportunities.title')}
-            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-0.5 rounded-full" style={{backgroundColor: '#2C5AA0'}}></div>
+            <div
+              className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-0.5 rounded-full"
+              style={{ backgroundColor: '#2C5AA0' }}
+            ></div>
           </h2>
         </div>
-        
+
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {opportunities.map((opportunity) => (
-            <div key={opportunity.key} className="bg-white p-8 rounded-2xl shadow-lg text-center hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100">
-              <div className="flex justify-center mb-6">
-                {opportunity.icon}
+            <div
+              key={opportunity.key}
+              className="group relative bg-white p-8 rounded-3xl border border-slate-100 shadow-lg shadow-[#2C5AA0]/5 hover:shadow-2xl hover:shadow-[#2C5AA0]/15 hover:-translate-y-2 transition-all duration-300"
+            >
+              <div className="absolute inset-x-0 -top-px h-1 rounded-t-3xl bg-gradient-to-r from-[#2C5AA0] via-[#3b6cc4] to-[#1e3f73]" />
+              <div className="flex items-center gap-4 mb-6">
+                <div className="h-14 w-14 rounded-2xl bg-[#2C5AA0]/10 text-[#2C5AA0] flex items-center justify-center transition group-hover:scale-105">
+                  <opportunity.icon className="text-3xl" />
+                </div>
+                <h3 className="font-poppins text-xl font-semibold text-gray-900">
+                  {t(`partnershipOpportunities.cards.${opportunity.key}.title`)}
+                </h3>
               </div>
-              <h3 className="font-poppins text-2xl font-bold text-gray-800 mb-4">
-                {t(`partnershipOpportunities.cards.${opportunity.key}.title`)}
-              </h3>
-              <p className="font-geist text-gray-600 mb-8 leading-relaxed">
+              <p className="font-geist text-gray-600 mb-6 leading-relaxed">
                 {t(`partnershipOpportunities.cards.${opportunity.key}.description`)}
               </p>
-              <ul className="text-left space-y-3 mb-8">
+              <ul className="space-y-3 mb-8">
                 {t(`partnershipOpportunities.cards.${opportunity.key}.features`, { returnObjects: true }).map((feature, idx) => (
-                  <li key={idx} className="flex items-center font-geist text-gray-700">
-                    <span className="text-green-500 mr-3 text-lg">✓</span>
-                    {feature}
+                  <li key={idx} className="flex items-start gap-3 font-geist text-gray-700">
+                    <span className="mt-1 h-5 w-5 rounded-full bg-[#2C5AA0]/10 text-[#2C5AA0] flex items-center justify-center text-xs font-bold">
+                      ?
+                    </span>
+                    <span>{feature}</span>
                   </li>
                 ))}
               </ul>
-              <button
-                className="font-poppins text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:shadow-lg"
-                style={{backgroundColor: '#2C5AA0'}}
-                onMouseEnter={(e) => e.target.style.backgroundColor = '#1e3f73'}
-                onMouseLeave={(e) => e.target.style.backgroundColor = '#2C5AA0'}
-              >
+              <button className="inline-flex items-center gap-2 font-poppins text-white px-6 py-2.5 rounded-full font-semibold bg-gradient-to-r from-[#2C5AA0] to-[#1e3f73] transition-all duration-300 hover:shadow-lg hover:shadow-[#2C5AA0]/25">
                 {t('partnershipOpportunities.learnMore')}
+                <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-white/20 text-white text-sm transition-transform duration-300 group-hover:translate-x-0.5">
+                  ?
+                </span>
               </button>
             </div>
           ))}

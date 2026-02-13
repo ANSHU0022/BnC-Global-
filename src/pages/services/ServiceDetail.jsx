@@ -8,6 +8,7 @@ import {
   FiList,
   FiMail,
   FiPhone,
+  FiBookOpen,
   FiUsers
 } from 'react-icons/fi';
 import Header from '../../Component/Header';
@@ -19,6 +20,7 @@ const ServiceDetail = () => {
   const { country, serviceId } = useParams();
   const [submitted, setSubmitted] = useState(false);
   const [activeSection, setActiveSection] = useState('know-more');
+  const [hoveredHighlight, setHoveredHighlight] = useState(null);
   const [formValues, setFormValues] = useState({
     name: '',
     email: '',
@@ -74,8 +76,14 @@ const ServiceDetail = () => {
       description: 'Share your enquiry and our team will respond with the right guidance.'
     },
     {
+      key: 'training',
+      label: 'Training',
+      heading: 'Training & Capability Building',
+      description: 'We help your teams learn, practice, and deliver with confidence.'
+    },
+    {
       key: 'contact',
-      label: 'Contact',
+      label: 'Contact Us',
       heading: 'Immediate Response Contact',
       description: 'Reach us quickly via email, WhatsApp, or call.'
     }
@@ -85,7 +93,8 @@ const ServiceDetail = () => {
   const sectionIconMap = {
     'know-more': FiInfo,
     manpower: FiUsers,
-    enquiry: FiHelpCircle
+    enquiry: FiHelpCircle,
+    training: FiBookOpen
   };
   const ActiveSectionIcon = sectionIconMap[activeSection] || FiInfo;
 
@@ -329,6 +338,115 @@ const ServiceDetail = () => {
                         We provide trained professionals aligned to {service.title} requirements, ready to integrate with your team and deliver measurable outcomes.
                       </p>
                     )}
+                  </div>
+                ) : activeSection === 'training' ? (
+                  <div className="border border-slate-200 rounded-2xl p-6 bg-white">
+                    <div className="grid gap-6 md:grid-cols-[1.1fr_0.9fr]">
+                      <div>
+                        <div className="inline-flex items-start gap-2 text-gray-900">
+                          <span className="inline-flex h-6 w-6 items-center justify-center text-[#2C5AA0]">
+                            <FiBookOpen className="h-3.5 w-3.5" aria-hidden="true" />
+                          </span>
+                          <div>
+                            <h3 className="font-poppins text-xl font-semibold">
+                              Training that builds real capability
+                            </h3>
+                            <div className="mt-2 h-1 w-16 rounded-full bg-gradient-to-r from-[#2C5AA0] to-[#1e3a8a]"></div>
+                          </div>
+                        </div>
+                        <p className="font-geist text-gray-600 mt-3 pl-8">
+                          We can help you learn and train your teams so they are ready to deliver
+                          on {service.title} with confidence, safety, and measurable outcomes.
+                        </p>
+                        <div className="mt-5 pl-8">
+                          <p className="font-geist text-sm text-slate-500 uppercase tracking-[0.2em]">
+                            What we cover
+                          </p>
+                          <ul className="mt-3 space-y-2 text-gray-700 list-disc list-outside pl-5 font-geist">
+                            <li>Role-based onboarding and process walkthroughs</li>
+                            <li>Hands-on practice with real project scenarios</li>
+                            <li>Quality, safety, and compliance standards</li>
+                            <li>Assessment and continuous improvement plans</li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                        <p className="font-geist text-sm text-slate-500 uppercase tracking-[0.2em]">
+                          Program Highlights
+                        </p>
+                        <div className="mt-4 space-y-4" style={{ perspective: '1000px' }}>
+                          <div
+                            className="rounded-xl border border-slate-200 bg-white p-4"
+                            onMouseEnter={() => setHoveredHighlight(1)}
+                            onMouseLeave={() => setHoveredHighlight(null)}
+                            style={{
+                              transform:
+                                hoveredHighlight === 1
+                                  ? 'translateY(-8px) rotateX(6deg) rotateY(-4deg)'
+                                  : 'translateZ(0)',
+                              boxShadow:
+                                hoveredHighlight === 1
+                                  ? '0 18px 40px rgba(15, 23, 42, 0.18)'
+                                  : '0 4px 12px rgba(15, 23, 42, 0.08)',
+                              transition: 'transform 240ms ease, box-shadow 240ms ease'
+                            }}
+                          >
+                            <p className="font-poppins text-sm font-semibold text-gray-900">
+                              Tailored Training Tracks
+                            </p>
+                            <p className="font-geist text-sm text-gray-600 mt-2">
+                              Modules aligned to your project scope, team maturity, and timelines.
+                            </p>
+                          </div>
+                          <div
+                            className="rounded-xl border border-slate-200 bg-white p-4"
+                            onMouseEnter={() => setHoveredHighlight(2)}
+                            onMouseLeave={() => setHoveredHighlight(null)}
+                            style={{
+                              transform:
+                                hoveredHighlight === 2
+                                  ? 'translateY(-8px) rotateX(6deg) rotateY(4deg)'
+                                  : 'translateZ(0)',
+                              boxShadow:
+                                hoveredHighlight === 2
+                                  ? '0 18px 40px rgba(15, 23, 42, 0.18)'
+                                  : '0 4px 12px rgba(15, 23, 42, 0.08)',
+                              transition: 'transform 240ms ease, box-shadow 240ms ease'
+                            }}
+                          >
+                            <p className="font-poppins text-sm font-semibold text-gray-900">
+                              On-site or Remote Delivery
+                            </p>
+                            <p className="font-geist text-sm text-gray-600 mt-2">
+                              Flexible formats to match your operational schedule and locations.
+                            </p>
+                          </div>
+                          <div
+                            className="rounded-xl border border-slate-200 bg-white p-4"
+                            onMouseEnter={() => setHoveredHighlight(3)}
+                            onMouseLeave={() => setHoveredHighlight(null)}
+                            style={{
+                              transform:
+                                hoveredHighlight === 3
+                                  ? 'translateY(-8px) rotateX(6deg) rotateY(-3deg)'
+                                  : 'translateZ(0)',
+                              boxShadow:
+                                hoveredHighlight === 3
+                                  ? '0 18px 40px rgba(15, 23, 42, 0.18)'
+                                  : '0 4px 12px rgba(15, 23, 42, 0.08)',
+                              transition: 'transform 240ms ease, box-shadow 240ms ease'
+                            }}
+                          >
+                            <p className="font-poppins text-sm font-semibold text-gray-900">
+                              Certified Completion
+                            </p>
+                            <p className="font-geist text-sm text-gray-600 mt-2">
+                              Completion reports, skill matrices, and readiness confirmation.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 ) : activeSection === 'contact' ? (
                   <div className="border border-slate-200 rounded-2xl p-6 bg-white">
