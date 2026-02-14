@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import {
   FiEye,
@@ -112,6 +112,57 @@ const ServiceDetail = () => {
     setSubmitted(true);
   };
 
+  const LazyVideo = ({ src, title }) => {
+    const containerRef = useRef(null);
+    const [shouldLoad, setShouldLoad] = useState(false);
+
+    useEffect(() => {
+      if (!containerRef.current) return undefined;
+      if (shouldLoad) return undefined;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setShouldLoad(true);
+            }
+          });
+        },
+        { rootMargin: '150px' }
+      );
+
+      observer.observe(containerRef.current);
+
+      return () => {
+        observer.disconnect();
+      };
+    }, [shouldLoad]);
+
+    return (
+      <div ref={containerRef} className="relative w-full h-full">
+        {shouldLoad ? (
+          <iframe
+            className="w-full h-full"
+            src={src}
+            title={title}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            loading="lazy"
+            allowFullScreen
+          />
+        ) : (
+          <div className="w-full h-full bg-gradient-to-br from-slate-100 via-white to-slate-100">
+            <div className="h-full w-full animate-pulse bg-[linear-gradient(110deg,rgba(226,232,240,0.35),rgba(255,255,255,0.8),rgba(226,232,240,0.35))] bg-[length:200%_100%]" />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="rounded-full border border-slate-200 bg-white/80 px-3 py-1 text-xs font-geist text-slate-500 shadow-sm">
+                Preparing preview
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  };
+
   if (!service) {
     return (
       <>
@@ -201,13 +252,9 @@ const ServiceDetail = () => {
                     <div className="border border-slate-200 rounded-2xl p-4 bg-white">
                       {service.videoUrl ? (
                         <div className="aspect-video rounded-2xl overflow-hidden shadow-md">
-                          <iframe
-                            className="w-full h-full"
+                          <LazyVideo
                             src={service.videoUrl}
                             title={`${service.title} overview`}
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            loading="lazy"
-                            allowFullScreen
                           />
                         </div>
                       ) : (

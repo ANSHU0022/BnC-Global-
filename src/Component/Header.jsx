@@ -41,36 +41,38 @@ const Header = () => {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 bg-white shadow-lg z-40 rounded-b-3xl">
-        <div className="w-full pl-20 pr-4">
-          <div className="flex items-center justify-between h-23">
+        <div className="w-full pl-16 pr-4">
+          <div className="flex items-center justify-between h-19">
             {/* Left Section */}
-            <div className="flex items-center space-x-4 pr-0">
+            <div className="flex items-center space-x-3 pr-0">
               {/* Sidebar Menu Button */}
               <button 
                 className="flex flex-col space-y-1"
-                onClick={() => setIsSidebarOpen(true)}
+                onClick={() => setIsSidebarOpen((prev) => !prev)}
+                aria-label="Toggle sidebar"
+                aria-expanded={isSidebarOpen}
               >
-                <div className="w-6 h-0.5 bg-gray-700"></div>
-                <div className="w-6 h-0.5 bg-gray-700"></div>
-                <div className="w-6 h-0.5 bg-gray-700"></div>
+                <div className="w-5 h-0.5 bg-gray-700"></div>
+                <div className="w-5 h-0.5 bg-gray-700"></div>
+                <div className="w-5 h-0.5 bg-gray-700"></div>
               </button>
               
               {/* Logo + Company Name */}
-              <Link to="/" className="flex items-center space-x-3">
+              <Link to="/" className="flex items-center space-x-2">
                 <img 
                   src="https://static.wixstatic.com/media/0446e3_50ff54e1251b45ef8a1066bca3a75b0e~mv2.png/v1/fill/w_256,h_256,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/b%20nc%20global.png" 
                   alt="BnC Global" 
-                  className="h-20 w-20 object-contain"
+                  className="h-15 w-15 object-contain"
                 />
                 
-                <span className="font-poppins font-bold text-[30px] text-[#2C5AA0] tracking-tight whitespace-nowrap">
+                <span className="font-poppins font-bold text-[22px] text-[#2C5AA0] tracking-tight whitespace-nowrap">
                   BnC Global
                 </span>
               </Link>
             </div>
             
             {/* Center Section */}
-            <div className="hidden md:flex flex-1 justify-start pl-40">
+            <div className="hidden md:flex flex-1 justify-center">
               <nav className="flex items-center gap-6 whitespace-nowrap">
                 <Link to="/" className="font-geist text-base text-gray-700 hover:text-[#2C5AA0] relative group transition-colors duration-300">
                   {t('header.home')}
@@ -78,6 +80,14 @@ const Header = () => {
                 </Link>
                 <Link to="/bnc-services" className="font-geist text-base text-gray-700 hover:text-[#2C5AA0] relative group transition-colors duration-300">
                   {t('header.services')}
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2C5AA0] group-hover:w-full transition-all duration-300"></span>
+                </Link>
+                <Link to="/services/india" className="font-geist text-base text-gray-700 hover:text-[#2C5AA0] relative group transition-colors duration-300">
+                  {t('countries.india')}
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2C5AA0] group-hover:w-full transition-all duration-300"></span>
+                </Link>
+                <Link to="/services/saudi-arabia" className="font-geist text-base text-gray-700 hover:text-[#2C5AA0] relative group transition-colors duration-300">
+                  {t('countries.saudi')}
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2C5AA0] group-hover:w-full transition-all duration-300"></span>
                 </Link>
                 <Link
@@ -95,31 +105,7 @@ const Header = () => {
             </div>
 
             {/* Right Section */}
-            <div className="flex items-center pl-2 mr-20">
-              <div className="hidden md:flex items-center gap-2 mr-4">
-                <button
-                  type="button"
-                  onClick={() => handleLanguageChange('en')}
-                  className={`px-3 py-1 rounded-full text-xs font-semibold border transition ${
-                    i18n.language === 'en'
-                      ? 'bg-[#2C5AA0]/10 text-[#1e3a8a] border-[#2C5AA0]/30'
-                      : 'bg-white text-slate-600 border-slate-200 hover:border-slate-300'
-                  }`}
-                >
-                  {t('language.english')}
-                </button>
-                <button
-                  type="button"
-                  onClick={() => handleLanguageChange('ar')}
-                  className={`px-3 py-1 rounded-full text-xs font-semibold border transition ${
-                    i18n.language === 'ar'
-                      ? 'bg-[#2C5AA0]/10 text-[#1e3a8a] border-[#2C5AA0]/30'
-                      : 'bg-white text-slate-600 border-slate-200 hover:border-slate-300'
-                  }`}
-                >
-                  {t('language.arabic')}
-                </button>
-              </div>
+            <div className="flex items-center pl-2 mr-12">
               {isLoggedIn ? (
                 <div className="flex items-center space-x-3">
                   <Link 
@@ -146,7 +132,7 @@ const Header = () => {
       </header>
       
       {/* Spacer for fixed header */}
-      <div className="h-20"></div>
+      <div className="h-18"></div>
       
       <Sidebar 
         isOpen={isSidebarOpen} 

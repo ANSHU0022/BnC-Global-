@@ -109,7 +109,7 @@ const Hero = () => {
                 </button>
                 <Link
                   to="/login"
-                  className="bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 px-10 py-4 rounded-full font-medium transition-all duration-300 text-lg flex items-center justify-center gap-2 hover:scale-[1.02] transform"
+                  className="bg-white hover:bg-slate-50 text-slate-800 border border-black px-10 py-4 rounded-full font-medium transition-all duration-300 text-lg flex items-center justify-center gap-2 hover:scale-[1.02] transform"
                 >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" />
@@ -118,13 +118,13 @@ const Hero = () => {
                 </Link>
               </div>
 
-              <div className="mt-8 max-w-xl mx-auto lg:mx-0" style={{ perspective: '1200px' }}>
-                <div className="relative rounded-2xl border border-white/80 bg-gradient-to-b from-white/95 via-white/80 to-slate-100/80 px-5 py-4 shadow-[0_30px_70px_rgba(15,23,42,0.18)] backdrop-blur transform-gpu [transform:rotateX(4deg)] transition duration-300 hover:[transform:rotateX(0deg)_translateY(-6px)] hover:shadow-[0_40px_90px_rgba(15,23,42,0.2)]">
+              <div className="mt-8 max-w-lg mx-auto lg:mx-0" style={{ perspective: '1400px' }}>
+                <div className="relative cursor-pointer rounded-2xl border border-white/80 bg-gradient-to-b from-white/95 via-white/80 to-slate-100/80 px-6 py-4 shadow-[0_30px_70px_rgba(15,23,42,0.18)] backdrop-blur transform-gpu [transform:rotateX(6deg)_rotateY(-6deg)] transition duration-300 hover:[transform:rotateX(0deg)_rotateY(0deg)_translateY(-10px)_scale(1.015)] hover:shadow-[0_50px_110px_rgba(15,23,42,0.24)] hover:ring-1 hover:ring-[#2C5AA0]/30">
                   <div className="absolute inset-0 rounded-2xl bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.9),transparent_55%)] pointer-events-none" />
                   <div className="relative grid gap-4 text-center sm:grid-cols-3">
                     <div>
-                      <p className="font-poppins text-2xl font-semibold text-slate-900">500+</p>
-                      <p className="text-xs text-slate-600">Clients Served</p>
+                      <p className="font-poppins text-2xl font-semibold text-slate-900">100+</p>
+                      <p className="text-xs text-slate-600">Global Partners</p>
                     </div>
                     <div>
                       <p className="font-poppins text-2xl font-semibold text-slate-900">15+</p>

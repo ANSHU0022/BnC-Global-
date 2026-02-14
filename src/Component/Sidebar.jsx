@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaHome, FaPaperPlane, FaUser, FaShieldAlt, FaTimes, FaTachometerAlt, FaServicestack, FaRobot, FaDollarSign } from 'react-icons/fa';
+import { FaHome, FaPaperPlane, FaUser, FaShieldAlt, FaTimes, FaTachometerAlt, FaServicestack, FaRobot, FaMapMarkerAlt } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
 import PartnerFormModal from './PartnerFormModal';
 
@@ -123,12 +123,24 @@ const Sidebar = ({ isOpen, onClose, isLoggedIn, user, onLogout }) => {
                     <span className="font-geist font-semibold text-slate-700 transition-colors duration-300 group-hover:text-[#1e3a8a]">{t('sidebar.services')}</span>
                   </Link>
                   <Link
-                    to={isLoggedIn ? "/dashboard?open=referral" : "/login"}
+                    to="/services/india"
                     className="group flex items-center gap-3 px-2 py-2.5 rounded-lg transition-all duration-200 hover:bg-white/70"
                     onClick={onClose}
                   >
-                    <FaDollarSign size={18} className="text-[#2C5AA0]/80 transition-colors duration-300 group-hover:text-[#1e3a8a]" />
-                    <span className="font-geist font-semibold text-slate-700 transition-colors duration-300 group-hover:text-[#1e3a8a]">{t('sidebar.earnReferral')}</span>
+                    <FaMapMarkerAlt size={18} className="text-[#2C5AA0]/80 transition-colors duration-300 group-hover:text-[#1e3a8a]" />
+                    <span className="font-geist font-semibold text-slate-700 transition-colors duration-300 group-hover:text-[#1e3a8a]">
+                      {t('countries.india')}
+                    </span>
+                  </Link>
+                  <Link
+                    to="/services/saudi-arabia"
+                    className="group flex items-center gap-3 px-2 py-2.5 rounded-lg transition-all duration-200 hover:bg-white/70"
+                    onClick={onClose}
+                  >
+                    <FaMapMarkerAlt size={18} className="text-[#2C5AA0]/80 transition-colors duration-300 group-hover:text-[#1e3a8a]" />
+                    <span className="font-geist font-semibold text-slate-700 transition-colors duration-300 group-hover:text-[#1e3a8a]">
+                      {t('countries.saudi')}
+                    </span>
                   </Link>
                 </>
                 {!isLoggedIn && (

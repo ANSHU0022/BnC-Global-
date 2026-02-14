@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../Component/Header';
 import Footer from '../../Component/Footer';
@@ -108,6 +108,57 @@ const CountryServices = ({ country, title, description }) => {
 
   const handleSelectSuggestion = (serviceId) => {
     handleOpenService(serviceId);
+  };
+
+  const LazyVideo = ({ src, title }) => {
+    const containerRef = useRef(null);
+    const [shouldLoad, setShouldLoad] = useState(false);
+
+    useEffect(() => {
+      if (!containerRef.current) return undefined;
+      if (shouldLoad) return undefined;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setShouldLoad(true);
+            }
+          });
+        },
+        { rootMargin: '150px' }
+      );
+
+      observer.observe(containerRef.current);
+
+      return () => {
+        observer.disconnect();
+      };
+    }, [shouldLoad]);
+
+    return (
+      <div ref={containerRef} className="relative w-full h-full">
+        {shouldLoad ? (
+          <iframe
+            className="w-full h-full"
+            src={src}
+            title={title}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            loading="lazy"
+            allowFullScreen
+          />
+        ) : (
+          <div className="w-full h-full bg-gradient-to-br from-slate-100 via-white to-slate-100">
+            <div className="h-full w-full animate-pulse bg-[linear-gradient(110deg,rgba(226,232,240,0.35),rgba(255,255,255,0.8),rgba(226,232,240,0.35))] bg-[length:200%_100%]" />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="rounded-full border border-slate-200 bg-white/80 px-3 py-1 text-xs font-geist text-slate-500 shadow-sm">
+                Preparing preview
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    );
   };
 
   return (
@@ -223,13 +274,9 @@ const CountryServices = ({ country, title, description }) => {
                 <div className="bg-gradient-to-b from-[#f1f5ff] to-[#e8eef9]">
                   <div className="aspect-video">
                     {service.videoUrl ? (
-                      <iframe
-                        className="w-full h-full"
+                      <LazyVideo
                         src={service.videoUrl}
                         title={`${service.title} video`}
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        loading="lazy"
-                        allowFullScreen
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center text-gray-500 text-sm font-geist">

@@ -61,8 +61,17 @@
         "description": "Integrate and innovate with cutting-edge technology solutions",
         "features": [
           "API integrations",
-          "Platform partnerships",
-          "Innovation labs"
+          "AI automation",
+          "Data engineering"
+        ]
+      },
+      "service": {
+        "title": "Service Partners",
+        "description": "Specialized delivery partners supporting core service lines",
+        "features": [
+          "Accounting & Finance",
+          "Internal Auditing",
+          "Cyber Security & Data Privacy"
         ]
       }
     }
