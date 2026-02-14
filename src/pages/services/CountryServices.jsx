@@ -247,7 +247,7 @@ const CountryServices = ({ country, title, description }) => {
                     key={tag.key}
                     type="button"
                     onClick={() => setActiveTag((current) => (current === tag.key ? '' : tag.key))}
-                    className={`px-4 py-2 rounded-full text-sm font-semibold font-geist border transition ${
+                    className={`px-4 py-2 rounded-full text-sm font-semibold font-geist border transition transform-gpu perspective-[800px] hover:-translate-y-0.5 hover:shadow-[0_10px_22px_rgba(15,23,42,0.16)] hover:[transform:translateY(-2px)_rotateX(6deg)] ${
                       activeTag === tag.key
                         ? 'bg-[#2C5AA0]/10 text-[#1e3a8a] border-black'
                         : 'bg-white text-slate-700 border-black hover:border-black'

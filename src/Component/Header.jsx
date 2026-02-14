@@ -110,13 +110,13 @@ const Header = () => {
                 <div className="flex items-center space-x-3">
                   <Link 
                     to="/dashboard"
-                    className="hidden md:inline-block bg-green-100 hover:bg-green-200 text-green-800 px-4 py-2 rounded-lg font-poppins font-semibold text-sm transition-colors duration-300"
+                    className="hidden md:inline-block bg-white border border-[#2C5AA0] text-[#2C5AA0] hover:bg-[#2C5AA0] hover:text-white px-4 py-2 rounded-lg font-poppins font-semibold text-sm transition-colors duration-300"
                   >
                     {t('header.dashboard')}
                   </Link>
                   <button 
                     onClick={handleLogout}
-                    className="hidden md:inline-block bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-poppins font-semibold text-sm transition-colors duration-300"
+                    className="hidden md:inline-block bg-[#2C5AA0] hover:bg-[#1e3f73] text-white px-4 py-2 rounded-lg font-poppins font-semibold text-sm transition-colors duration-300"
                   >
                     {t('header.logout')}
                   </button>

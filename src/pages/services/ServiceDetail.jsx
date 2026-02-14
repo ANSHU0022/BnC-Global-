@@ -212,14 +212,15 @@ const ServiceDetail = () => {
                     key={section.key}
                     type="button"
                     onClick={() => setActiveSection(section.key)}
-                    className={`w-full text-left px-4 py-3 rounded-xl border transition ${
+                    className={`group relative w-full text-left px-4 py-3 rounded-xl border transition ${
                       activeSection === section.key
                         ? 'bg-[#2C5AA0]/10 border-[#2C5AA0]/30 text-[#1e3a8a]'
                         : 'bg-white border-slate-200 text-slate-700 hover:border-slate-300'
                     }`}
                   >
-                    <span className="text-sm font-semibold font-geist">
+                    <span className="relative inline-block text-sm font-semibold font-geist">
                       {section.label}
+                      <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-[#2C5AA0] transition-all duration-500 group-hover:w-full"></span>
                     </span>
                   </button>
                 ))}
