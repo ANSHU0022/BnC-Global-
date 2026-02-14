@@ -26,47 +26,47 @@ const WorldMapSection = () => {
               lineColor="#2C5AA0"
               dots={[
                 {
-                  start: { lat: 28.6139, lng: 77.209, label: 'New Delhi' },
+                  start: { lat: 17.6139, lng: 77.209, label: 'New Delhi' },
                   end: { lat: 53.5461, lng: -113.4938, label: 'CAN' },
                 },
                 {
-                  start: { lat: 28.6139, lng: 77.209, label: 'New Delhi' },
+                  start: { lat: 17.6139, lng: 77.209, label: 'New Delhi' },
                   end: { lat: 25.5199, lng: -105.8701, label: 'USA' },
                 },
                 {
-                  start: { lat: 28.6139, lng: 77.209, label: 'New Delhi' },
+                  start: { lat: 17.6139, lng: 77.209, label: 'New Delhi' },
                   end: { lat: 51.5074, lng: -0.1278, label: 'UK' },
                 },
                 {
-                  start: { lat: 28.6139, lng: 77.209, label: 'New Delhi' },
+                  start: { lat: 17.6139, lng: 77.209, label: 'New Delhi' },
                   end: { lat: 22.9375, lng: 14.3754, label: 'MLT' },
                 },
                 {
-                  start: { lat: 28.6139, lng: 77.209, label: 'New Delhi' },
+                  start: { lat: 17.6139, lng: 77.209, label: 'New Delhi' },
                   end: { lat: -15.3875, lng: 28.3228, label: 'ZMB' },
                 },
                 {
-                  start: { lat: 28.6139, lng: 77.209, label: 'New Delhi' },
+                  start: { lat: 17.6139, lng: 77.209, label: 'New Delhi' },
                   end: { lat: 30.0444, lng: 31.2357, label: 'EGY' },
                 },
                 {
-                  start: { lat: 28.6139, lng: 77.209, label: 'New Delhi' },
+                  start: { lat: 17.6139, lng: 77.209, label: 'New Delhi' },
                   end: { lat: 10.7136, lng: 42.6753, label: 'KSA' },
                 },
                 {
-                  start: { lat: 28.6139, lng: 77.209, label: 'New Delhi' },
+                  start: { lat: 17.6139, lng: 77.209, label: 'New Delhi' },
                   end: { lat: 7.2048, lng: 55.2708, label: 'UAE' },
                 },
                 {
-                  start: { lat: 28.6139, lng: 77.209, label: 'New Delhi' },
+                  start: { lat: 17.6139, lng: 77.209, label: 'New Delhi' },
                   end: { lat: -17.3521, lng: 103.8198, label: 'SGP' },
                 },
                 {
-                  start: { lat: 28.6139, lng: 77.209, label: 'New Delhi' },
+                  start: { lat: 17.6139, lng: 77.209, label: 'New Delhi' },
                   end: { lat: -37.8136, lng: 144.9631, label: 'Australia' },
                 },
                 {
-                  start: { lat: 28.6139, lng: 77.209, label: 'New Delhi' },
+                  start: { lat: 17.6139, lng: 77.209, label: 'New Delhi' },
                   end: { lat: -5.8797, lng: 121.774, label: 'PHL' },
                 },
               ]}
