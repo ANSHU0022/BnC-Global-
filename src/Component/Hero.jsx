@@ -18,10 +18,7 @@ const Hero = () => {
 
   return (
     <>
-      <section
-        className="relative min-h-screen overflow-hidden text-slate-900"
-        style={{ marginTop: '-80px', paddingTop: '140px' }}
-      >
+      <section className="relative min-h-screen overflow-hidden text-slate-900 -mt-20 pt-24 sm:pt-28 lg:pt-36">
         <div className="absolute inset-0 bg-[#F7F2ED]">
           <div className="absolute -top-28 -right-20 h-96 w-96 rounded-full bg-gradient-to-br from-[#2C5AA0]/25 via-[#7ea5ff]/25 to-transparent blur-3xl" />
           <div className="absolute bottom-0 left-0 h-80 w-80 rounded-full bg-gradient-to-tr from-emerald-400/20 via-cyan-400/15 to-transparent blur-3xl" />
@@ -29,10 +26,10 @@ const Hero = () => {
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(245,247,251,0.95),rgba(245,247,251,0.65))]" />
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24">
+        <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-10 sm:py-14 lg:py-24">
           <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] items-center">
             <div className="text-center lg:text-left lg:-mt-25">
-              <div className="relative inline-flex items-center gap-2 rounded-full border border-slate-900/60 bg-[#e8f1ff] px-4 py-1.5 text-xs font-semibold mb-6 -mt-2 backdrop-blur-sm text-slate-900 overflow-hidden shadow-[0_10px_26px_rgba(15,23,42,0.12)]">
+              <div className="relative inline-flex items-center gap-2 rounded-full border border-slate-900/60 bg-[#e8f1ff] px-4 py-1.5 text-xs font-semibold mb-4 sm:mb-6 -mt-1 backdrop-blur-sm text-slate-900 overflow-hidden shadow-[0_10px_26px_rgba(15,23,42,0.12)]">
                 <span className="absolute inset-0 bg-gradient-to-r from-[#2C5AA0]/20 via-[#7ea5ff]/20 to-transparent blur-md" />
                 <span className="relative flex items-center gap-2">
                   <svg className="h-4 w-4 text-slate-900" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -42,7 +39,7 @@ const Hero = () => {
                 </span>
               </div>
 
-              <h1 className="font-poppins text-4xl md:text-6xl font-bold mb-3 leading-tight -mt-5">
+              <h1 className="font-poppins text-4xl md:text-6xl font-bold mb-3 leading-tight -mt-3 sm:-mt-5">
                 {t('hero.titlePrefix')}{' '}
                 <span style={{ color: '#2C5AA0' }} className="wave-text">
                   {'BnC Global'.split('').map((letter, index) => (
@@ -118,21 +115,21 @@ const Hero = () => {
                 </Link>
               </div>
 
-              <div className="mt-8 max-w-lg mx-auto lg:mx-0" style={{ perspective: '1400px' }}>
+              <div className="mt-6 sm:mt-8 max-w-lg mx-auto lg:mx-0" style={{ perspective: '1400px' }}>
                 <div className="relative cursor-pointer rounded-2xl border border-white/80 bg-gradient-to-b from-white/95 via-white/80 to-slate-100/80 px-6 py-4 shadow-[0_30px_70px_rgba(15,23,42,0.18)] backdrop-blur transform-gpu [transform:rotateX(6deg)_rotateY(-6deg)] transition duration-300 hover:[transform:rotateX(0deg)_rotateY(0deg)_translateY(-10px)_scale(1.015)] hover:shadow-[0_50px_110px_rgba(15,23,42,0.24)] hover:ring-1 hover:ring-[#2C5AA0]/30">
                   <div className="absolute inset-0 rounded-2xl bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.9),transparent_55%)] pointer-events-none" />
-                  <div className="relative grid gap-4 text-center sm:grid-cols-3">
+                  <div className="relative grid grid-cols-3 gap-2 text-center">
                     <div>
-                      <p className="font-poppins text-2xl font-semibold text-slate-900">100+</p>
-                      <p className="text-xs text-slate-600">Global Partners</p>
+                      <p className="font-poppins text-xl sm:text-2xl font-semibold text-slate-900">100+</p>
+                      <p className="text-[11px] sm:text-xs text-slate-600">Global Partners</p>
                     </div>
                     <div>
-                      <p className="font-poppins text-2xl font-semibold text-slate-900">15+</p>
-                      <p className="text-xs text-slate-600">Years of Expertise</p>
+                      <p className="font-poppins text-xl sm:text-2xl font-semibold text-slate-900">15+</p>
+                      <p className="text-[11px] sm:text-xs text-slate-600">Years of Expertise</p>
                     </div>
                     <div>
-                      <p className="font-poppins text-2xl font-semibold text-slate-900">5+</p>
-                      <p className="text-xs text-slate-600">Countries Served</p>
+                      <p className="font-poppins text-xl sm:text-2xl font-semibold text-slate-900">5+</p>
+                      <p className="text-[11px] sm:text-xs text-slate-600">Countries Served</p>
                     </div>
                   </div>
                 </div>
