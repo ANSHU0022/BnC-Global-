@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+﻿import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import {
   FiEye,
@@ -19,6 +19,7 @@ const ServiceDetail = () => {
   const navigate = useNavigate();
   const { country, serviceId } = useParams();
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [activeSection, setActiveSection] = useState('know-more');
   const [hoveredHighlight, setHoveredHighlight] = useState(null);
   const [formValues, setFormValues] = useState({
@@ -104,13 +105,90 @@ const ServiceDetail = () => {
   };
 
   useEffect(() => {
+    const stored = localStorage.getItem('partnerUser');
+    if (!stored) return;
+    try {
+      const user = JSON.parse(stored);
+      const fullName = `${user?.firstName || ''} ${user?.lastName || ''}`.trim();
+      setFormValues((prev) => ({
+        ...prev,
+        name: fullName || prev.name,
+        email: user?.email || prev.email,
+        phone: user?.phone || prev.phone
+      }));
+    } catch (error) {
+      console.error('Failed to read partner user data', error);
+    }
+  }, []);
+
+  useEffect(() => {
     setSubmitted(false);
   }, [activeSection, serviceId, country]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setSubmitted(true);
+    if (!formValues.name || !formValues.email) {
+      alert('Please log in so we can pre-fill your details before submitting.');
+      return;
+    }
+
+    const formTypeLabel = activeSection === 'manpower'
+      ? 'Manpower'
+      : activeSection === 'training'
+        ? 'Training'
+        : 'Enquiry';
+
+    const params = new URLSearchParams({
+      action: 'submitEnquiry',
+      country: country || '',
+      countryLabel: countryLabel || '',
+      service: service?.title || '',
+      formType: formTypeLabel,
+      name: formValues.name || '',
+      email: formValues.email || '',
+      phone: formValues.phone || '',
+      company: formValues.company || '',
+      message: formValues.message || ''
+    });
+
+    const url = `https://script.google.com/macros/s/AKfycbxFTbVglGTWrOFI0VVjM4NwcQ80kUtuvLhwPPwNw-Vi3OMF3Cn7tzC3cz_iyCzSNY8T9g/exec?${params}`;
+    setIsSubmitting(true);
+    fetch(url, { method: 'GET', mode: 'cors' })
+      .then((response) => response.json())
+      .then((result) => {
+        if (result.success) {
+          setSubmitted(true);
+        } else {
+          alert(result.message || 'Submission failed. Please try again.');
+        }
+      })
+      .catch((error) => {
+        console.error('Enquiry submission error:', error);
+        alert('Submission failed. Please try again.');
+      })
+      .finally(() => {
+        setIsSubmitting(false);
+      });
   };
+
+  const formTitleMap = {
+    manpower: 'Manpower Supply Request Info',
+    enquiry: `Enquiry Service ${service?.title || ''}`.trim(),
+    training: 'Training Request Info'
+  };
+  const formCtaMap = {
+    manpower: 'Submit Manpower Request',
+    enquiry: 'Submit Enquiry',
+    training: 'Submit Training Request'
+  };
+  const messagePlaceholderMap = {
+    manpower: 'Tell us your manpower requirement (roles, count, duration, location).',
+    enquiry: `Share your enquiry about ${service?.title || 'this service'}.`,
+    training: 'Tell us the training topic, team size, and preferred timeline.'
+  };
+  const formTitle = formTitleMap[activeSection] || 'Request More Info';
+  const formCta = formCtaMap[activeSection] || 'Submit Request';
+  const messagePlaceholder = messagePlaceholderMap[activeSection] || 'Tell us about your requirement';
 
   const LazyVideo = ({ src, title }) => {
     const containerRef = useRef(null);
@@ -611,7 +689,7 @@ const ServiceDetail = () => {
                       </span>
                       <div>
                         <h3 className="font-poppins text-xl font-semibold">
-                          {activeSection === 'enquiry' ? 'Submit Enquiry' : 'Request More Info'}
+                          {formTitle}
                         </h3>
                         <div className="mt-2 h-1 w-16 rounded-full bg-gradient-to-r from-[#2C5AA0] to-[#1e3a8a]"></div>
                       </div>
@@ -636,8 +714,9 @@ const ServiceDetail = () => {
                           value={formValues.name}
                           onChange={handleChange}
                           placeholder="Full name"
-                          className="w-full border border-slate-200 rounded-xl px-3 py-2 text-sm font-geist focus:outline-none focus:ring-2 focus:ring-[#2C5AA0]/20"
+                          className="w-full border border-slate-200 rounded-xl px-3 py-2 text-sm font-geist bg-slate-50 text-slate-700 focus:outline-none focus:ring-2 focus:ring-[#2C5AA0]/20"
                           required
+                          readOnly
                         />
                         <input
                           type="email"
@@ -645,8 +724,9 @@ const ServiceDetail = () => {
                           value={formValues.email}
                           onChange={handleChange}
                           placeholder="Email address"
-                          className="w-full border border-slate-200 rounded-xl px-3 py-2 text-sm font-geist focus:outline-none focus:ring-2 focus:ring-[#2C5AA0]/20"
+                          className="w-full border border-slate-200 rounded-xl px-3 py-2 text-sm font-geist bg-slate-50 text-slate-700 focus:outline-none focus:ring-2 focus:ring-[#2C5AA0]/20"
                           required
+                          readOnly
                         />
                         <input
                           type="tel"
@@ -654,7 +734,8 @@ const ServiceDetail = () => {
                           value={formValues.phone}
                           onChange={handleChange}
                           placeholder="Phone number"
-                          className="w-full border border-slate-200 rounded-xl px-3 py-2 text-sm font-geist focus:outline-none focus:ring-2 focus:ring-[#2C5AA0]/20"
+                          className="w-full border border-slate-200 rounded-xl px-3 py-2 text-sm font-geist bg-slate-50 text-slate-700 focus:outline-none focus:ring-2 focus:ring-[#2C5AA0]/20"
+                          readOnly
                         />
                         <input
                           type="text"
@@ -669,14 +750,15 @@ const ServiceDetail = () => {
                           value={formValues.message}
                           onChange={handleChange}
                           rows="4"
-                          placeholder="Tell us about your requirement"
+                          placeholder={messagePlaceholder}
                           className="w-full border border-slate-200 rounded-xl px-3 py-2 text-sm font-geist focus:outline-none focus:ring-2 focus:ring-[#2C5AA0]/20"
                         />
                         <button
                           type="submit"
+                          disabled={isSubmitting}
                           className="w-full bg-[#2C5AA0] text-white py-2.5 rounded-xl font-semibold shadow hover:bg-[#1e3a8a] transition"
                         >
-                          Submit Request
+                          {isSubmitting ? 'Submitting...' : formCta}
                         </button>
                       </form>
                     )}
@@ -694,3 +776,4 @@ const ServiceDetail = () => {
 };
 
 export default ServiceDetail;
+

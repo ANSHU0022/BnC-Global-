@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { FaTimes, FaArrowRight, FaArrowLeft, FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const PartnerFormModal = ({ isOpen, onClose }) => {
@@ -20,44 +20,44 @@ const PartnerFormModal = ({ isOpen, onClose }) => {
   const [errors, setErrors] = useState({});
 
   const countries = [
-    { value: 'india', label: 'India / भारत', cities: ['Mumbai', 'Delhi', 'Bangalore', 'Chennai', 'Kolkata', 'Hyderabad', 'Pune', 'Ahmedabad', 'Jaipur', 'Surat', 'Lucknow', 'Kanpur', 'Nagpur', 'Indore', 'Thane', 'Bhopal', 'Visakhapatnam', 'Patna', 'Other'] },
-    { value: 'usa', label: 'United States / संयुक्त राज्य अमेरिका', cities: ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix', 'Philadelphia'] },
-    { value: 'uk', label: 'United Kingdom / यूनाइटेड किंगडम', cities: ['London', 'Manchester', 'Birmingham', 'Liverpool', 'Leeds', 'Sheffield'] },
-    { value: 'canada', label: 'Canada / कनाडा', cities: ['Toronto', 'Vancouver', 'Montreal', 'Calgary', 'Ottawa', 'Edmonton'] },
-    { value: 'australia', label: 'Australia / ऑस्ट्रेलिया', cities: ['Sydney', 'Melbourne', 'Brisbane', 'Perth', 'Adelaide', 'Canberra'] },
-    { value: 'germany', label: 'Germany / जर्मनी', cities: ['Berlin', 'Munich', 'Hamburg', 'Cologne', 'Frankfurt', 'Stuttgart'] },
-    { value: 'france', label: 'France / फ्रांस', cities: ['Paris', 'Lyon', 'Marseille', 'Toulouse', 'Nice', 'Nantes'] },
-    { value: 'japan', label: 'Japan / जापान', cities: ['Tokyo', 'Osaka', 'Kyoto', 'Yokohama', 'Kobe', 'Nagoya'] },
-    { value: 'china', label: 'China / चीन', cities: ['Beijing', 'Shanghai', 'Guangzhou', 'Shenzhen', 'Chengdu', 'Hangzhou'] },
-    { value: 'singapore', label: 'Singapore / सिंगापुर', cities: ['Singapore City', 'Jurong', 'Woodlands', 'Tampines', 'Bedok', 'Hougang'] },
-    { value: 'saudi', label: 'Saudi Arabia / सऊदी अरब', cities: ['Riyadh', 'Jeddah', 'Mecca', 'Medina', 'Dammam', 'Khobar'] },
-    { value: 'uae', label: 'UAE / संयुक्त अरब अमीरात', cities: ['Dubai', 'Abu Dhabi', 'Sharjah', 'Ajman', 'Ras Al Khaimah', 'Fujairah'] }
+    { value: 'india', label: 'India', cities: ['Mumbai', 'Delhi', 'Bangalore', 'Chennai', 'Kolkata', 'Hyderabad', 'Pune', 'Ahmedabad', 'Jaipur', 'Surat', 'Lucknow', 'Kanpur', 'Nagpur', 'Indore', 'Thane', 'Bhopal', 'Visakhapatnam', 'Patna', 'Other'] },
+    { value: 'usa', label: 'United States', cities: ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix', 'Philadelphia'] },
+    { value: 'uk', label: 'United Kingdom', cities: ['London', 'Manchester', 'Birmingham', 'Liverpool', 'Leeds', 'Sheffield'] },
+    { value: 'canada', label: 'Canada', cities: ['Toronto', 'Vancouver', 'Montreal', 'Calgary', 'Ottawa', 'Edmonton'] },
+    { value: 'australia', label: 'Australia', cities: ['Sydney', 'Melbourne', 'Brisbane', 'Perth', 'Adelaide', 'Canberra'] },
+    { value: 'germany', label: 'Germany', cities: ['Berlin', 'Munich', 'Hamburg', 'Cologne', 'Frankfurt', 'Stuttgart'] },
+    { value: 'france', label: 'France', cities: ['Paris', 'Lyon', 'Marseille', 'Toulouse', 'Nice', 'Nantes'] },
+    { value: 'japan', label: 'Japan', cities: ['Tokyo', 'Osaka', 'Kyoto', 'Yokohama', 'Kobe', 'Nagoya'] },
+    { value: 'china', label: 'China', cities: ['Beijing', 'Shanghai', 'Guangzhou', 'Shenzhen', 'Chengdu', 'Hangzhou'] },
+    { value: 'singapore', label: 'Singapore', cities: ['Singapore City', 'Jurong', 'Woodlands', 'Tampines', 'Bedok', 'Hougang'] },
+    { value: 'saudi', label: 'Saudi Arabia', cities: ['Riyadh', 'Jeddah', 'Mecca', 'Medina', 'Dammam', 'Khobar'] },
+    { value: 'uae', label: 'UAE', cities: ['Dubai', 'Abu Dhabi', 'Sharjah', 'Ajman', 'Ras Al Khaimah', 'Fujairah'] }
   ];
 
   const checkEmailExists = async (email) => {
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return;
-    
+
     setIsCheckingEmail(true);
     try {
       const params = new URLSearchParams({
         action: 'checkEmail',
         email: email
       });
-      
-      const url = `https://script.google.com/macros/s/AKfycbxzBlON2yrLD6uqHaSybZutsndvgpsZFoA2HMOBY4bfynBKQdz6LHp13dXDD4CUlnY6Hw/exec?${params}`;
-      
+
+      const url = `https://script.google.com/macros/s/AKfycbxFTbVglGTWrOFI0VVjM4NwcQ80kUtuvLhwPPwNw-Vi3OMF3Cn7tzC3cz_iyCzSNY8T9g/exec?${params}`;
+
       const response = await fetch(url, {
         method: 'GET',
         mode: 'cors'
       });
-      
+
       const result = await response.json();
-      
+
       if (result.exists) {
-        setErrors(prev => ({ ...prev, email: 'You have already registered with this email address.' }));
+        setErrors((prev) => ({ ...prev, email: 'You have already registered with this email address.' }));
         setEmailExists(true);
       } else {
-        setErrors(prev => ({ ...prev, email: '' }));
+        setErrors((prev) => ({ ...prev, email: '' }));
         setEmailExists(false);
       }
     } catch (error) {
@@ -68,13 +68,13 @@ const PartnerFormModal = ({ isOpen, onClose }) => {
   };
 
   const getCitiesForCountry = (country) => {
-    const selectedCountry = countries.find(c => c.value === country);
+    const selectedCountry = countries.find((c) => c.value === country);
     return selectedCountry ? selectedCountry.cities : [];
   };
 
   const validateStep = (step) => {
     const newErrors = {};
-    
+
     switch (step) {
       case 1:
         if (!formData.firstName.trim()) newErrors.firstName = 'First name is required';
@@ -103,42 +103,42 @@ const PartnerFormModal = ({ isOpen, onClose }) => {
           newErrors.password = 'Password must contain at least 8 characters, including uppercase, lowercase, number and special character';
         }
         break;
+      default:
+        break;
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       [name]: value,
-      ...(name === 'country' && { city: '' }) // Reset city when country changes
+      ...(name === 'country' && { city: '' })
     }));
-    
-    // Check email availability when email field changes
+
     if (name === 'email' && value && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
       setTimeout(() => checkEmailExists(value), 500);
     }
-    
-    // Clear error when user starts typing
+
     if (errors[name]) {
-      setErrors(prev => ({ ...prev, [name]: '' }));
+      setErrors((prev) => ({ ...prev, [name]: '' }));
     }
   };
 
   const handleNext = () => {
     if (currentStep === 2 && emailExists) {
-      return; // Don't allow next if email exists
+      return;
     }
     if (validateStep(currentStep)) {
-      setCurrentStep(prev => prev + 1);
+      setCurrentStep((prev) => prev + 1);
     }
   };
 
   const handleBack = () => {
-    setCurrentStep(prev => prev - 1);
+    setCurrentStep((prev) => prev - 1);
   };
 
   const handleSubmit = async (e) => {
@@ -146,7 +146,6 @@ const PartnerFormModal = ({ isOpen, onClose }) => {
     if (validateStep(4)) {
       setIsSubmitting(true);
       try {
-        // Create URL with parameters for GET request
         const params = new URLSearchParams({
           action: 'register',
           firstName: formData.firstName,
@@ -157,46 +156,39 @@ const PartnerFormModal = ({ isOpen, onClose }) => {
           city: formData.city,
           password: formData.password
         });
-        
-        const url = `https://script.google.com/macros/s/AKfycbxzBlON2yrLD6uqHaSybZutsndvgpsZFoA2HMOBY4bfynBKQdz6LHp13dXDD4CUlnY6Hw/exec?${params}`;
-        
-        // Use fetch with GET method
+
+        const url = `https://script.google.com/macros/s/AKfycbxFTbVglGTWrOFI0VVjM4NwcQ80kUtuvLhwPPwNw-Vi3OMF3Cn7tzC3cz_iyCzSNY8T9g/exec?${params}`;
+
         const response = await fetch(url, {
           method: 'GET',
           mode: 'no-cors'
         });
-        
-        // Since we can't read response with no-cors, we'll check by trying to login
-        // Wait a moment for the data to be processed
-        await new Promise(resolve => setTimeout(resolve, 2000));
-        
-        // Try to verify the registration by attempting login
+
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+
         const verifyParams = new URLSearchParams({
           action: 'login',
           email: formData.email,
           password: formData.password
         });
-        
-        const verifyUrl = `https://script.google.com/macros/s/AKfycbxzBlON2yrLD6uqHaSybZutsndvgpsZFoA2HMOBY4bfynBKQdz6LHp13dXDD4CUlnY6Hw/exec?${verifyParams}`;
-        
+
+        const verifyUrl = `https://script.google.com/macros/s/AKfycbxFTbVglGTWrOFI0VVjM4NwcQ80kUtuvLhwPPwNw-Vi3OMF3Cn7tzC3cz_iyCzSNY8T9g/exec?${verifyParams}`;
+
         const verifyResponse = await fetch(verifyUrl, {
           method: 'GET',
           mode: 'cors'
         });
-        
+
         const verifyResult = await verifyResponse.json();
-        
+
         if (verifyResult.success) {
-          // Registration successful
           setIsSubmitted(true);
           console.log('Form submitted:', formData);
         } else if (verifyResult.message === 'Invalid email or password') {
-          // This means registration failed, likely due to duplicate email
           alert('Registration failed: Email already exists. Please use a different email address.');
         } else {
           alert('Registration failed: ' + verifyResult.message);
         }
-        
       } catch (error) {
         console.error('Error submitting form:', error);
         alert('Error submitting form. Please try again.');
@@ -208,7 +200,6 @@ const PartnerFormModal = ({ isOpen, onClose }) => {
 
   const handleLoginRedirect = () => {
     onClose();
-    // Reset form
     setFormData({
       firstName: '',
       lastName: '',
@@ -221,7 +212,6 @@ const PartnerFormModal = ({ isOpen, onClose }) => {
     setCurrentStep(1);
     setErrors({});
     setIsSubmitted(false);
-    // Redirect to login page
     window.location.href = '/login';
   };
 
@@ -232,7 +222,7 @@ const PartnerFormModal = ({ isOpen, onClose }) => {
       <div className="fixed inset-0 z-[9999] overflow-y-auto">
         <div className="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center">
           <div className="fixed inset-0 bg-black/50"></div>
-          
+
           <div className="relative inline-block w-full max-w-md p-0 my-8 overflow-hidden text-left align-middle bg-white shadow-xl rounded-2xl z-10">
             <button
               onClick={handleLoginRedirect}
@@ -248,7 +238,9 @@ const PartnerFormModal = ({ isOpen, onClose }) => {
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">Application Submitted Successfully!</h3>
               <p className="text-gray-600 mb-4">Thank you for registering with us. Our team will contact you shortly.</p>
-              <p className="text-sm text-gray-500 mb-6">Your registered email: <span className="font-medium text-gray-700">{formData.email}</span></p>
+              <p className="text-sm text-gray-500 mb-6">
+                Your registered email: <span className="font-medium text-gray-700">{formData.email}</span>
+              </p>
               <button
                 onClick={handleLoginRedirect}
                 className="w-full bg-[#254C89] hover:bg-[#1e3f73] text-white px-6 py-3 rounded-lg font-semibold transition-colors"
@@ -267,10 +259,10 @@ const PartnerFormModal = ({ isOpen, onClose }) => {
       case 1:
         return (
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Personal Information / व्यक्तिगत जानकारी</h3>
+            <h3 className="text-lg font-semibold text-gray-800 mb-4">Personal Information</h3>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                First Name / पहला नाम *
+                First Name
               </label>
               <input
                 type="text"
@@ -280,13 +272,13 @@ const PartnerFormModal = ({ isOpen, onClose }) => {
                 className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#254C89] focus:border-transparent ${
                   errors.firstName ? 'border-red-500' : 'border-gray-300'
                 }`}
-                placeholder="Enter your first name / अपना पहला नाम दर्ज करें"
+                placeholder="Enter your first name"
               />
               {errors.firstName && <p className="text-red-500 text-sm mt-1">{errors.firstName}</p>}
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Last Name / अंतिम नाम *
+                Last Name
               </label>
               <input
                 type="text"
@@ -296,20 +288,20 @@ const PartnerFormModal = ({ isOpen, onClose }) => {
                 className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#254C89] focus:border-transparent ${
                   errors.lastName ? 'border-red-500' : 'border-gray-300'
                 }`}
-                placeholder="Enter your last name / अपना अंतिम नाम दर्ज करें"
+                placeholder="Enter your last name"
               />
               {errors.lastName && <p className="text-red-500 text-sm mt-1">{errors.lastName}</p>}
             </div>
           </div>
         );
-      
+
       case 2:
         return (
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Contact Information / संपर्क जानकारी</h3>
+            <h3 className="text-lg font-semibold text-gray-800 mb-4">Contact Information</h3>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Email / ईमेल *
+                Email
               </label>
               <input
                 type="email"
@@ -319,14 +311,14 @@ const PartnerFormModal = ({ isOpen, onClose }) => {
                 className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#254C89] focus:border-transparent ${
                   errors.email ? 'border-red-500' : 'border-gray-300'
                 }`}
-                placeholder="Enter your email / अपना ईमेल दर्ज करें"
+                placeholder="Enter your email"
               />
               {isCheckingEmail && <p className="text-blue-500 text-sm mt-1">Checking email availability...</p>}
               {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Phone Number / फोन नंबर *
+                Phone Number
               </label>
               <input
                 type="tel"
@@ -336,22 +328,22 @@ const PartnerFormModal = ({ isOpen, onClose }) => {
                 className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#254C89] focus:border-transparent ${
                   errors.phone ? 'border-red-500' : 'border-gray-300'
                 }`}
-                placeholder="Enter phone number (10 digits) / फोन नंबर दर्ज करें (10 अंक)"
+                placeholder="Enter phone number (10 digits)"
                 maxLength="10"
               />
               {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
-              <p className="text-gray-500 text-sm mt-1">Phone number must be exactly 10 digits / फोन नंबर बिल्कुल 10 अंकों का होना चाहिए</p>
+              <p className="text-gray-500 text-sm mt-1">Phone number must be exactly 10 digits</p>
             </div>
           </div>
         );
-      
+
       case 3:
         return (
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Location / स्थान</h3>
+            <h3 className="text-lg font-semibold text-gray-800 mb-4">Location</h3>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Country / देश *
+                Country
               </label>
               <select
                 name="country"
@@ -361,8 +353,8 @@ const PartnerFormModal = ({ isOpen, onClose }) => {
                   errors.country ? 'border-red-500' : 'border-gray-300'
                 }`}
               >
-                <option value="">Select Country / देश चुनें</option>
-                {countries.map(country => (
+                <option value="">Select Country</option>
+                {countries.map((country) => (
                   <option key={country.value} value={country.value}>
                     {country.label}
                   </option>
@@ -372,7 +364,7 @@ const PartnerFormModal = ({ isOpen, onClose }) => {
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                City / शहर *
+                City
               </label>
               <select
                 name="city"
@@ -383,8 +375,8 @@ const PartnerFormModal = ({ isOpen, onClose }) => {
                   errors.city ? 'border-red-500' : 'border-gray-300'
                 } ${!formData.country ? 'bg-gray-100' : ''}`}
               >
-                <option value="">Select City / शहर चुनें</option>
-                {getCitiesForCountry(formData.country).map(city => (
+                <option value="">Select City</option>
+                {getCitiesForCountry(formData.country).map((city) => (
                   <option key={city} value={city}>
                     {city}
                   </option>
@@ -394,25 +386,25 @@ const PartnerFormModal = ({ isOpen, onClose }) => {
             </div>
           </div>
         );
-      
+
       case 4:
         return (
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Create Password / पासवर्ड बनाएं</h3>
+            <h3 className="text-lg font-semibold text-gray-800 mb-4">Create Password</h3>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Password / पासवर्ड *
+                Password
               </label>
               <div className="relative">
                 <input
-                  type={showPassword ? "text" : "password"}
+                  type={showPassword ? 'text' : 'password'}
                   name="password"
                   value={formData.password}
                   onChange={handleChange}
                   className={`w-full px-4 py-3 pr-12 border rounded-lg focus:ring-2 focus:ring-[#254C89] focus:border-transparent ${
                     errors.password ? 'border-red-500' : 'border-gray-300'
                   }`}
-                  placeholder="Create a password / पासवर्ड बनाएं"
+                  placeholder="Create a password"
                 />
                 <button
                   type="button"
@@ -424,12 +416,12 @@ const PartnerFormModal = ({ isOpen, onClose }) => {
               </div>
               {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password}</p>}
               <p className="text-gray-500 text-sm mt-1">
-                Password must contain at least 8 characters including uppercase, lowercase, number and special character / पासवर्ड में कम से कम 8 अक्षर होने चाहिए जिसमें बड़े अक्षर, छोटे अक्षर, संख्या और विशेष अक्षर शामिल हों
+                Password must contain at least 8 characters including uppercase, lowercase, number and special character
               </p>
             </div>
           </div>
         );
-      
+
       default:
         return null;
     }
@@ -439,9 +431,8 @@ const PartnerFormModal = ({ isOpen, onClose }) => {
     <div className="fixed inset-0 z-[9999] overflow-y-auto">
       <div className="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center">
         <div className="fixed inset-0 bg-black/50" onClick={onClose}></div>
-        
+
         <div className="relative inline-block w-full max-w-xl p-0 my-8 overflow-hidden text-left align-middle bg-white shadow-xl rounded-2xl z-10">
-          {/* Header */}
           <div className="bg-gradient-to-r from-[#254C89] to-[#1e3f73] px-6 py-4 text-white relative">
             <button
               onClick={onClose}
@@ -453,21 +444,19 @@ const PartnerFormModal = ({ isOpen, onClose }) => {
             <p className="text-blue-100 text-sm">Join our growing network of partners</p>
             <div className="mt-3 flex items-center justify-between">
               <span className="text-sm">Step {currentStep} of 4</span>
-              <span className="text-sm">{Math.round((currentStep / 4) * 100)}%</span>
+              <span className="text-sm">{Math.round((currentStep / 4) * 100)}% complete</span>
             </div>
             <div className="w-full bg-[#1a3d6b] rounded-full h-2 mt-2">
-              <div 
+              <div
                 className="bg-white h-2 rounded-full transition-all duration-300"
                 style={{ width: `${(currentStep / 4) * 100}%` }}
               ></div>
             </div>
           </div>
 
-          {/* Form Content */}
           <div className="p-8">
             {renderStep()}
-            
-            {/* Navigation Buttons */}
+
             <div className="flex justify-between mt-6">
               {currentStep > 1 && (
                 <button
@@ -479,15 +468,15 @@ const PartnerFormModal = ({ isOpen, onClose }) => {
                   Back
                 </button>
               )}
-              
+
               {currentStep < 4 ? (
                 <button
                   type="button"
                   onClick={handleNext}
                   disabled={currentStep === 2 && emailExists}
                   className={`flex items-center ml-auto px-6 py-2 rounded-lg font-semibold transition-colors ${
-                    currentStep === 2 && emailExists 
-                      ? 'bg-gray-400 text-gray-600 cursor-not-allowed' 
+                    currentStep === 2 && emailExists
+                      ? 'bg-gray-400 text-gray-600 cursor-not-allowed'
                       : 'bg-[#254C89] hover:bg-[#1e3f73] text-white'
                   }`}
                 >

@@ -27,6 +27,8 @@ function doGet(e) {
       return getServiceData(data);
     } else if (action === 'submitAIProfile') {
       return submitAIProfile(data);
+    } else if (action === 'submitEnquiry') {
+      return submitEnquiry(data);
     }
     
     return ContentService
@@ -56,6 +58,8 @@ function doPost(e) {
       return handleRegistration(data);
     } else if (action === 'login') {
       return handleLogin(data);
+    } else if (action === 'submitEnquiry') {
+      return submitEnquiry(data);
     }
     
     return ContentService
@@ -66,6 +70,52 @@ function doPost(e) {
     console.error('Error in doPost:', error);
     return ContentService
       .createTextOutput(JSON.stringify({success: false, message: error.toString()}))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+function submitEnquiry(data) {
+  try {
+    const ss = SpreadsheetApp.openById('1Tds1b8C3VDj1aS5J41Wal7oNknDNaoIJSZEcsCBOyss');
+    const sheetName = 'Enquiry form';
+    let sheet = ss.getSheetByName(sheetName);
+    if (!sheet) {
+      sheet = ss.insertSheet(sheetName);
+      sheet.appendRow([
+        'Timestamp',
+        'Country',
+        'Country Label',
+        'Service',
+        'Form Type',
+        'Full Name',
+        'Email',
+        'Phone',
+        'Company',
+        'Message'
+      ]);
+    }
+
+    const timestamp = new Date();
+    sheet.appendRow([
+      timestamp,
+      data.country || '',
+      data.countryLabel || '',
+      data.service || '',
+      data.formType || '',
+      data.name || '',
+      data.email || '',
+      data.phone || '',
+      data.company || '',
+      data.message || ''
+    ]);
+
+    return ContentService
+      .createTextOutput(JSON.stringify({ success: true, message: 'Enquiry submitted' }))
+      .setMimeType(ContentService.MimeType.JSON);
+  } catch (error) {
+    console.error('Error in submitEnquiry:', error);
+    return ContentService
+      .createTextOutput(JSON.stringify({ success: false, message: 'Enquiry submission failed: ' + error.toString() }))
       .setMimeType(ContentService.MimeType.JSON);
   }
 }

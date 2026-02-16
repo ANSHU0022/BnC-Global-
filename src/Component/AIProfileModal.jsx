@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import {
   FaTimes,
   FaUserTie,
@@ -228,7 +228,7 @@ const AIProfileModal = ({ isOpen, onClose, partnerData, onSubmitted }) => {
         bio: formData.bio
       });
       
-      const url = `https://script.google.com/macros/s/AKfycbxzBlON2yrLD6uqHaSybZutsndvgpsZFoA2HMOBY4bfynBKQdz6LHp13dXDD4CUlnY6Hw/exec?${params}`;
+      const url = `https://script.google.com/macros/s/AKfycbxFTbVglGTWrOFI0VVjM4NwcQ80kUtuvLhwPPwNw-Vi3OMF3Cn7tzC3cz_iyCzSNY8T9g/exec?${params}`;
       
       const response = await fetch(url, {
         method: 'GET',
@@ -592,4 +592,5 @@ const AIProfileModal = ({ isOpen, onClose, partnerData, onSubmitted }) => {
 };
 
 export default AIProfileModal;
+
 
