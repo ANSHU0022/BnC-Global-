@@ -52,8 +52,24 @@ const Chatbot = () => {
         throw new Error(`HTTP ${response.status}`);
       }
 
-      const data = await response.text();
-      const botMessage = { type: 'bot', text: data || 'No response from server.' };
+      const contentType = response.headers.get('content-type') || '';
+      let replyText = '';
+      if (contentType.includes('application/json')) {
+        const data = await response.json();
+        replyText =
+          data?.message ||
+          data?.text ||
+          data?.reply ||
+          data?.output ||
+          '';
+      } else {
+        replyText = await response.text();
+      }
+
+      const botMessage = {
+        type: 'bot',
+        text: replyText?.trim() || 'Thanks! We received your message. Our team will reply shortly.'
+      };
       setMessages(prev => [...prev, botMessage]);
     } catch (error) {
       console.error('Webhook error:', error);
@@ -76,7 +92,7 @@ const Chatbot = () => {
   return (
     <>
       {/* Chat Toggle Button */}
-      <div className="fixed bottom-6 right-6 z-50">
+      <div className="fixed bottom-36 right-6 z-50">
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="flex flex-col items-center -gap-8 group"

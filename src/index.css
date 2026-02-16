@@ -160,3 +160,14 @@ html {
     animation: none;
   }
 }
+
+elevenlabs-convai {
+  display: block;
+  width: 320px;
+  min-height: 56px;
+  position: fixed !important;
+  right: 24px !important;
+  left: auto !important;
+  bottom: 24px !important;
+  z-index: 9999 !important;
+}

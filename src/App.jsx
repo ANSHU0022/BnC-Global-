@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './Component/Header';
 import Footer from './Component/Footer';
@@ -15,6 +15,25 @@ import OtherServices from './pages/services/other/OtherServices';
 import ServiceDetail from './pages/services/ServiceDetail';
 
 function App() {
+  useEffect(() => {
+    const existing = document.getElementById('elevenlabs-convai-widget');
+    if (existing) return;
+
+    const widget = document.createElement('elevenlabs-convai');
+    widget.id = 'elevenlabs-convai-widget';
+    widget.setAttribute('agent-id', 'agent_3501khh6r508esna3y2xcgd45751');
+    widget.style.position = 'fixed';
+    widget.style.right = '24px';
+    widget.style.left = 'auto';
+    widget.style.bottom = '24px';
+    widget.style.zIndex = '9999';
+    document.body.appendChild(widget);
+
+    return () => {
+      widget.remove();
+    };
+  }, []);
+
   return (
     <Router>
       <div className="min-h-screen flex flex-col">
