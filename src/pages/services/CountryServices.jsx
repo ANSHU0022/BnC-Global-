@@ -185,12 +185,6 @@ const CountryServices = ({ country, title, description }) => {
                     {description}
                   </p>
                 </div>
-                <button
-                  onClick={() => navigate('/bnc-services')}
-                  className="bg-white/95 text-[#1e3a8a] font-semibold px-5 py-3 rounded-xl shadow hover:bg-white transition"
-                >
-                  Back to Countries
-                </button>
               </div>
             </div>
           </div>

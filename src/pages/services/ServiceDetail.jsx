@@ -66,20 +66,20 @@ const ServiceDetail = () => {
     },
     {
       key: 'manpower',
-      label: 'Want manpower supply',
-      heading: 'Want manpower supply',
+      label: 'Main power supply',
+      heading: 'Main power supply',
       description: 'Tell us your manpower requirements and we will align the right team.'
     },
     {
       key: 'enquiry',
-      label: `Enquiry Service ${service?.title || ''}`.trim(),
-      heading: `Enquiry Service ${service?.title || ''}`.trim(),
+      label: `Consumer supply ${service?.title || ''}`.trim(),
+      heading: `Consumer supply ${service?.title || ''}`.trim(),
       description: 'Share your enquiry and our team will respond with the right guidance.'
     },
     {
       key: 'training',
-      label: 'Training',
-      heading: 'Training & Capability Building',
+      label: 'Training supply',
+      heading: 'Training supply',
       description: 'We help your teams learn, practice, and deliver with confidence.'
     },
     {

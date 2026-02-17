@@ -120,15 +120,15 @@ const Hero = () => {
                   <div className="absolute inset-0 rounded-2xl bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.9),transparent_55%)] pointer-events-none" />
                   <div className="relative grid grid-cols-3 gap-2 text-center">
                     <div>
-                      <p className="font-poppins text-xl sm:text-2xl font-semibold text-slate-900">100+</p>
+                      <p className="font-poppins text-xl sm:text-2xl font-semibold text-slate-900">50+</p>
                       <p className="text-[11px] sm:text-xs text-slate-600">Global Partners</p>
                     </div>
                     <div>
-                      <p className="font-poppins text-xl sm:text-2xl font-semibold text-slate-900">15+</p>
-                      <p className="text-[11px] sm:text-xs text-slate-600">Years of Expertise</p>
+                      <p className="font-poppins text-xl sm:text-2xl font-semibold text-slate-900">25+</p>
+                      <p className="text-[11px] sm:text-xs text-slate-600">Indian Partners</p>
                     </div>
                     <div>
-                      <p className="font-poppins text-xl sm:text-2xl font-semibold text-slate-900">5+</p>
+                      <p className="font-poppins text-xl sm:text-2xl font-semibold text-slate-900">14+</p>
                       <p className="text-[11px] sm:text-xs text-slate-600">Countries Served</p>
                     </div>
                   </div>

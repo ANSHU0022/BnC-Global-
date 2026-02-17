@@ -74,14 +74,12 @@ const Header = () => {
             {/* Center Section */}
             <div className="hidden md:flex flex-1 justify-center">
               <nav className="flex items-center gap-6 whitespace-nowrap">
-                <Link to="/" className="font-geist text-base text-gray-700 hover:text-[#2C5AA0] relative group transition-colors duration-300">
-                  {t('header.home')}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2C5AA0] group-hover:w-full transition-all duration-300"></span>
-                </Link>
-                <Link to="/bnc-services" className="font-geist text-base text-gray-700 hover:text-[#2C5AA0] relative group transition-colors duration-300">
-                  {t('header.services')}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2C5AA0] group-hover:w-full transition-all duration-300"></span>
-                </Link>
+                {location.pathname !== '/' && (
+                  <Link to="/" className="font-geist text-base text-gray-700 hover:text-[#2C5AA0] relative group transition-colors duration-300">
+                    {t('header.home')}
+                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2C5AA0] group-hover:w-full transition-all duration-300"></span>
+                  </Link>
+                )}
                 <Link to="/services/india" className="font-geist text-base text-gray-700 hover:text-[#2C5AA0] relative group transition-colors duration-300">
                   {t('countries.india')}
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2C5AA0] group-hover:w-full transition-all duration-300"></span>
@@ -90,17 +88,10 @@ const Header = () => {
                   {t('countries.saudi')}
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2C5AA0] group-hover:w-full transition-all duration-300"></span>
                 </Link>
-                <Link
-                  to={isLoggedIn ? "/dashboard?open=ai-profile" : "/login"}
-                  className="font-geist text-base text-gray-700 hover:text-[#2C5AA0] relative group transition-colors duration-300"
-                >
-                  {t('header.aiProfiling')}
+                <Link to="/services/global" className="font-geist text-base text-gray-700 hover:text-[#2C5AA0] relative group transition-colors duration-300">
+                  Global Services
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2C5AA0] group-hover:w-full transition-all duration-300"></span>
                 </Link>
-                <button onClick={() => setIsModalOpen(true)} className="font-geist text-base text-gray-700 hover:text-[#2C5AA0] relative group transition-colors duration-300 whitespace-nowrap">
-                  {t('header.applyNow')}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2C5AA0] group-hover:w-full transition-all duration-300"></span>
-                </button>
               </nav>
             </div>
 

@@ -92,7 +92,7 @@ const Chatbot = () => {
   return (
     <>
       {/* Chat Toggle Button */}
-      <div className="fixed bottom-36 right-6 z-50 sm:bottom-36 sm:right-6 bottom-20 right-4">
+      <div className="fixed bottom-6 right-6 z-50 sm:bottom-6 sm:right-6 bottom-4 right-4">
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="flex flex-col items-center -gap-8 group"
@@ -119,7 +119,7 @@ const Chatbot = () => {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-24 right-6 w-[420px] h-[560px] bg-white rounded-3xl shadow-[0_30px_70px_rgba(15,23,42,0.25)] z-50 flex flex-col overflow-hidden border border-slate-100 sm:bottom-24 sm:right-6 sm:w-[420px] sm:h-[560px] bottom-28 right-3 w-[92vw] h-[70vh] max-w-[360px]">
+        <div className="fixed bottom-6 right-6 w-[420px] h-[560px] bg-white rounded-3xl shadow-[0_30px_70px_rgba(15,23,42,0.25)] z-50 flex flex-col overflow-hidden border border-slate-100 sm:bottom-6 sm:right-6 sm:w-[420px] sm:h-[560px] bottom-4 right-3 w-[92vw] h-[70vh] max-w-[360px]">
           {/* Header */}
           <div className="px-6 py-5 text-white rounded-t-3xl flex items-center justify-between bg-gradient-to-r from-[#1e3a8a] via-[#2C5AA0] to-[#2c6fb0]">
             <div className="flex items-center gap-3">

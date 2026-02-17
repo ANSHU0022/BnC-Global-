@@ -1,7 +1,7 @@
 import React from 'react';
 import CountryServices from '../CountryServices';
 
-const OtherServices = () => (
+const GlobalServices = () => (
   <CountryServices
     country="other"
     title="Other Regions"
@@ -9,4 +9,4 @@ const OtherServices = () => (
   />
 );
 
-export default OtherServices;
+export default GlobalServices;

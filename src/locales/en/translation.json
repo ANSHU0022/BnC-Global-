@@ -39,12 +39,12 @@
     "learnMore": "Learn More",
     "cards": {
       "strategic": {
-        "title": "Strategic Partners",
+        "title": "International Partners",
         "description": "Long-term strategic alliances for mutual growth and market expansion",
         "features": [
-          "Joint venture opportunities",
-          "Technology integration",
-          "Market co-development"
+          "Cross-border market expansion",
+          "Local compliance alignment",
+          "Global partnership enablement"
         ]
       },
       "channel": {
@@ -53,7 +53,8 @@
         "features": [
           "Reseller programs",
           "Distributor network",
-          "Sales support"
+          "Sales partner",
+          "Channel enablement"
         ]
       },
       "technology": {
@@ -61,17 +62,19 @@
         "description": "Integrate and innovate with cutting-edge technology solutions",
         "features": [
           "API integrations",
-          "AI automation",
-          "Data engineering"
+          "Data analytics",
+          "AI agent",
+          "Tools and RPA"
         ]
       },
       "service": {
         "title": "Service Partners",
         "description": "Specialized delivery partners supporting core service lines",
         "features": [
-          "Accounting & Finance",
-          "Internal Auditing",
-          "Cyber Security & Data Privacy"
+          "Funding",
+          "Customer advisory",
+          "Foreign exchange",
+          "Merge equity value"
         ]
       }
     }
