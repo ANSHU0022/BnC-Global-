@@ -20,9 +20,12 @@ const Hero = () => {
       <section className="relative min-h-screen overflow-hidden text-slate-900 -mt-24 pt-16 sm:pt-20 lg:pt-24">
         <div className="absolute inset-0 bg-[#F7F2ED]">
           <div className="absolute -top-28 -right-20 h-96 w-96 rounded-full bg-gradient-to-br from-[#2C5AA0]/25 via-[#7ea5ff]/25 to-transparent blur-3xl" />
+          <div className="absolute right-[-120px] top-[-60px] h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle_at_30%_30%,rgba(44,90,160,0.35),rgba(126,165,255,0.18),rgba(255,255,255,0))] blur-3xl" />
+          <div className="absolute right-10 top-40 h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle_at_40%_40%,rgba(30,63,115,0.22),rgba(126,165,255,0.12),rgba(245,242,237,0))] blur-2xl" />
           <div className="absolute bottom-0 left-0 h-80 w-80 rounded-full bg-gradient-to-tr from-emerald-400/20 via-cyan-400/15 to-transparent blur-3xl" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(44,90,160,0.12),transparent_55%)]" />
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(245,247,251,0.95),rgba(245,247,251,0.65))]" />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#f1f6ff] via-[#f7f2ed] to-[#eef2ff]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_65%_35%,rgba(255,255,255,0.7),rgba(255,255,255,0.15),rgba(245,242,237,0))]" />
         </div>
 
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-8 sm:py-10 lg:py-16">
