@@ -1,5 +1,5 @@
 ﻿import React, { useState, useEffect, useMemo } from 'react';
-import { FaUser, FaHeadset, FaCheckCircle } from 'react-icons/fa';
+import { FaUser, FaHeadset } from 'react-icons/fa';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Header from '../Component/Header';
 import Footer from '../Component/Footer';
@@ -282,6 +282,32 @@ const PartnerDashboard = () => {
             </div>
           </div>
 
+
+          {(partnerData?.aiProfileCompleted || agreementSigned) && (
+            <div className="-mt-4 flex items-center gap-3 text-xs text-slate-500 pl-10">
+              {partnerData?.aiProfileCompleted && (
+                <div className="flex items-center gap-1">
+                  <span className="inline-flex h-4 w-4 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+                    <svg viewBox="0 0 24 24" className="h-2.5 w-2.5" fill="none" stroke="currentColor" strokeWidth="3">
+                      <path d="M5 12l4 4L19 6" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </span>
+                  <span>AI profiling complete</span>
+                </div>
+              )}
+              {agreementSigned && (
+                <div className="flex items-center gap-1">
+                  <span className="inline-flex h-4 w-4 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+                    <svg viewBox="0 0 24 24" className="h-2.5 w-2.5" fill="none" stroke="currentColor" strokeWidth="3">
+                      <path d="M5 12l4 4L19 6" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </span>
+                  <span>Agreement complete</span>
+                </div>
+              )}
+            </div>
+          )}
+
           <div className="-mt-7 flex justify-end">
             <div className="flex flex-wrap items-stretch gap-3">
               {showAIProfile && (
@@ -426,52 +452,6 @@ const PartnerDashboard = () => {
             </div>
           </div>
 
-          {/* Recent Activity Section */}
-          <div className="bg-white rounded-lg shadow-sm p-6 mt-10">
-            <h3 className="font-poppins text-2xl font-semibold text-gray-900 mb-6">Recent Activity</h3>
-            
-            <div className="space-y-4">
-              <div className="flex items-start space-x-4">
-                <div className="bg-green-100 p-2 rounded-full">
-                  <FaCheckCircle className="h-5 w-5 text-green-600" />
-                </div>
-                <div>
-                  <h4 className="font-poppins font-semibold text-gray-900">Account Created</h4>
-                  <p className="font-geist text-gray-600 text-sm">
-                    Your partner account has been successfully created and activated
-                  </p>
-                </div>
-              </div>
-              
-              {partnerData?.aiProfileCompleted && (
-                <div className="flex items-start space-x-4">
-                  <div className="bg-blue-100 p-2 rounded-full">
-                    <FaCheckCircle className="h-5 w-5 text-blue-600" />
-                  </div>
-                  <div>
-                    <h4 className="font-poppins font-semibold text-gray-900">AI Profile Completed</h4>
-                    <p className="font-geist text-gray-600 text-sm">
-                      You have successfully completed your AI partner profile
-                    </p>
-                  </div>
-                </div>
-              )}
-
-              {agreementSigned && (
-                <div className="flex items-start space-x-4">
-                  <div className="bg-emerald-100 p-2 rounded-full">
-                    <FaCheckCircle className="h-5 w-5 text-emerald-600" />
-                  </div>
-                  <div>
-                    <h4 className="font-poppins font-semibold text-gray-900">Agreement Signed</h4>
-                    <p className="font-geist text-gray-600 text-sm">
-                      Your partner agreement has been signed and recorded.
-                    </p>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
         </div>
       </div>
       <Footer />
@@ -517,5 +497,3 @@ const PartnerDashboard = () => {
 };
 
 export default PartnerDashboard;
-
-

@@ -48,7 +48,7 @@
         ]
       },
       "channel": {
-        "title": "Channel Partners",
+        "title": "Sales Partners",
         "description": "Expand your reach through our established distribution network",
         "features": [
           "Reseller programs",
@@ -71,10 +71,10 @@
         "title": "Service Partners",
         "description": "Specialized delivery partners supporting core service lines",
         "features": [
-          "Funding",
-          "Customer advisory",
-          "Foreign exchange",
-          "Merge equity value"
+          "IFRS",
+          "MNA Service advisory",
+          "Cross border advisory",
+          "Compliances"
         ]
       }
     }

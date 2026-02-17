@@ -4,20 +4,9 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import DottedMap from "dotted-map";
 
-interface MapProps {
-  dots?: Array<{
-    start: { lat: number; lng: number; label?: string };
-    end: { lat: number; lng: number; label?: string };
-  }>;
-  lineColor?: string;
-}
-
-export function WorldMap({
-  dots = [],
-  lineColor = "#0ea5e9",
-}: MapProps) {
-  const svgRef = useRef<SVGSVGElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
+export function WorldMap({ dots = [], lineColor = "#0ea5e9" }) {
+  const svgRef = useRef(null);
+  const containerRef = useRef(null);
   const [isInView, setIsInView] = useState(false);
   const [hasAnimated, setHasAnimated] = useState(false);
 
@@ -31,16 +20,13 @@ export function WorldMap({
     });
   }, []);
 
-  const projectPoint = (lat: number, lng: number) => {
+  const projectPoint = (lat, lng) => {
     const x = (lng + 180) * (800 / 360);
     const y = (90 - lat) * (400 / 180);
     return { x, y };
   };
 
-  const createCurvedPath = (
-    start: { x: number; y: number },
-    end: { x: number; y: number }
-  ) => {
+  const createCurvedPath = (start, end) => {
     const midX = (start.x + end.x) / 2;
     const midY = Math.min(start.y, end.y) - 50;
     return `M ${start.x} ${start.y} Q ${midX} ${midY} ${end.x} ${end.y}`;
@@ -75,7 +61,7 @@ export function WorldMap({
   return (
     <div
       ref={containerRef}
-      className="w-full aspect-[2/1] bg-white rounded-2xl relative font-sans overflow-hidden"
+      className="w-full aspect-[2/1] bg-transparent rounded-2xl relative font-sans overflow-hidden"
     >
       <img
         src={`data:image/svg+xml;utf8,${encodeURIComponent(svgMap)}`}
