@@ -2,12 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import PartnerFormModal from './PartnerFormModal';
+import { Globe } from '../components/ui/globe';
 
 const Hero = () => {
   const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [hoveredStackCard, setHoveredStackCard] = useState(null);
-  const [modelTilt, setModelTilt] = useState({ x: 8, y: -14 });
   const location = useLocation();
 
   useEffect(() => {
@@ -18,7 +17,7 @@ const Hero = () => {
 
   return (
     <>
-      <section className="relative min-h-screen overflow-hidden text-slate-900 -mt-20 pt-24 sm:pt-28 lg:pt-36">
+      <section className="relative min-h-screen overflow-hidden text-slate-900 -mt-24 pt-16 sm:pt-20 lg:pt-24">
         <div className="absolute inset-0 bg-[#F7F2ED]">
           <div className="absolute -top-28 -right-20 h-96 w-96 rounded-full bg-gradient-to-br from-[#2C5AA0]/25 via-[#7ea5ff]/25 to-transparent blur-3xl" />
           <div className="absolute bottom-0 left-0 h-80 w-80 rounded-full bg-gradient-to-tr from-emerald-400/20 via-cyan-400/15 to-transparent blur-3xl" />
@@ -26,9 +25,9 @@ const Hero = () => {
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(245,247,251,0.95),rgba(245,247,251,0.65))]" />
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-10 sm:py-14 lg:py-24">
+        <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-8 sm:py-10 lg:py-16">
           <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] items-center">
-            <div className="text-center lg:text-left lg:-mt-25">
+            <div className="text-center lg:text-left lg:-mt-18">
               <div className="relative inline-flex items-center gap-2 rounded-full border border-slate-900/60 bg-[#e8f1ff] px-4 py-1.5 text-xs font-semibold mb-4 sm:mb-6 -mt-1 backdrop-blur-sm text-slate-900 overflow-hidden shadow-[0_10px_26px_rgba(15,23,42,0.12)]">
                 <span className="absolute inset-0 bg-gradient-to-r from-[#2C5AA0]/20 via-[#7ea5ff]/20 to-transparent blur-md" />
                 <span className="relative flex items-center gap-2">
@@ -136,112 +135,9 @@ const Hero = () => {
               </div>
             </div>
 
-            <div className="relative flex justify-center lg:justify-end lg:-mt-30">
-              <div
-                className="relative w-full max-w-md"
-                style={{ perspective: '1200px' }}
-                onMouseMove={(event) => {
-                  const rect = event.currentTarget.getBoundingClientRect();
-                  const x = (event.clientX - rect.left) / rect.width;
-                  const y = (event.clientY - rect.top) / rect.height;
-                  const rotateY = -14 + (x - 0.5) * 14;
-                  const rotateX = 8 + (0.5 - y) * 12;
-                  setModelTilt({ x: rotateX, y: rotateY });
-                }}
-                onMouseLeave={() => setModelTilt({ x: 8, y: -14 })}
-              >
-                <div className="absolute -inset-6 rounded-[40px] bg-gradient-to-tr from-[#2C5AA0]/25 via-[#7ea5ff]/20 to-transparent blur-2xl" />
-                <div
-                  className="relative rounded-[32px] border border-white/60 bg-white/80 p-6 backdrop-blur-xl shadow-[0_30px_80px_rgba(15,23,42,0.18)]"
-                  style={{
-                    transform: `rotateY(${modelTilt.y}deg) rotateX(${modelTilt.x}deg)`,
-                    transformStyle: 'preserve-3d',
-                    transition: 'transform 80ms ease-out'
-                  }}
-                >
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-xs uppercase tracking-[0.3em] text-slate-500">
-                        Global Capability
-                      </p>
-                      <p className="font-poppins text-lg font-semibold text-slate-900 mt-2">
-                        Your End-to-End Service Stack
-                      </p>
-                    </div>
-                    <div className="h-10 w-10 rounded-2xl bg-gradient-to-br from-[#2C5AA0] to-[#7ea5ff] shadow-lg" />
-                  </div>
-
-                  <div className="mt-6 grid gap-4">
-                    <div
-                      className="rounded-2xl border border-slate-200/70 bg-white p-4 shadow-[0_12px_30px_rgba(15,23,42,0.12)]"
-                      onMouseEnter={() => setHoveredStackCard(1)}
-                      onMouseLeave={() => setHoveredStackCard(null)}
-                      style={{
-                        transform:
-                          hoveredStackCard === 1
-                            ? 'translateZ(90px) rotateX(8deg) rotateY(-6deg) scale(1.05) translateY(-8px)'
-                            : 'translateZ(24px)',
-                        transition: 'transform 120ms ease-out, box-shadow 120ms ease-out',
-                        boxShadow:
-                          hoveredStackCard === 1
-                            ? '0 32px 70px rgba(15,23,42,0.24)'
-                            : '0 12px 30px rgba(15,23,42,0.12)'
-                      }}
-                    >
-                      <p className="text-sm font-semibold text-slate-900">Finance & Accounts</p>
-                      <p className="text-xs text-slate-600 mt-2">
-                        Reliable reporting and compliance at scale.
-                      </p>
-                    </div>
-                    <div
-                      className="rounded-2xl border border-slate-200/70 bg-white p-4 shadow-[0_16px_32px_rgba(15,23,42,0.12)]"
-                      onMouseEnter={() => setHoveredStackCard(2)}
-                      onMouseLeave={() => setHoveredStackCard(null)}
-                      style={{
-                        transform:
-                          hoveredStackCard === 2
-                            ? 'translateZ(110px) rotateX(8deg) rotateY(6deg) scale(1.05) translateY(-8px)'
-                            : 'translateZ(36px)',
-                        transition: 'transform 120ms ease-out, box-shadow 120ms ease-out',
-                        boxShadow:
-                          hoveredStackCard === 2
-                            ? '0 36px 74px rgba(15,23,42,0.24)'
-                            : '0 16px 32px rgba(15,23,42,0.12)'
-                      }}
-                    >
-                      <p className="text-sm font-semibold text-slate-900">Manpower Solutions</p>
-                      <p className="text-xs text-slate-600 mt-2">
-                        Trained manpower for every project phase.
-                      </p>
-                    </div>
-                    <div
-                      className="rounded-2xl border border-slate-200/70 bg-white p-4 shadow-[0_18px_34px_rgba(15,23,42,0.1)]"
-                      onMouseEnter={() => setHoveredStackCard(3)}
-                      onMouseLeave={() => setHoveredStackCard(null)}
-                      style={{
-                        transform:
-                          hoveredStackCard === 3
-                            ? 'translateZ(130px) rotateX(8deg) rotateY(-5deg) scale(1.05) translateY(-8px)'
-                            : 'translateZ(48px)',
-                        transition: 'transform 120ms ease-out, box-shadow 120ms ease-out',
-                        boxShadow:
-                          hoveredStackCard === 3
-                            ? '0 40px 80px rgba(15,23,42,0.24)'
-                            : '0 18px 34px rgba(15,23,42,0.1)'
-                      }}
-                    >
-                      <p className="text-sm font-semibold text-slate-900">Training & Upskilling</p>
-                      <p className="text-xs text-slate-600 mt-2">
-                        Skills, safety, and readiness in weeks.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="mt-6 flex items-center gap-3">
-                    <div className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_12px_rgba(52,211,153,0.9)]" />
-                    <p className="text-xs text-slate-600">Live operations across India & KSA</p>
-                  </div>
-                </div>
+            <div className="relative flex justify-center lg:justify-end">
+              <div className="relative aspect-square w-[380px] sm:w-[480px] lg:w-[580px] xl:w-[680px] -mt-14 lg:-mt-24 lg:translate-x-8 xl:translate-x-12">
+                <Globe className="top-0" />
               </div>
             </div>
           </div>

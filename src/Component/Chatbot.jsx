@@ -99,10 +99,9 @@ const Chatbot = () => {
           aria-label="Get expert help"
         >
           <div className="relative z-0">
-            <img
-              src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=120&h=120"
+            <img src="https://media.licdn.com/dms/image/v2/D5603AQEra7lryPucqw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1727271678522?e=1772668800&v=beta&t=SFN61g3iPBn9kHkDptoI-S75So0uBpFhC78Mhrezjkw"
               alt="AI assistant"
-              className="h-12 w-12 rounded-full object-cover border border-[#2C5AA0] shadow-md"
+              className="h-16 w-16 rounded-full object-cover border border-[#2C5AA0] shadow-md"
             />
           </div>
           <div className="relative z-10 flex items-center gap-2 bg-white rounded-full px-3 py-1.5 shadow-lg border border-slate-100 -mt-2">
