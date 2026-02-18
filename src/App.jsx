@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Header from './Component/Header';
 import Footer from './Component/Footer';
 import Chatbot from './Component/Chatbot';
@@ -13,9 +13,20 @@ import SaudiArabiaServices from './pages/services/saudi-arabia/SaudiArabiaServic
 import GlobalServices from './pages/services/global/GlobalServices';
 import ServiceDetail from './pages/services/ServiceDetail';
 
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  }, [pathname]);
+
+  return null;
+};
+
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <div className="min-h-screen flex flex-col">
         <Routes>
           <Route path="/login" element={<Login />} />

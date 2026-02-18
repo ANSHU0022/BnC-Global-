@@ -68,6 +68,11 @@ const PartnerDashboard = () => {
               agreementSignedName: prev?.agreementSignedName || freshData.agreementSignedName,
               agreementSignedAt: prev?.agreementSignedAt || freshData.agreementSignedAt
             };
+            const prevSnapshot = JSON.stringify(prev || {});
+            const nextSnapshot = JSON.stringify(merged || {});
+            if (prevSnapshot === nextSnapshot) {
+              return prev;
+            }
             localStorage.setItem('partnerUser', JSON.stringify(merged));
             return merged;
           });
@@ -108,9 +113,9 @@ const PartnerDashboard = () => {
   const statusConfig = aiProfileCompleted
     ? agreementSigned
       ? {
-          text: 'View Global Services',
-          buttonLabel: 'Global Services',
-          onClick: () => navigate('/services/global')
+          text: 'You can explore our services and book your requirement.',
+          badgeLabel: 'Profile complete',
+          badgeTone: 'success'
         }
       : {
           text: 'Sign the agreement',
@@ -266,17 +271,26 @@ const PartnerDashboard = () => {
                 <div className="flex flex-wrap items-center gap-3">
                   <span className="font-medium text-slate-700">Status:</span>
                   <span className="text-slate-600">{statusConfig.text}</span>
-                  <button
-                    type="button"
-                    onClick={statusConfig.onClick}
-                    className={`rounded-full px-4 py-2 text-xs font-semibold shadow-sm ${
-                      aiProfileCompleted
-                        ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
-                        : 'border border-slate-300 bg-white text-slate-700 hover:bg-slate-50'
-                    }`}
-                  >
-                    {statusConfig.buttonLabel}
-                  </button>
+                  {statusConfig.badgeLabel ? (
+                    <span className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-2 text-xs font-semibold text-emerald-700 shadow-sm">
+                      <span className="inline-flex h-4 w-4 items-center justify-center rounded-full bg-emerald-500 text-white text-[10px]">
+                        ✓
+                      </span>
+                      {statusConfig.badgeLabel}
+                    </span>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={statusConfig.onClick}
+                      className={`rounded-full px-4 py-2 text-xs font-semibold shadow-sm ${
+                        aiProfileCompleted
+                          ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                          : 'border border-slate-300 bg-white text-slate-700 hover:bg-slate-50'
+                      }`}
+                    >
+                      {statusConfig.buttonLabel}
+                    </button>
+                  )}
                 </div>
               </div>
             </div>

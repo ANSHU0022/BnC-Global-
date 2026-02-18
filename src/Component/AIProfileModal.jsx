@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useRef, useState } from 'react';
 import {
   FaTimes,
   FaUserTie,
@@ -40,9 +40,11 @@ const AIProfileModal = ({ isOpen, onClose, partnerData, onSubmitted }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [expandedIndustries, setExpandedIndustries] = useState({});
+  const otherServiceRef = useRef(null);
   const [formData, setFormData] = useState({
     partnerType: '',
     services: [],
+    otherService: '',
     industries: [],
     mainIndustries: [],
     experienceIndustries: [],
@@ -52,6 +54,7 @@ const AIProfileModal = ({ isOpen, onClose, partnerData, onSubmitted }) => {
   const emptyForm = {
     partnerType: '',
     services: [],
+    otherService: '',
     industries: [],
     mainIndustries: [],
     experienceIndustries: [],
@@ -72,11 +75,19 @@ const AIProfileModal = ({ isOpen, onClose, partnerData, onSubmitted }) => {
     }
   }, [isOpen]);
 
-  const partnerTypeIcons = {
-    'service-provider': FaUserTie,
-    'service-consumer': FaUserCheck,
-    both: FaUsers
-  };
+  useEffect(() => {
+    if (!formData.services.includes('other')) return;
+    if (!otherServiceRef.current) return;
+    otherServiceRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    otherServiceRef.current.focus({ preventScroll: true });
+  }, [formData.services]);
+
+  const partnerTypeOptions = [
+    { value: 'international-partners', label: 'International Partners', icon: FaUsers },
+    { value: 'sales-partners', label: 'Sales Partners', icon: FaChartLine },
+    { value: 'technology-partners', label: 'Technology Partners', icon: FaMicrochip },
+    { value: 'service-partners', label: 'Service Partners', icon: FaUserTie }
+  ];
 
   const serviceIcons = {
     'cyber-security': FaShieldAlt,
@@ -217,11 +228,18 @@ const AIProfileModal = ({ isOpen, onClose, partnerData, onSubmitted }) => {
     
     setIsSubmitting(true);
     try {
+      const servicesValue = formData.services.includes('other') && formData.otherService.trim()
+        ? formData.services
+            .filter((service) => service !== 'other')
+            .concat(`other: ${formData.otherService.trim()}`)
+            .join(', ')
+        : formData.services.join(', ');
+
       const params = new URLSearchParams({
         action: 'submitAIProfile',
         email: partnerData?.email,
         partnerType: formData.partnerType,
-        services: formData.services.join(', '),
+        services: servicesValue,
         industries: formData.industries.join(', '),
         experienceIndustries: formData.experienceIndustries.join(', '),
         experienceDetails: JSON.stringify(formData.experienceDetails),
@@ -260,7 +278,12 @@ const AIProfileModal = ({ isOpen, onClose, partnerData, onSubmitted }) => {
   const canProceed = () => {
     switch (currentStep) {
       case 1: return formData.partnerType !== '';
-      case 2: return formData.services.length > 0;
+      case 2:
+        if (formData.services.length === 0) return false;
+        if (formData.services.includes('other')) {
+          return formData.otherService.trim() !== '';
+        }
+        return true;
       case 3: return formData.industries.length > 0;
       case 4:
         if (formData.experienceIndustries.length === 0) return false;
@@ -278,10 +301,16 @@ const AIProfileModal = ({ isOpen, onClose, partnerData, onSubmitted }) => {
   return (
     <div className="fixed inset-0 bg-slate-900/30 backdrop-blur-sm flex items-center justify-center z-50 p-4">
       <div className="ai-profile-modal ai-modal-shell max-w-6xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="ai-modal-header">
+        <div className="ai-modal-header flex flex-wrap items-start justify-between gap-4">
           <div>
             <h2 className="text-2xl font-bold text-slate-900">AI Partner Profile</h2>
             <p className="text-slate-600">Complete your profile in five quick steps</p>
+          </div>
+          <div className="ml-auto text-right">
+            <div className="text-xs text-slate-500">
+              <strong>Your Profile ID:</strong> {partnerData?.email || 'N/A'} |{' '}
+              <strong>Name:</strong> {partnerData?.firstName} {partnerData?.lastName}
+            </div>
           </div>
           <button onClick={onClose} className="ai-close-btn" aria-label="Close">
             <FaTimes size={20} />
@@ -340,35 +369,24 @@ const AIProfileModal = ({ isOpen, onClose, partnerData, onSubmitted }) => {
                 <div className="ai-step-content">
           {currentStep === 1 && (
             <div className="mb-6">
-              <div className="bg-blue-50 p-4 rounded-lg mb-6">
-                <h3 className="text-lg font-semibold text-blue-900">BnC Global</h3>
-                <p className="text-blue-800 text-sm">
-                  BnC Global is a leading professional services firm specializing in business consulting, compliance, and advisory services.
-                </p>
-                <div className="mt-2 text-sm">
-                  <strong>Your Profile ID:</strong> {partnerData?.email} | 
-                  <strong> Name:</strong> {partnerData?.firstName} {partnerData?.lastName}
-                </div>
-              </div>
-              
               <h3 className="text-xl font-semibold mb-4">Which type of partner you want to become?</h3>
               <div className="space-y-3">
-                {['service-provider', 'service-consumer', 'both'].map(type => {
-                  const Icon = partnerTypeIcons[type] || FaUsers;
+                {partnerTypeOptions.map((option) => {
+                  const Icon = option.icon || FaUsers;
                   return (
-                    <label key={type} className="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
+                    <label key={option.value} className="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
                       <input
                         type="radio"
                         name="partner-type"
-                        value={type}
-                        checked={formData.partnerType === type}
-                        onChange={() => selectOption(1, type)}
+                        value={option.value}
+                        checked={formData.partnerType === option.value}
+                        onChange={() => selectOption(1, option.value)}
                         className="mr-3"
                       />
                       <span className="mr-2 text-black">
                         <Icon size={18} />
                       </span>
-                      <span className="capitalize font-semibold">{type.replace('-', ' ')}</span>
+                      <span className="font-semibold">{option.label}</span>
                     </label>
                   );
                 })}
@@ -403,6 +421,19 @@ const AIProfileModal = ({ isOpen, onClose, partnerData, onSubmitted }) => {
                   );
                 })}
               </div>
+              {formData.services.includes('other') && (
+                <div className="mt-4">
+                  <label className="block text-sm font-medium mb-2">Please specify</label>
+                  <input
+                    type="text"
+                    ref={otherServiceRef}
+                    value={formData.otherService}
+                    onChange={(e) => setFormData(prev => ({ ...prev, otherService: e.target.value }))}
+                    placeholder="Type your service"
+                    className="w-full p-3 border rounded-lg"
+                  />
+                </div>
+              )}
             </div>
           )}
 
@@ -592,5 +623,9 @@ const AIProfileModal = ({ isOpen, onClose, partnerData, onSubmitted }) => {
 };
 
 export default AIProfileModal;
+
+
+
+
 
 

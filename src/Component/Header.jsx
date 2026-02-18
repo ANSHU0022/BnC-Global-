@@ -38,6 +38,8 @@ const Header = () => {
     i18n.changeLanguage(lang);
   };
 
+  const isActivePath = (path) => location.pathname === path;
+
   return (
     <>
       <header className="fixed top-0 left-0 right-0 bg-white shadow-lg z-40 rounded-b-3xl">
@@ -75,22 +77,58 @@ const Header = () => {
             <div className="hidden md:flex flex-1 justify-center">
               <nav className="flex items-center gap-6 whitespace-nowrap">
                 {location.pathname !== '/' && (
-                  <Link to="/" className="font-geist text-base text-gray-700 hover:text-[#2C5AA0] relative group transition-colors duration-300">
+                  <Link
+                    to="/"
+                    className={`font-geist text-base relative transition-colors duration-300 ${
+                      isActivePath('/') ? 'text-[#2C5AA0] font-semibold' : 'text-gray-700 hover:text-[#2C5AA0]'
+                    }`}
+                  >
                     {t('header.home')}
-                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2C5AA0] group-hover:w-full transition-all duration-300"></span>
+                    <span
+                      className={`absolute bottom-0 left-0 h-0.5 bg-[#2C5AA0] transition-all duration-300 ${
+                        isActivePath('/') ? 'w-full' : 'w-0 group-hover:w-full'
+                      }`}
+                    ></span>
                   </Link>
                 )}
-                <Link to="/services/india" className="font-geist text-base text-gray-700 hover:text-[#2C5AA0] relative group transition-colors duration-300">
+                <Link
+                  to="/services/india"
+                  className={`font-geist text-base relative transition-colors duration-300 ${
+                    isActivePath('/services/india') ? 'text-[#2C5AA0] font-semibold' : 'text-gray-700 hover:text-[#2C5AA0]'
+                  }`}
+                >
                   {t('countries.india')}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2C5AA0] group-hover:w-full transition-all duration-300"></span>
+                  <span
+                    className={`absolute bottom-0 left-0 h-0.5 bg-[#2C5AA0] transition-all duration-300 ${
+                      isActivePath('/services/india') ? 'w-full' : 'w-0 group-hover:w-full'
+                    }`}
+                  ></span>
                 </Link>
-                <Link to="/services/saudi-arabia" className="font-geist text-base text-gray-700 hover:text-[#2C5AA0] relative group transition-colors duration-300">
+                <Link
+                  to="/services/saudi-arabia"
+                  className={`font-geist text-base relative transition-colors duration-300 ${
+                    isActivePath('/services/saudi-arabia') ? 'text-[#2C5AA0] font-semibold' : 'text-gray-700 hover:text-[#2C5AA0]'
+                  }`}
+                >
                   {t('countries.saudi')}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2C5AA0] group-hover:w-full transition-all duration-300"></span>
+                  <span
+                    className={`absolute bottom-0 left-0 h-0.5 bg-[#2C5AA0] transition-all duration-300 ${
+                      isActivePath('/services/saudi-arabia') ? 'w-full' : 'w-0 group-hover:w-full'
+                    }`}
+                  ></span>
                 </Link>
-                <Link to="/services/global" className="font-geist text-base text-gray-700 hover:text-[#2C5AA0] relative group transition-colors duration-300">
+                <Link
+                  to="/services/global"
+                  className={`font-geist text-base relative transition-colors duration-300 ${
+                    isActivePath('/services/global') ? 'text-[#2C5AA0] font-semibold' : 'text-gray-700 hover:text-[#2C5AA0]'
+                  }`}
+                >
                   Global
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2C5AA0] group-hover:w-full transition-all duration-300"></span>
+                  <span
+                    className={`absolute bottom-0 left-0 h-0.5 bg-[#2C5AA0] transition-all duration-300 ${
+                      isActivePath('/services/global') ? 'w-full' : 'w-0 group-hover:w-full'
+                    }`}
+                  ></span>
                 </Link>
               </nav>
             </div>
