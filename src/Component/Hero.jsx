@@ -17,7 +17,7 @@ const Hero = () => {
 
   return (
     <>
-      <section className="relative min-h-screen overflow-hidden text-slate-900 -mt-16 pt-24 sm:pt-28 lg:pt-15">
+      <section className="relative min-h-screen overflow-hidden text-slate-900 -mt-16 pt-16 sm:pt-24 lg:pt-15">
         <div className="absolute inset-0 bg-[#F7F2ED]">
           <div className="absolute -top-28 -right-20 h-96 w-96 rounded-full bg-gradient-to-br from-[#2C5AA0]/25 via-[#7ea5ff]/25 to-transparent blur-3xl" />
           <div className="absolute right-[-120px] top-[-60px] h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle_at_30%_30%,rgba(44,90,160,0.35),rgba(126,165,255,0.18),rgba(255,255,255,0))] blur-3xl" />
@@ -30,7 +30,7 @@ const Hero = () => {
 
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-10 sm:py-12 lg:py-20">
           <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] items-center">
-            <div className="text-center lg:text-left lg:-mt-6 mt-10 sm:mt-12 relative z-20">
+            <div className="text-center lg:text-left lg:-mt-6 mt-0 sm:mt-10 relative z-20">
               <div className="relative inline-flex items-center gap-2 rounded-full border border-slate-900/60 bg-[#e8f1ff] px-4 py-1.5 text-xs font-semibold mb-4 sm:mb-6 -mt-1 backdrop-blur-sm text-slate-900 overflow-hidden shadow-[0_10px_26px_rgba(15,23,42,0.12)]">
                 <span className="absolute inset-0 bg-gradient-to-r from-[#2C5AA0]/20 via-[#7ea5ff]/20 to-transparent blur-md" />
                 <span className="relative flex items-center gap-2">
@@ -100,16 +100,16 @@ const Hero = () => {
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-6">
+              <div className="flex flex-row gap-3 justify-between mb-6 w-full max-w-md mx-auto lg:mx-0">
                 <button
                   onClick={() => setIsModalOpen(true)}
-                  className="bg-[#2C5AA0] hover:bg-[#1e3f73] text-white px-10 py-4 rounded-full font-medium transition-all duration-300 text-lg flex items-center justify-center gap-2 hover:scale-[1.02] transform"
+                  className="bg-[#2C5AA0] hover:bg-[#1e3f73] text-white px-4 py-3 rounded-full font-medium transition-all duration-300 text-sm sm:text-base flex items-center justify-center gap-2 hover:scale-[1.02] transform flex-1"
                 >
                   {t('hero.becomePartner')}
                 </button>
                 <Link
                   to="/login"
-                  className="bg-white hover:bg-slate-50 text-slate-800 border border-black px-10 py-4 rounded-full font-medium transition-all duration-300 text-lg flex items-center justify-center gap-2 hover:scale-[1.02] transform"
+                  className="bg-white hover:bg-slate-50 text-slate-800 border border-black px-4 py-3 rounded-full font-medium transition-all duration-300 text-sm sm:text-base flex items-center justify-center gap-2 hover:scale-[1.02] transform flex-1"
                 >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" />
@@ -118,20 +118,20 @@ const Hero = () => {
                 </Link>
               </div>
 
-              <div className="mt-6 sm:mt-8 max-w-lg mx-auto lg:mx-0" style={{ perspective: '1400px' }}>
-                <div className="relative cursor-pointer rounded-2xl border border-white/80 bg-gradient-to-b from-white/95 via-white/80 to-slate-100/80 px-6 py-4 shadow-[0_30px_70px_rgba(15,23,42,0.18)] backdrop-blur transform-gpu [transform:rotateX(6deg)_rotateY(-6deg)] transition duration-300 hover:[transform:rotateX(0deg)_rotateY(0deg)_translateY(-10px)_scale(1.015)] hover:shadow-[0_50px_110px_rgba(15,23,42,0.24)] hover:ring-1 hover:ring-[#2C5AA0]/30">
+              <div className="mt-5 sm:mt-7 max-w-md mx-auto lg:mx-0" style={{ perspective: '1400px' }}>
+                <div className="relative cursor-pointer rounded-2xl border border-white/80 bg-gradient-to-b from-white/95 via-white/80 to-slate-100/80 px-5 py-3 shadow-[0_26px_60px_rgba(15,23,42,0.18)] backdrop-blur transform-gpu [transform:rotateX(6deg)_rotateY(-6deg)] transition duration-300 hover:[transform:rotateX(0deg)_rotateY(0deg)_translateY(-8px)_scale(1.01)] hover:shadow-[0_44px_96px_rgba(15,23,42,0.24)] hover:ring-1 hover:ring-[#2C5AA0]/30">
                   <div className="absolute inset-0 rounded-2xl bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.9),transparent_55%)] pointer-events-none" />
                   <div className="relative grid grid-cols-3 gap-2 text-center">
                     <div>
-                      <p className="font-poppins text-xl sm:text-2xl font-semibold text-slate-900">50+</p>
+                      <p className="font-poppins text-lg sm:text-xl font-semibold text-slate-900">50+</p>
                       <p className="text-[11px] sm:text-xs text-slate-600">{t('hero.stats.global')}</p>
                     </div>
                     <div>
-                      <p className="font-poppins text-xl sm:text-2xl font-semibold text-slate-900">25+</p>
+                      <p className="font-poppins text-lg sm:text-xl font-semibold text-slate-900">25+</p>
                       <p className="text-[11px] sm:text-xs text-slate-600">{t('hero.stats.indian')}</p>
                     </div>
                     <div>
-                      <p className="font-poppins text-xl sm:text-2xl font-semibold text-slate-900">14+</p>
+                      <p className="font-poppins text-lg sm:text-xl font-semibold text-slate-900">14+</p>
                       <p className="text-[11px] sm:text-xs text-slate-600">{t('hero.stats.countries')}</p>
                     </div>
                   </div>
@@ -140,7 +140,7 @@ const Hero = () => {
             </div>
 
             <div className="relative flex justify-center lg:justify-end z-10">
-              <div className="relative w-full max-w-[1500px] -mt-16 lg:-mt-68 lg:translate-x-28 xl:translate-x-36 lg:scale-[1.55] xl:scale-[1.7] 2xl:scale-[1.85] origin-top-right">
+              <div className="relative w-full max-w-[1500px] -mt-8 lg:-mt-68 lg:translate-x-28 xl:translate-x-36 lg:scale-[1.55] xl:scale-[1.7] 2xl:scale-[1.85] origin-top-right">
                 <WorldMap
                   lineColor="#2C5AA0"
                   dots={[
