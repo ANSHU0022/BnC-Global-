@@ -1,7 +1,21 @@
 ﻿import React, { useState, useRef, useEffect } from 'react';
 import { FaTimes, FaPaperPlane, FaRocketchat } from 'react-icons/fa';
+import { useTranslation } from 'react-i18next';
 
 const Chatbot = () => {
+  const { i18n } = useTranslation();
+  const isRtl = i18n.language === 'ar';
+  const togglePosition = isRtl
+    ? 'fixed bottom-6 left-6 z-50 sm:bottom-6 sm:left-6 bottom-4 left-4'
+    : 'fixed bottom-6 right-6 z-50 sm:bottom-6 sm:right-6 bottom-4 right-4';
+  const windowPosition = isRtl
+    ? 'fixed bottom-6 left-6 w-[420px] h-[560px] bg-white rounded-3xl shadow-[0_30px_70px_rgba(15,23,42,0.25)] z-50 flex flex-col overflow-hidden border border-slate-100 sm:bottom-6 sm:left-6 sm:w-[420px] sm:h-[560px] bottom-4 left-3 w-[92vw] h-[70vh] max-w-[360px]'
+    : 'fixed bottom-6 right-6 w-[420px] h-[560px] bg-white rounded-3xl shadow-[0_30px_70px_rgba(15,23,42,0.25)] z-50 flex flex-col overflow-hidden border border-slate-100 sm:bottom-6 sm:right-6 sm:w-[420px] sm:h-[560px] bottom-4 right-3 w-[92vw] h-[70vh] max-w-[360px]';
+  const userAlign = isRtl ? 'justify-start' : 'justify-end';
+  const botAlign = isRtl ? 'justify-end' : 'justify-start';
+  const botAvatarMargin = isRtl ? 'ml-3' : 'mr-3';
+  const inputAlign = isRtl ? 'text-right' : 'text-left';
+  const rowDirection = isRtl ? 'flex-row-reverse' : 'flex-row';
   const WEBHOOK_URL =
     import.meta.env.VITE_N8N_WEBHOOK_URL ||
     'https://akashkrid91.app.n8n.cloud/webhook/1f7b3262-4441-4c9e-8a30-b77b33499bb7';
@@ -92,7 +106,7 @@ const Chatbot = () => {
   return (
     <>
       {/* Chat Toggle Button */}
-      <div className="fixed bottom-6 right-6 z-50 sm:bottom-6 sm:right-6 bottom-4 right-4">
+      <div className={togglePosition}>
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="flex flex-col items-center -gap-8 group"
@@ -118,10 +132,10 @@ const Chatbot = () => {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-6 right-6 w-[420px] h-[560px] bg-white rounded-3xl shadow-[0_30px_70px_rgba(15,23,42,0.25)] z-50 flex flex-col overflow-hidden border border-slate-100 sm:bottom-6 sm:right-6 sm:w-[420px] sm:h-[560px] bottom-4 right-3 w-[92vw] h-[70vh] max-w-[360px]">
+        <div className={windowPosition}>
           {/* Header */}
           <div className="px-6 py-5 text-white rounded-t-3xl flex items-center justify-between bg-gradient-to-r from-[#1e3a8a] via-[#2C5AA0] to-[#2c6fb0]">
-            <div className="flex items-center gap-3">
+            <div className={`flex items-center gap-3 ${rowDirection}`}>
               <div className="w-10 h-10 bg-white/95 rounded-xl flex items-center justify-center shadow-sm">
                 <FaRocketchat className="text-xl" style={{ color: '#2C5AA0' }} />
               </div>
@@ -138,9 +152,9 @@ const Chatbot = () => {
           {/* Messages */}
           <div className="flex-1 p-5 overflow-y-auto bg-gradient-to-b from-[#f5f7fb] via-white to-[#f6f8fb]">
             {messages.map((message, index) => (
-              <div key={index} className={`mb-4 flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}>
+              <div key={index} className={`mb-4 flex ${message.type === 'user' ? userAlign : botAlign}`}>
                 {message.type === 'bot' && (
-                  <div className="w-9 h-9 rounded-full flex items-center justify-center mr-3 mt-1 bg-white border border-slate-200 shadow-sm">
+                  <div className={`w-9 h-9 rounded-full flex items-center justify-center ${botAvatarMargin} mt-1 bg-white border border-slate-200 shadow-sm`}>
                     <FaRocketchat className="text-[#2C5AA0] text-sm" />
                   </div>
                 )}
@@ -155,12 +169,12 @@ const Chatbot = () => {
             ))}
 
             {isLoading && (
-              <div className="flex justify-start mb-4">
-                <div className="w-9 h-9 rounded-full flex items-center justify-center mr-3 mt-1 bg-white border border-slate-200 shadow-sm">
+              <div className={`flex ${botAlign} mb-4`}>
+                <div className={`w-9 h-9 rounded-full flex items-center justify-center ${botAvatarMargin} mt-1 bg-white border border-slate-200 shadow-sm`}>
                   <FaRocketchat className="text-[#2C5AA0] text-sm" />
                 </div>
                 <div className="bg-white p-3 rounded-2xl rounded-bl-sm shadow-sm">
-                  <div className="flex space-x-1">
+                  <div className="flex gap-1">
                     <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
                     <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
                     <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
@@ -174,13 +188,13 @@ const Chatbot = () => {
 
           {/* Input */}
           <div className="p-4 bg-white rounded-b-3xl border-t border-slate-100">
-            <form onSubmit={handleSubmit} className="flex space-x-3 mb-3">
+            <form onSubmit={handleSubmit} className="flex gap-3 mb-3">
               <input
                 type="text"
                 value={inputText}
                 onChange={(e) => setInputText(e.target.value)}
                 placeholder="Type your message..."
-                className="flex-1 p-3 border border-slate-200 rounded-full focus:outline-none focus:border-[#2C5AA0]/60 focus:ring-2 focus:ring-[#2C5AA0]/10 text-sm"
+                className={`flex-1 p-3 border border-slate-200 rounded-full focus:outline-none focus:border-[#2C5AA0]/60 focus:ring-2 focus:ring-[#2C5AA0]/10 text-sm ${inputAlign}`}
                 disabled={isLoading}
               />
               <button
@@ -189,12 +203,12 @@ const Chatbot = () => {
                 className="w-12 h-12 text-white rounded-full hover:opacity-90 transition-opacity disabled:opacity-50 flex items-center justify-center shadow-[0_12px_30px_rgba(44,90,160,0.25)]"
                 style={{ backgroundColor: '#2C5AA0' }}
               >
-                <FaPaperPlane className="text-sm" />
+                <FaPaperPlane className="text-sm flipInRtl" />
               </button>
             </form>
 
             {/* Quick Action Buttons */}
-            <div className="flex space-x-2">
+            <div className="flex gap-2">
               {quickButtons.map((button, index) => (
                 <button
                   key={index}

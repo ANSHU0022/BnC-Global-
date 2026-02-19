@@ -64,7 +64,41 @@ body {
   max-width: none;
   margin: 0;
   padding: 0;
+  text-align: inherit;
+}
+
+html[dir="rtl"] body {
+  direction: rtl;
+  text-align: right;
+}
+
+html[dir="ltr"] body {
+  direction: ltr;
   text-align: left;
+}
+
+html[dir="rtl"] input,
+html[dir="rtl"] textarea {
+  direction: rtl;
+  text-align: right;
+}
+
+html[dir="rtl"] .text-left {
+  text-align: right;
+}
+
+html[dir="rtl"] .ml-auto {
+  margin-inline-start: 0;
+  margin-inline-end: auto;
+}
+
+html[dir="rtl"] .mr-auto {
+  margin-inline-end: 0;
+  margin-inline-start: auto;
+}
+
+html[dir="rtl"] .flipInRtl {
+  transform: scaleX(-1);
 }
 
 a {
@@ -167,8 +201,13 @@ elevenlabs-convai {
   width: 320px;
   min-height: 56px;
   position: fixed !important;
-  right: 24px !important;
-  left: auto !important;
+  inset-inline-end: 24px !important;
+  inset-inline-start: auto !important;
   bottom: 24px !important;
   z-index: 9999 !important;
+}
+
+html[dir="rtl"] elevenlabs-convai {
+  inset-inline-start: 24px !important;
+  inset-inline-end: auto !important;
 }

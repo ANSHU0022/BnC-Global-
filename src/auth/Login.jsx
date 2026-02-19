@@ -1,9 +1,20 @@
 ﻿import React, { useState, useEffect } from 'react';
 import { FaUser, FaShieldAlt, FaLock, FaIdCard, FaArrowLeft, FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const Login = () => {
   const location = useLocation();
+  const { i18n } = useTranslation();
+  const isRtl = i18n.language === 'ar';
+  const textAlign = isRtl ? 'text-right' : 'text-left';
+  const inputAlign = isRtl ? 'text-right' : 'text-left';
+  const rowDirection = isRtl ? 'flex-row-reverse' : 'flex-row';
+  const iconMargin = isRtl ? 'mr-2' : 'ml-2';
+  const passPadding = isRtl ? 'pl-12' : 'pr-12';
+  const eyePosition = isRtl ? 'left-3' : 'right-3';
+  const topBlobPos = isRtl ? 'pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-[#2C5AA0]/15 blur-3xl' : 'pointer-events-none absolute -top-24 -left-24 h-72 w-72 rounded-full bg-[#2C5AA0]/15 blur-3xl';
+  const bottomBlobPos = isRtl ? 'pointer-events-none absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-[#1e3f73]/15 blur-3xl' : 'pointer-events-none absolute -bottom-24 -right-24 h-72 w-72 rounded-full bg-[#1e3f73]/15 blur-3xl';
   const [activeTab, setActiveTab] = useState('partner');
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -114,15 +125,15 @@ const Login = () => {
 
   return (
     <div className="min-h-screen bg-[#f2f5fb] relative overflow-hidden flex items-center justify-center px-4 py-6">
-      <div className="pointer-events-none absolute -top-24 -left-24 h-72 w-72 rounded-full bg-[#2C5AA0]/15 blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-24 -right-24 h-72 w-72 rounded-full bg-[#1e3f73]/15 blur-3xl" />
+      <div className={topBlobPos} />
+      <div className={bottomBlobPos} />
       <div className="w-full max-w-4xl">
-        <div className="grid md:grid-cols-2 bg-white rounded-2xl shadow-2xl overflow-hidden border border-white/60">
+        <div className={`flex flex-col md:flex-row ${isRtl ? 'md:flex-row-reverse' : ''} bg-white rounded-2xl shadow-2xl overflow-hidden border border-white/60`}>
           {/* Left Brand Panel */}
-          <div className="relative hidden md:flex flex-col justify-between p-8 bg-gradient-to-br from-[#2C5AA0] via-[#24508f] to-[#163062] text-white">
+          <div className={`relative hidden md:flex md:w-1/2 flex-col justify-between p-8 bg-gradient-to-br from-[#2C5AA0] via-[#24508f] to-[#163062] text-white ${textAlign}`}>
             <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_1px_1px,white_1px,transparent_0)] bg-[length:16px_16px]" />
             <div className="relative">
-              <div className="inline-flex items-center gap-3">
+              <div className={`inline-flex items-center gap-3 ${rowDirection}`}>
                 <div className="h-14 w-14 rounded-full flex items-center justify-center">
                   <img
                     src="/favicon/b%20nc%20global%20(2).avif"
@@ -143,13 +154,13 @@ const Login = () => {
               </p>
             </div>
             <div className="relative space-y-4 text-sm text-white/80">
-              <div className="flex items-center gap-3">
+              <div className={`flex items-center gap-3 ${rowDirection}`}>
                 <div className="h-9 w-9 rounded-xl bg-white/15 flex items-center justify-center">
                   <FaShieldAlt />
                 </div>
                 Secure role-based access
               </div>
-              <div className="flex items-center gap-3">
+              <div className={`flex items-center gap-3 ${rowDirection}`}>
                 <div className="h-9 w-9 rounded-xl bg-white/15 flex items-center justify-center">
                   <FaUser />
                 </div>
@@ -159,7 +170,7 @@ const Login = () => {
                 <div className="grid gap-3 w-full max-w-sm">
                   <a
                     href="mailto:info@bncglobal.in"
-                    className="group flex items-center justify-between rounded-2xl border border-white/20 bg-white/10 px-4 py-3 transition hover:bg-white/15 hover:border-white/40"
+                    className={`group flex items-center justify-between rounded-2xl border border-white/20 bg-white/10 px-4 py-3 transition hover:bg-white/15 hover:border-white/40 ${rowDirection}`}
                   >
                     <div>
                       <p className="text-xs uppercase tracking-[0.3em] text-white/60">
@@ -183,7 +194,7 @@ const Login = () => {
                       href="https://wa.me/919958711796"
                       target="_blank"
                       rel="noreferrer"
-                      className="group flex items-center justify-between rounded-2xl border border-white/20 bg-white/10 px-4 py-3 transition hover:bg-white/15 hover:border-white/40"
+                      className={`group flex items-center justify-between rounded-2xl border border-white/20 bg-white/10 px-4 py-3 transition hover:bg-white/15 hover:border-white/40 ${rowDirection}`}
                     >
                       <div>
                         <p className="text-xs uppercase tracking-[0.3em] text-white/60">
@@ -191,7 +202,7 @@ const Login = () => {
                         </p>
                       <p className="text-sm font-semibold text-white whitespace-nowrap">+91 99587 11796</p>
                     </div>
-                    <div className="h-10 w-10 rounded-xl bg-white/15 flex items-center justify-center group-hover:bg-white/25 transition ml-2">
+                    <div className={`h-10 w-10 rounded-xl bg-white/15 flex items-center justify-center group-hover:bg-white/25 transition ${iconMargin}`}>
                         <svg
                           className="h-5 w-5 text-white"
                           fill="currentColor"
@@ -204,7 +215,7 @@ const Login = () => {
                     </a>
                     <a
                       href="tel:+919810575613"
-                      className="group flex items-center justify-between rounded-2xl border border-white/20 bg-white/10 px-4 py-3 transition hover:bg-white/15 hover:border-white/40"
+                      className={`group flex items-center justify-between rounded-2xl border border-white/20 bg-white/10 px-4 py-3 transition hover:bg-white/15 hover:border-white/40 ${rowDirection}`}
                     >
                       <div>
                         <p className="text-xs uppercase tracking-[0.3em] text-white/60">
@@ -212,7 +223,7 @@ const Login = () => {
                         </p>
                       <p className="text-sm font-semibold text-white whitespace-nowrap">+91 9304002266</p>
                     </div>
-                    <div className="h-10 w-10 rounded-xl bg-white/15 flex items-center justify-center group-hover:bg-white/25 transition ml-2">
+                    <div className={`h-10 w-10 rounded-xl bg-white/15 flex items-center justify-center group-hover:bg-white/25 transition ${iconMargin}`}>
                         <svg
                           className="h-5 w-5 text-white"
                           fill="currentColor"
@@ -230,7 +241,7 @@ const Login = () => {
           </div>
 
           {/* Login Form */}
-          <div className="p-6 md:p-8">
+          <div className={`p-6 md:p-8 md:w-1/2 ${textAlign}`}>
             <div className="md:hidden text-center mb-6">
               <div className="inline-flex items-center justify-center h-12 w-12 rounded-full mb-3">
                 <img
@@ -247,24 +258,24 @@ const Login = () => {
             <div className="flex mb-5 bg-gray-100 rounded-xl p-1">
               <button
                 onClick={() => setActiveTab('partner')}
-                className={`flex-1 flex items-center justify-center py-2.5 px-4 rounded-lg font-semibold transition-all ${
+                className={`flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg font-semibold transition-all ${isRtl ? 'flex-row-reverse' : ''} ${
                   activeTab === 'partner'
                     ? 'bg-white text-[#1e3f73] shadow'
                     : 'text-gray-600 hover:text-gray-800'
                 }`}
               >
-                <FaUser className="mr-2" />
+                <FaUser />
                 Partner Login
               </button>
               <button
                 onClick={() => setActiveTab('admin')}
-                className={`flex-1 flex items-center justify-center py-2.5 px-4 rounded-lg font-semibold transition-all ${
+                className={`flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg font-semibold transition-all ${isRtl ? 'flex-row-reverse' : ''} ${
                   activeTab === 'admin'
                     ? 'bg-white text-[#1e3f73] shadow'
                     : 'text-gray-600 hover:text-gray-800'
                 }`}
               >
-                <FaShieldAlt className="mr-2" />
+                <FaShieldAlt />
                 Admin Login
               </button>
             </div>
@@ -278,8 +289,8 @@ const Login = () => {
 
               {/* User ID (Email/Admin ID) */}
               <div>
-                <label className="flex items-center text-sm font-medium text-gray-700 mb-2">
-                  <FaIdCard className="mr-2 text-[#2C5AA0]" />
+                <label className={`flex items-center gap-2 text-sm font-medium text-gray-700 mb-2 ${rowDirection}`}>
+                  <FaIdCard className="text-[#2C5AA0]" />
                   {activeTab === 'admin' ? 'Admin ID' : 'User ID (Email)'}
                 </label>
                 <input
@@ -288,7 +299,7 @@ const Login = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-[#2C5AA0]/30 focus:border-transparent ${
+                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-[#2C5AA0]/30 focus:border-transparent ${inputAlign} ${
                     errors.email ? 'border-red-500' : 'border-gray-300'
                   }`}
                   placeholder={activeTab === 'admin' ? 'Enter admin ID' : 'Enter your email address'}
@@ -301,8 +312,8 @@ const Login = () => {
 
               {/* Password */}
               <div>
-                <label className="flex items-center text-sm font-medium text-gray-700 mb-2">
-                  <FaLock className="mr-2 text-[#2C5AA0]" />
+                <label className={`flex items-center gap-2 text-sm font-medium text-gray-700 mb-2 ${rowDirection}`}>
+                  <FaLock className="text-[#2C5AA0]" />
                   Password
                 </label>
                 <div className="relative">
@@ -312,7 +323,7 @@ const Login = () => {
                     value={formData.password}
                     onChange={handleChange}
                     required
-                    className={`w-full px-4 py-2.5 pr-12 border rounded-lg focus:ring-2 focus:ring-[#2C5AA0]/30 focus:border-transparent ${
+                    className={`w-full px-4 py-2.5 ${passPadding} border rounded-lg focus:ring-2 focus:ring-[#2C5AA0]/30 focus:border-transparent ${inputAlign} ${
                       errors.password ? 'border-red-500' : 'border-gray-300'
                     }`}
                     placeholder="Enter your password"
@@ -320,7 +331,7 @@ const Login = () => {
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                    className={`absolute ${eyePosition} top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700`}
                   >
                     {showPassword ? <FaEyeSlash size={18} /> : <FaEye size={18} />}
                   </button>
@@ -350,7 +361,7 @@ const Login = () => {
                 to="/" 
                 className="inline-flex items-center text-[#2C5AA0] hover:text-[#1e3f73] font-medium"
               >
-                <FaArrowLeft className="mr-2" />
+                <FaArrowLeft className={isRtl ? 'ml-2 flipInRtl' : 'mr-2'} />
                 Back to Registration
               </Link>
             </div>

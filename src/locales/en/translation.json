@@ -120,6 +120,7 @@
     "searchButton": "Search",
     "searchErrorEmpty": "Please enter a service name or sub service.",
     "searchErrorNoMatch": "No matching service found.",
+    "preparingPreview": "Preparing preview",
     "tags": {
       "highDemand": "High Demand Service",
       "highSelling": "Hot Selling",
@@ -132,6 +133,7 @@
     },
     "videoComingSoon": "Video coming soon",
     "servicesComingSoon": "Services will be available soon.",
+    "servicesCount": "{{count}} Services",
     "viewMore": "View more",
     "backToCountries": "Back to Countries"
   },
@@ -172,6 +174,11 @@
         "heading": "Enquiry Service {{service}}",
         "description": "Share your enquiry and our team will respond with the right guidance."
       },
+      "training": {
+        "label": "Training support",
+        "heading": "Training support",
+        "description": "We help your teams learn, practice, and deliver with confidence."
+      },
       "contact": {
         "label": "Contact",
         "heading": "Immediate Response Contact",
@@ -191,12 +198,62 @@
       "phone": "Phone number",
       "company": "Company name",
       "message": "Tell us about your requirement"
-    }
+    },
+    "overviewComingSoon": "Service overview will be available soon.",
+    "manpowerFallback": "We provide trained professionals aligned to {{service}} requirements, ready to integrate with your team and deliver measurable outcomes.",
+    "training": {
+      "title": "Training that builds real capability",
+      "description": "We can help you learn and train your teams so they are ready to deliver on {{service}} with confidence, safety, and measurable outcomes.",
+      "coverageTitle": "What we cover",
+      "coverageItems": [
+        "Role-based onboarding and process walkthroughs",
+        "Hands-on practice with real project scenarios",
+        "Quality, safety, and compliance standards",
+        "Assessment and continuous improvement plans"
+      ],
+      "highlightsTitle": "Program Highlights",
+      "highlights": [
+        {
+          "title": "Tailored Training Tracks",
+          "description": "Modules aligned to your project scope, team maturity, and timelines."
+        },
+        {
+          "title": "On-site or Remote Delivery",
+          "description": "Flexible formats to match your operational schedule and locations."
+        },
+        {
+          "title": "Certified Completion",
+          "description": "Completion reports, skill matrices, and readiness confirmation."
+        }
+      ]
+    },
+    "howWeHelpDesc": "Share the details and we will align the right team, scope, and timeline for {{service}}.",
+    "formTitles": {
+      "manpower": "Manpower Supply Request Info",
+      "enquiry": "Enquiry Service {{service}}",
+      "training": "Training Request Info"
+    },
+    "formCtas": {
+      "manpower": "Submit Manpower Request",
+      "enquiry": "Submit Enquiry",
+      "training": "Submit Training Request"
+    },
+    "messagePlaceholders": {
+      "manpower": "Tell us your manpower requirement (roles, count, duration, location).",
+      "enquiry": "Share your enquiry about {{service}}.",
+      "training": "Tell us the training topic, team size, and preferred timeline.",
+      "default": "Tell us about your requirement",
+      "defaultService": "this service"
+    },
+    "submitting": "Submitting...",
+    "loginRequired": "Please log in so we can pre-fill your details before submitting.",
+    "submitFailed": "Submission failed. Please try again."
   },
   "countries": {
     "india": "India",
     "saudi": "Saudi Arabia",
-    "other": "Other Regions"
+    "other": "Other Regions",
+    "global": "Global"
   },
   "login": {
     "welcomeBack": "Welcome Back",
@@ -226,5 +283,514 @@
       "adminSuccess": "Admin login successful!",
       "partnerSuccess": "Login successful! Welcome {{name}}"
     }
+  },
+  "globalServices": {
+    "label": "Global Services",
+    "title": "We provide services globally",
+    "subtitle": "Choose your country to view the right support and submit your requirements.",
+    "regionalSupport": "Regional support",
+    "countryFlagAlt": "{{country}} flag",
+    "countries": {
+      "australia": "Australia",
+      "unitedKingdom": "United Kingdom",
+      "canada": "Canada",
+      "unitedStates": "United States",
+      "southAfrica": "South Africa",
+      "germany": "Germany",
+      "france": "France",
+      "singapore": "Singapore",
+      "philippines": "Philippines",
+      "egypt": "Egypt"
+    },
+    "asideTitle": "Global Services",
+    "asideSubtitle": "Tailored delivery, compliance-ready support, and regional execution.",
+    "sections": {
+      "manpower": {
+        "label": "Manpower support",
+        "heading": "Manpower support",
+        "description": "Tell us your manpower requirements and we will align the right team."
+      },
+      "enquiry": {
+        "label": "Consumer support",
+        "heading": "Consumer support",
+        "description": "Share your enquiry and our team will respond with the right guidance."
+      },
+      "training": {
+        "label": "Training support",
+        "heading": "Training support",
+        "description": "We help your teams learn, practice, and deliver with confidence."
+      },
+      "contact": {
+        "label": "Contact us",
+        "heading": "Immediate Response Contact",
+        "description": "Reach us quickly via email, WhatsApp, or call."
+      }
+    },
+    "manpowerCard": {
+      "description": "We provide trained professionals aligned to your regional requirements, ready to integrate with your team and deliver measurable outcomes."
+    },
+    "training": {
+      "title": "Training that builds real capability",
+      "description": "We can help you train teams so they are ready to deliver with confidence, safety, and measurable outcomes.",
+      "coverageTitle": "What we cover",
+      "coverageItems": [
+        "Role-based onboarding and process walkthroughs",
+        "Hands-on practice with real project scenarios",
+        "Quality, safety, and compliance standards",
+        "Assessment and continuous improvement plans"
+      ],
+      "highlightsTitle": "Program Highlights",
+      "highlights": [
+        {
+          "title": "Tailored Training Tracks",
+          "description": "Modules aligned to scope, team maturity, and timelines."
+        },
+        {
+          "title": "On-site or Remote Delivery",
+          "description": "Flexible formats to match your operational schedule and locations."
+        },
+        {
+          "title": "Certified Completion",
+          "description": "Completion reports and readiness confirmation."
+        }
+      ]
+    },
+    "enquiryCard": {
+      "title": "Enquiry Details",
+      "description": "Share your enquiry and we will respond with the right scope, timeline, and next steps."
+    },
+    "form": {
+      "title": {
+        "manpower": "Manpower Support Request Info",
+        "enquiry": "Consumer Support Enquiry",
+        "training": "Training Request Info",
+        "default": "Request More Info"
+      },
+      "cta": {
+        "manpower": "Submit Manpower Request",
+        "enquiry": "Submit Enquiry",
+        "training": "Submit Training Request",
+        "default": "Submit Request"
+      },
+      "messagePlaceholder": {
+        "manpower": "Tell us your manpower requirement (roles, count, duration, location).",
+        "enquiry": "Share your enquiry about global services.",
+        "training": "Tell us the training topic, team size, and preferred timeline.",
+        "default": "Tell us about your requirement"
+      },
+      "helper": "Share your requirements and we will get back to you.",
+      "thankYou": "Thank you! Your request has been noted for {{country}}.",
+      "placeholders": {
+        "fullName": "Full name",
+        "email": "Email address",
+        "phone": "Phone number",
+        "company": "Company name"
+      },
+      "submitting": "Submitting..."
+    }
+  },
+  "partnerDashboard": {
+    "loading": "Loading dashboard...",
+    "title": "Partner Dashboard",
+    "welcomeBack": "Welcome back, {{name}}",
+    "subtitle": "Ready to grow your services with BnC Global? Collaborate, manage, and expand your reach.",
+    "searchPlaceholder": "Search for a service or keyword",
+    "searchAria": "Search",
+    "accountIdLabel": "Account ID",
+    "profileHint": "Complete your profile to unlock full international networking features.",
+    "statusLabel": "Status",
+    "status": {
+      "readyText": "You can explore our services and book your requirement.",
+      "profileComplete": "Profile complete",
+      "signAgreementText": "Sign the agreement",
+      "signAgreementButton": "Sign Agreement",
+      "completeProfileText": "Complete your AI profiling",
+      "completeProfileButton": "Complete Profile"
+    },
+    "badges": {
+      "aiComplete": "AI profiling complete",
+      "agreementComplete": "Agreement complete"
+    },
+    "aiProfile": {
+      "title": "AI Profile",
+      "done": "Done",
+      "start": "Start"
+    },
+    "agreement": {
+      "title": "Agreement",
+      "alertCompleteProfile": "Please complete your AI Profile before signing the agreement.",
+      "signed": "Signed",
+      "sign": "Sign"
+    },
+    "countryTabs": {
+      "india": "India",
+      "saudi": "Saudi Arabia",
+      "global": "Global"
+    },
+    "aiProfileSearchTokens": [
+      "ai",
+      "profile",
+      "partner",
+      "questionnaire",
+      "complete"
+    ]
+  },
+  "adminDashboard": {
+    "loading": "Loading admin dashboard...",
+    "kpis": {
+      "totalPartners": "Total Partners",
+      "activePartners": "Active Partners",
+      "pending": "Pending",
+      "thisMonth": "This Month"
+    },
+    "table": {
+      "title": "All Partners",
+      "columns": {
+        "name": "Name",
+        "email": "Email",
+        "phone": "Phone",
+        "country": "Country",
+        "city": "City",
+        "status": "Status"
+      }
+    },
+    "status": {
+      "complete": "Complete",
+      "pending": "Pending"
+    }
+  },
+  "referral": {
+    "title": "Earn from Referral",
+    "subtitle": "Refer clients or candidates to earn rewards",
+    "chooseType": "Choose Referral Type",
+    "type": {
+      "client": {
+        "title": "Referral Client",
+        "description": "Refer a client who needs our services"
+      },
+      "candidate": {
+        "title": "Referral Candidate",
+        "description": "Refer a candidate for job opportunities"
+      }
+    },
+    "form": {
+      "clientTitle": "Refer Client",
+      "candidateTitle": "Refer Candidate",
+      "back": "Back",
+      "name": "Name",
+      "phone": "Phone Number",
+      "email": "Email ID",
+      "service": "What service they need?",
+      "jobRole": "For which role/job?",
+      "selectService": "Select service",
+      "placeholders": {
+        "name": "Enter full name",
+        "phone": "Enter phone number",
+        "email": "Enter email address",
+        "jobRole": "Enter job role or position"
+      },
+      "cancel": "Cancel",
+      "submit": "Submit Referral"
+    },
+    "services": {
+      "cyberSecurity": "Cyber Security",
+      "dataPrivacy": "Data Privacy",
+      "internalAudit": "Internal Audit",
+      "financeAdvisory": "Finance Advisory",
+      "compliance": "Compliance",
+      "other": "Other"
+    },
+    "success": "Referral submitted successfully!"
+  },
+  "termsAgreement": {
+    "title": "Terms & Conditions Agreement",
+    "subtitle": "Please review and sign to complete your partner agreement.",
+    "summaryTitle": "Agreement Summary",
+    "summaryItems": [
+      "Partner commits to accurate, timely service delivery and ethical business practices.",
+      "Confidential information must be protected and used solely for collaboration purposes.",
+      "All engagements are subject to BnC Global quality standards and compliance policies.",
+      "Any disputes will be handled in good faith and resolved per applicable laws.",
+      "Agreement remains valid until terminated by either party with written notice."
+    ],
+    "eSignatureLabel": "E-Signature",
+    "eSignaturePlaceholder": "Type your full name",
+    "acceptText": "I have read and agree to the Terms & Conditions and the Partner Agreement.",
+    "cancel": "Cancel",
+    "submit": "Submit Agreement",
+    "errors": {
+      "signatureRequired": "Please type your full name for the e-signature.",
+      "acceptRequired": "Please confirm you have read and agree to the terms."
+    }
+  },
+  "aiProfile": {
+    "title": "AI Partner Profile",
+    "subtitle": "Complete your profile in five quick steps",
+    "profileIdLabel": "Your Profile ID:",
+    "nameLabel": "Name:",
+    "notAvailable": "N/A",
+    "progressTitle": "Progress",
+    "progressNote": "Your responses help us match you with the right opportunities.",
+    "stepCount": "Step {{current}} of {{total}}",
+    "submittedTitle": "Thank you for filling the details",
+    "submittedSubtitle": "Your AI Partner Profile has been submitted.",
+    "steps": {
+      "partnerType": {
+        "label": "Partner Type",
+        "helper": "Choose how you want to engage"
+      },
+      "services": {
+        "label": "Services",
+        "helper": "Select the services you want"
+      },
+      "industries": {
+        "label": "Industries",
+        "helper": "Pick your focus industries"
+      },
+      "experience": {
+        "label": "Experience",
+        "helper": "Share your background"
+      },
+      "bio": {
+        "label": "Bio",
+        "helper": "Tell us about yourself"
+      }
+    },
+    "partnerTypes": {
+      "international": "International Partners",
+      "sales": "Sales Partners",
+      "technology": "Technology Partners",
+      "service": "Service Partners"
+    },
+    "services": {
+      "cyberSecurity": "Cyber Security",
+      "dataPrivacy": "Data Privacy",
+      "internalAudit": "Internal Audit",
+      "sop": "SOP",
+      "esg": "ESG",
+      "ifrs": "IFRS",
+      "financeAdvisory": "Finance Advisory",
+      "financeTaxCompliance": "Finance Tax Compliance",
+      "manpowerRequirement": "Manpower Requirement",
+      "valuation": "Valuation",
+      "virtualCfo": "Virtual CFO",
+      "trainingProvider": "Training Provider",
+      "other": "Other"
+    },
+    "questions": {
+      "partnerType": "Which type of partner you want to become?",
+      "services": "What type of services you are interested in?",
+      "industries": "Which industries do you work with for this service/solution?",
+      "experience": "In which industry do you have experience?",
+      "bio": "Add your bio / Write about Yourself"
+    },
+    "multiSelectHint": "(You can select multiple options)",
+    "otherServiceLabel": "Please specify",
+    "otherServicePlaceholder": "Type your service",
+    "industries": {
+      "publicServices": {
+        "label": "Public Services",
+        "subs": [
+          "Ministries",
+          "Semi-government",
+          "Justice",
+          "Science",
+          "Special Economic Zones",
+          "Free Zone Authorities",
+          "Financial Centers"
+        ]
+      },
+      "healthcare": {
+        "label": "Healthcare",
+        "subs": [
+          "Healthcare Providers & Services",
+          "Healthcare Equipment & Supplies",
+          "Biotechnology & Life Sciences",
+          "Pharmaceuticals"
+        ]
+      },
+      "realEstate": {
+        "label": "Real Estate & Construction",
+        "subs": [
+          "Real Estate Investment",
+          "Infrastructure Development",
+          "Asset Management",
+          "Real Estate Services",
+          "Real Estate Consulting",
+          "Project Management",
+          "Construction & Engineering"
+        ]
+      },
+      "education": {
+        "label": "Education",
+        "subs": [
+          "Public & Private Schools",
+          "Universities",
+          "Skilling and Vocational Institutes",
+          "Education Technology",
+          "Libraries"
+        ]
+      },
+      "retail": {
+        "label": "Retail",
+        "subs": [
+          "Consumer Electronics & Appliances",
+          "Textiles & Apparel",
+          "Accessories & Luxury Goods",
+          "Food & Beverage",
+          "Household & Personal Products",
+          "Stores",
+          "Trading & Distribution",
+          "Automotive"
+        ]
+      },
+      "finance": {
+        "label": "Finance",
+        "subs": [
+          "Banking",
+          "Consumer Financial Services",
+          "Microfinance",
+          "Insurance",
+          "Private Equity",
+          "Capital Markets",
+          "Sovereign Wealth Funds",
+          "Investment & Wealth Management"
+        ]
+      },
+      "social": {
+        "label": "Social",
+        "subs": [
+          "NGO",
+          "Intergovernmental Organizations",
+          "Social Enterprises",
+          "Credit Unions",
+          "Co-operatives",
+          "Community Enterprises",
+          "Fair Trade Organizations"
+        ]
+      },
+      "leisure": {
+        "label": "Leisure",
+        "subs": [
+          "Hotels",
+          "Resorts & Cruise Lines",
+          "Restaurants & Catering Services",
+          "Tourism",
+          "Leisure & Recreation",
+          "Event Management",
+          "Sporting"
+        ]
+      },
+      "materials": {
+        "label": "Materials",
+        "subs": [
+          "Paper & Forest Products",
+          "Precious Metals",
+          "Industrial Metals",
+          "Chemicals",
+          "Plastics",
+          "Specialty Mining & Metals",
+          "Mining Support Services & Equipment",
+          "Construction Materials",
+          "Primary Resources"
+        ]
+      },
+      "energy": {
+        "label": "Energy",
+        "subs": [
+          "Exploration & Production (Upstream)",
+          "Refining & Marketing (Downstream)",
+          "Storage & Transportation (Midstream)",
+          "Equipment & Services",
+          "Coal",
+          "Natural Gas",
+          "Nuclear Energy",
+          "Utilities",
+          "Renewable Energy"
+        ]
+      },
+      "industrial": {
+        "label": "Industrial",
+        "subs": [
+          "Aerospace",
+          "Defense",
+          "Electrical Components & Equipment",
+          "Industrial Conglomerates",
+          "Construction Machinery & Heavy Trucks",
+          "Shipbuilding",
+          "Agricultural & Farm Machinery",
+          "Industrial Machinery"
+        ]
+      },
+      "technology": {
+        "label": "Technology",
+        "subs": [
+          "Telecom Services",
+          "Communication Equipment",
+          "Semiconductors",
+          "Software",
+          "Internet & Ecommerce",
+          "IT Consulting & Services",
+          "Hardware & Equipment"
+        ]
+      },
+      "media": {
+        "label": "Media",
+        "subs": [
+          "Advertising",
+          "Broadcasting",
+          "Digital",
+          "Cable & Satellite",
+          "Entertainment",
+          "Publishing"
+        ]
+      },
+      "transport": {
+        "label": "Transport",
+        "subs": [
+          "Logistics",
+          "Airlines",
+          "Marine",
+          "Road & Rail",
+          "Leasing & Rental",
+          "Infrastructure"
+        ]
+      },
+      "businessServices": {
+        "label": "Business Services",
+        "subs": [
+          "Employment Services",
+          "Business Support",
+          "Consulting",
+          "Research",
+          "Assurance"
+        ]
+      }
+    },
+    "experience": {
+      "publicServices": "Public Services",
+      "healthcare": "Healthcare",
+      "finance": "Finance",
+      "technology": "Technology",
+      "education": "Education",
+      "retail": "Retail",
+      "other": "Other",
+      "yearsLabel": "Experience",
+      "selectYears": "Select years of experience",
+      "yearsOption": "{{count}} years",
+      "yearsPlus": "20+ years",
+      "orgNameLabel": "Organisation Name",
+      "orgNamePlaceholder": "Enter organisation name"
+    },
+    "bioPlaceholder": "Tell us about yourself, your experience, skills, and what makes you a great partner...",
+    "wordsCount": "{{count}}/{{max}} words",
+    "footerHint": "Keep going, you are almost done.",
+    "buttons": {
+      "previous": "Previous",
+      "next": "Next",
+      "submit": "Submit",
+      "submitting": "Submitting..."
+    },
+    "submitFailed": "Submission failed. Please try again."
   }
 }

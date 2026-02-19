@@ -1,5 +1,6 @@
 ﻿import React, { useState, useEffect, useMemo } from 'react';
 import { FaUser, FaHeadset } from 'react-icons/fa';
+import { useTranslation } from 'react-i18next';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Header from '../Component/Header';
 import Footer from '../Component/Footer';
@@ -18,6 +19,15 @@ const PartnerDashboard = () => {
   const [selectedCountry, setSelectedCountry] = useState('india');
   const navigate = useNavigate();
   const location = useLocation();
+  const { t, i18n } = useTranslation();
+  const isRtl = i18n.language === 'ar';
+  const textAlign = isRtl ? 'text-right' : 'text-left';
+  const rowDirection = isRtl ? 'flex-row-reverse' : 'flex-row';
+  const inputAlign = isRtl ? 'text-right' : 'text-left';
+  const searchButtonMargin = isRtl ? 'mr-3' : 'ml-3';
+  const statusAlign = isRtl ? 'sm:mr-auto sm:w-auto sm:items-start' : 'sm:ml-auto sm:w-auto sm:items-end';
+  const quickAlign = isRtl ? 'justify-start' : 'justify-end';
+  const cardButtonPos = isRtl ? 'left-6' : 'right-6';
 
   const fetchPartnerData = async (email) => {
     try {
@@ -113,27 +123,28 @@ const PartnerDashboard = () => {
   const statusConfig = aiProfileCompleted
     ? agreementSigned
       ? {
-          text: 'You can explore our services and book your requirement.',
-          badgeLabel: 'Profile complete',
+          text: t('partnerDashboard.status.readyText'),
+          badgeLabel: t('partnerDashboard.status.profileComplete'),
           badgeTone: 'success'
         }
       : {
-          text: 'Sign the agreement',
-          buttonLabel: 'Sign Agreement',
+          text: t('partnerDashboard.status.signAgreementText'),
+          buttonLabel: t('partnerDashboard.status.signAgreementButton'),
           onClick: () => {
             setIsAgreementOpen(true);
           }
         }
     : {
-        text: 'Complete your AI profiling',
-        buttonLabel: 'Complete Profile',
+        text: t('partnerDashboard.status.completeProfileText'),
+        buttonLabel: t('partnerDashboard.status.completeProfileButton'),
         onClick: () => setIsAIModalOpen(true)
       };
   const query = searchTerm.trim().toLowerCase();
   const matchesSearch = (value) =>
     !query || (value && value.toLowerCase().includes(query));
 
-  const showAIProfile = matchesSearch('ai profile complete your partner profile questionnaire ai');
+  const aiProfileTokens = t('partnerDashboard.aiProfileSearchTokens', { returnObjects: true });
+  const showAIProfile = matchesSearch(aiProfileTokens.join(' '));
 
   const embeddedCountryKey = selectedCountry === 'global' ? 'other' : selectedCountry;
   const embeddedServices = useMemo(() => {
@@ -189,7 +200,7 @@ const PartnerDashboard = () => {
             <div className="h-full w-full animate-pulse bg-[linear-gradient(110deg,rgba(226,232,240,0.35),rgba(255,255,255,0.8),rgba(226,232,240,0.35))] bg-[length:200%_100%]" />
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="rounded-full border border-slate-200 bg-white/80 px-3 py-1 text-xs font-geist text-slate-500 shadow-sm">
-                Preparing preview
+                {t('countryServices.preparingPreview')}
               </div>
             </div>
           </div>
@@ -203,7 +214,7 @@ const PartnerDashboard = () => {
       <div className="min-h-screen bg-[#f7f3ee] flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#2C5AA0] mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading dashboard...</p>
+          <p className="text-gray-600">{t('partnerDashboard.loading')}</p>
         </div>
       </div>
     );
@@ -217,12 +228,14 @@ const PartnerDashboard = () => {
           {/* Top Structure */}
           <div className="rounded-3xl bg-[#f7f3ee] px-6 py-10 sm:px-10">
             <div className="text-center">
-              <p className="font-geist text-sm uppercase tracking-[0.28em] text-slate-500">Partner Dashboard</p>
+              <p className="font-geist text-sm uppercase tracking-[0.28em] text-slate-500">
+                {t('partnerDashboard.title')}
+              </p>
               <h2 className="font-poppins text-3xl sm:text-4xl font-semibold text-slate-900 mt-3">
-                Welcome back, {partnerData?.firstName}
+                {t('partnerDashboard.welcomeBack', { name: partnerData?.firstName || '' })}
               </h2>
               <p className="font-geist text-slate-500 mt-3">
-                Ready to grow your services with BnC Global? Collaborate, manage, and expand your reach.
+                {t('partnerDashboard.subtitle')}
               </p>
             </div>
 
@@ -230,15 +243,15 @@ const PartnerDashboard = () => {
               <div className="flex w-full max-w-2xl items-center rounded-full bg-white px-4 py-2.5 shadow-sm ring-1 ring-slate-200">
                 <input
                   type="text"
-                  placeholder="Search for a service or keyword"
+                  placeholder={t('partnerDashboard.searchPlaceholder')}
                   value={searchTerm}
                   onChange={(event) => setSearchTerm(event.target.value)}
-                  className="w-full bg-transparent text-sm text-slate-700 placeholder:text-slate-400 focus:outline-none"
+                  className={`w-full bg-transparent text-sm text-slate-700 placeholder:text-slate-400 focus:outline-none ${inputAlign}`}
                 />
                 <button
                   type="button"
-                  className="ml-3 inline-flex h-9 w-9 items-center justify-center rounded-full bg-emerald-100 text-emerald-700"
-                  aria-label="Search"
+                  className={`${searchButtonMargin} inline-flex h-9 w-9 items-center justify-center rounded-full bg-emerald-100 text-emerald-700`}
+                  aria-label={t('partnerDashboard.searchAria')}
                 >
                   <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
                     <circle cx="11" cy="11" r="7" />
@@ -259,17 +272,17 @@ const PartnerDashboard = () => {
                 </span>
                 <div>
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="font-medium text-slate-700">Account ID:</span>
+                    <span className="font-medium text-slate-700">{t('partnerDashboard.accountIdLabel')}:</span>
                     <span className="font-mono text-slate-700">{partnerData?.email || 'N/A'}</span>
                   </div>
                   <div className="mt-1 text-xs text-slate-500">
-                    Complete your profile to unlock full international networking features.
+                    {t('partnerDashboard.profileHint')}
                   </div>
                 </div>
               </div>
-              <div className="flex w-full flex-col gap-3 sm:ml-auto sm:w-auto sm:items-end">
+              <div className={`flex w-full flex-col gap-3 ${statusAlign}`}>
                 <div className="flex flex-wrap items-center gap-3">
-                  <span className="font-medium text-slate-700">Status:</span>
+                  <span className="font-medium text-slate-700">{t('partnerDashboard.statusLabel')}:</span>
                   <span className="text-slate-600">{statusConfig.text}</span>
                   {statusConfig.badgeLabel ? (
                     <span className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-2 text-xs font-semibold text-emerald-700 shadow-sm">
@@ -298,7 +311,7 @@ const PartnerDashboard = () => {
 
 
           {(partnerData?.aiProfileCompleted || agreementSigned) && (
-            <div className="-mt-4 flex items-center gap-3 text-xs text-slate-500 pl-10">
+            <div className={`-mt-4 flex items-center gap-3 text-xs text-slate-500 ${isRtl ? 'pr-10' : 'pl-10'}`}>
               {partnerData?.aiProfileCompleted && (
                 <div className="flex items-center gap-1">
                   <span className="inline-flex h-4 w-4 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
@@ -306,7 +319,7 @@ const PartnerDashboard = () => {
                       <path d="M5 12l4 4L19 6" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </span>
-                  <span>AI profiling complete</span>
+                  <span>{t('partnerDashboard.badges.aiComplete')}</span>
                 </div>
               )}
               {agreementSigned && (
@@ -316,21 +329,21 @@ const PartnerDashboard = () => {
                       <path d="M5 12l4 4L19 6" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </span>
-                  <span>Agreement complete</span>
+                  <span>{t('partnerDashboard.badges.agreementComplete')}</span>
                 </div>
               )}
             </div>
           )}
 
-          <div className="-mt-7 flex justify-end">
+          <div className={`-mt-7 flex ${quickAlign}`}>
             <div className="flex flex-wrap items-stretch gap-3">
               {showAIProfile && (
                 <div className="w-32 rounded-lg bg-white p-2.5 shadow-sm ring-1 ring-slate-200/70">
-                  <div className="flex items-center gap-2">
+                  <div className={`flex items-center gap-2 ${rowDirection}`}>
                     <FaUser className="h-3.5 w-3.5 text-[#2C5AA0]" />
                     <div className="flex-1">
                       <h3 className="font-poppins text-[10px] font-semibold text-slate-900">
-                        AI Profile
+                        {t('partnerDashboard.aiProfile.title')}
                       </h3>
                     </div>
                   </div>
@@ -347,25 +360,27 @@ const PartnerDashboard = () => {
                         : 'bg-gradient-to-r from-[#2C5AA0] to-[#1e3a8a] text-white hover:from-[#1e3a8a] hover:to-[#2C5AA0]'
                     }`}
                   >
-                    {partnerData?.aiProfileCompleted ? 'Done' : 'Start'}
+                    {partnerData?.aiProfileCompleted ? t('partnerDashboard.aiProfile.done') : t('partnerDashboard.aiProfile.start')}
                   </button>
                 </div>
               )}
               <div className="w-32 rounded-lg bg-white p-2.5 shadow-sm ring-1 ring-slate-200/70">
-                <div className="flex items-center gap-2">
+                <div className={`flex items-center gap-2 ${rowDirection}`}>
                   <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 text-slate-700" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M7 4h7l4 4v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" />
                     <path d="M14 4v4h4" />
                     <path d="M8 12h8" />
                     <path d="M8 16h6" />
                   </svg>
-                  <h3 className="font-poppins text-[10px] font-semibold text-slate-900">Agreement</h3>
+                  <h3 className="font-poppins text-[10px] font-semibold text-slate-900">
+                    {t('partnerDashboard.agreement.title')}
+                  </h3>
                 </div>
                 <button
                   type="button"
                   onClick={() => {
                     if (!partnerData?.aiProfileCompleted) {
-                      alert('Please complete your AI Profile before signing the agreement.');
+                      alert(t('partnerDashboard.agreement.alertCompleteProfile'));
                       return;
                     }
                     setIsAgreementOpen(true);
@@ -376,7 +391,7 @@ const PartnerDashboard = () => {
                       : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
                   }`}
                 >
-                  {agreementSigned ? 'Signed' : 'Sign'}
+                  {agreementSigned ? t('partnerDashboard.agreement.signed') : t('partnerDashboard.agreement.sign')}
                 </button>
               </div>
             </div>
@@ -386,9 +401,9 @@ const PartnerDashboard = () => {
           <div className="mt-4">
             <div className="flex flex-wrap items-center gap-3">
               {[
-                { key: 'india', label: 'India' },
-                { key: 'saudi-arabia', label: 'Saudi Arabia' },
-                { key: 'global', label: 'Global' }
+                { key: 'india', label: t('partnerDashboard.countryTabs.india') },
+                { key: 'saudi-arabia', label: t('partnerDashboard.countryTabs.saudi') },
+                { key: 'global', label: t('partnerDashboard.countryTabs.global') }
               ].map((item) => (
                 <button
                   key={item.key}
@@ -417,26 +432,26 @@ const PartnerDashboard = () => {
                         <LazyVideo src={service.videoUrl} title={`${service.title} video`} />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center text-gray-500 text-sm font-geist">
-                          Video coming soon
+                          {t('countryServices.videoComingSoon')}
                         </div>
                       )}
                     </div>
                   </div>
-                  <div className="p-5 pb-16">
-                    <div className="flex items-center justify-between">
+                  <div className={`p-5 pb-16 ${textAlign}`}>
+                    <div className={`flex items-center justify-between ${rowDirection}`}>
                       <h2 className="font-poppins text-xl font-semibold text-gray-900">
                         {service.title}
                       </h2>
                       {service.bullets?.length > 0 && (
                         <span className="inline-flex items-center gap-1 whitespace-nowrap text-xs font-geist font-semibold text-[#2C5AA0] bg-blue-50 px-2.5 py-1 rounded-full">
-                          {service.bullets.length} Services
+                          {t('countryServices.servicesCount', { count: service.bullets.length })}
                         </span>
                       )}
                     </div>
                     {service.bullets?.length > 0 && (
                       <>
                         <div className="h-1 w-16 bg-gradient-to-r from-[#2C5AA0] to-[#1e3a8a] rounded-full mt-3" />
-                        <ul className="mt-4 space-y-2 text-sm text-gray-700 list-disc list-inside">
+                        <ul className={`mt-4 space-y-2 text-sm text-gray-700 list-disc list-inside ${textAlign}`}>
                           {service.bullets.map((item) => (
                             <li key={item} className="font-geist">
                               {item}
@@ -447,18 +462,18 @@ const PartnerDashboard = () => {
                     )}
                     {!service.videoUrl && (
                       <p className="font-geist text-gray-500 text-xs mt-4">
-                        Services will be available soon.
+                        {t('countryServices.servicesComingSoon')}
                       </p>
                     )}
                   </div>
                   <button
                     type="button"
                     onClick={() => navigate(`/services/${selectedCountry}/${service.id}`)}
-                    className="absolute bottom-4 right-6 inline-flex items-center gap-2 text-sm font-semibold font-geist text-white rounded-full px-5 py-2.5 bg-gradient-to-r from-[#2C5AA0] to-[#1e3a8a] shadow-lg shadow-[#2C5AA0]/20 transition-all duration-300 hover:shadow-xl hover:shadow-[#2C5AA0]/30 hover:-translate-y-0.5 hover:from-[#1e3a8a] hover:to-[#163062] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2C5AA0]/40"
+                    className={`absolute bottom-4 ${cardButtonPos} inline-flex items-center gap-2 text-sm font-semibold font-geist text-white rounded-full px-5 py-2.5 bg-gradient-to-r from-[#2C5AA0] to-[#1e3a8a] shadow-lg shadow-[#2C5AA0]/20 transition-all duration-300 hover:shadow-xl hover:shadow-[#2C5AA0]/30 hover:-translate-y-0.5 hover:from-[#1e3a8a] hover:to-[#163062] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2C5AA0]/40`}
                   >
-                    View more
+                    {t('countryServices.viewMore')}
                     <span className="inline-flex items-center justify-center h-5 w-5 rounded-full bg-white/20 text-white text-xs transition-transform duration-300 group-hover:translate-x-0.5">
-                      →
+                      <span className="flipInRtl">&#8594;</span>
                     </span>
                   </button>
                 </div>

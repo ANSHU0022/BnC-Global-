@@ -33,9 +33,18 @@ import {
   FaBriefcase,
   FaLayerGroup,
 } from 'react-icons/fa';
+import { useTranslation } from 'react-i18next';
 import './AIProfileModal.css';
 
 const AIProfileModal = ({ isOpen, onClose, partnerData, onSubmitted }) => {
+  const { t, i18n } = useTranslation();
+  const isRtl = i18n.language === 'ar';
+  const textAlign = isRtl ? 'text-right' : 'text-left';
+  const rowDirection = isRtl ? 'flex-row-reverse' : 'flex-row';
+  const inputMargin = isRtl ? 'ml-3' : 'mr-3';
+  const iconMargin = isRtl ? 'ml-2' : 'mr-2';
+  const autoMargin = isRtl ? 'mr-auto' : 'ml-auto';
+  const expandMargin = isRtl ? 'mr-6' : 'ml-6';
   const [currentStep, setCurrentStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -83,10 +92,10 @@ const AIProfileModal = ({ isOpen, onClose, partnerData, onSubmitted }) => {
   }, [formData.services]);
 
   const partnerTypeOptions = [
-    { value: 'international-partners', label: 'International Partners', icon: FaUsers },
-    { value: 'sales-partners', label: 'Sales Partners', icon: FaChartLine },
-    { value: 'technology-partners', label: 'Technology Partners', icon: FaMicrochip },
-    { value: 'service-partners', label: 'Service Partners', icon: FaUserTie }
+    { value: 'international-partners', label: t('aiProfile.partnerTypes.international'), icon: FaUsers },
+    { value: 'sales-partners', label: t('aiProfile.partnerTypes.sales'), icon: FaChartLine },
+    { value: 'technology-partners', label: t('aiProfile.partnerTypes.technology'), icon: FaMicrochip },
+    { value: 'service-partners', label: t('aiProfile.partnerTypes.service'), icon: FaUserTie }
   ];
 
   const serviceIcons = {
@@ -104,6 +113,22 @@ const AIProfileModal = ({ isOpen, onClose, partnerData, onSubmitted }) => {
     'training-provider': FaChalkboardTeacher,
     'other': FaEllipsisH
   };
+
+  const serviceOptions = [
+    { id: 'cyber-security', label: t('aiProfile.services.cyberSecurity') },
+    { id: 'data-privacy', label: t('aiProfile.services.dataPrivacy') },
+    { id: 'internal-audit', label: t('aiProfile.services.internalAudit') },
+    { id: 'sop', label: t('aiProfile.services.sop') },
+    { id: 'esg', label: t('aiProfile.services.esg') },
+    { id: 'ifrs', label: t('aiProfile.services.ifrs') },
+    { id: 'finance-advisory', label: t('aiProfile.services.financeAdvisory') },
+    { id: 'finance-tax-compliance', label: t('aiProfile.services.financeTaxCompliance') },
+    { id: 'manpower-requirement', label: t('aiProfile.services.manpowerRequirement') },
+    { id: 'valuation', label: t('aiProfile.services.valuation') },
+    { id: 'virtual-cfo', label: t('aiProfile.services.virtualCfo') },
+    { id: 'training-provider', label: t('aiProfile.services.trainingProvider') },
+    { id: 'other', label: t('aiProfile.services.other') }
+  ];
 
   const industryIcons = {
     'public-services': FaLandmark,
@@ -135,12 +160,100 @@ const AIProfileModal = ({ isOpen, onClose, partnerData, onSubmitted }) => {
     other: FaEllipsisH
   };
 
+  const industryOptions = [
+    {
+      id: 'public-services',
+      name: t('aiProfile.industries.publicServices.label'),
+      subs: t('aiProfile.industries.publicServices.subs', { returnObjects: true })
+    },
+    {
+      id: 'healthcare',
+      name: t('aiProfile.industries.healthcare.label'),
+      subs: t('aiProfile.industries.healthcare.subs', { returnObjects: true })
+    },
+    {
+      id: 'real-estate',
+      name: t('aiProfile.industries.realEstate.label'),
+      subs: t('aiProfile.industries.realEstate.subs', { returnObjects: true })
+    },
+    {
+      id: 'education',
+      name: t('aiProfile.industries.education.label'),
+      subs: t('aiProfile.industries.education.subs', { returnObjects: true })
+    },
+    {
+      id: 'retail',
+      name: t('aiProfile.industries.retail.label'),
+      subs: t('aiProfile.industries.retail.subs', { returnObjects: true })
+    },
+    {
+      id: 'finance',
+      name: t('aiProfile.industries.finance.label'),
+      subs: t('aiProfile.industries.finance.subs', { returnObjects: true })
+    },
+    {
+      id: 'social',
+      name: t('aiProfile.industries.social.label'),
+      subs: t('aiProfile.industries.social.subs', { returnObjects: true })
+    },
+    {
+      id: 'leisure',
+      name: t('aiProfile.industries.leisure.label'),
+      subs: t('aiProfile.industries.leisure.subs', { returnObjects: true })
+    },
+    {
+      id: 'materials',
+      name: t('aiProfile.industries.materials.label'),
+      subs: t('aiProfile.industries.materials.subs', { returnObjects: true })
+    },
+    {
+      id: 'energy',
+      name: t('aiProfile.industries.energy.label'),
+      subs: t('aiProfile.industries.energy.subs', { returnObjects: true })
+    },
+    {
+      id: 'industrial',
+      name: t('aiProfile.industries.industrial.label'),
+      subs: t('aiProfile.industries.industrial.subs', { returnObjects: true })
+    },
+    {
+      id: 'technology',
+      name: t('aiProfile.industries.technology.label'),
+      subs: t('aiProfile.industries.technology.subs', { returnObjects: true })
+    },
+    {
+      id: 'media',
+      name: t('aiProfile.industries.media.label'),
+      subs: t('aiProfile.industries.media.subs', { returnObjects: true })
+    },
+    {
+      id: 'transport',
+      name: t('aiProfile.industries.transport.label'),
+      subs: t('aiProfile.industries.transport.subs', { returnObjects: true })
+    },
+    {
+      id: 'business-services',
+      name: t('aiProfile.industries.businessServices.label'),
+      subs: t('aiProfile.industries.businessServices.subs', { returnObjects: true })
+    }
+  ];
+
+  const experienceIndustryOptions = [
+    { id: 'public-services', label: t('aiProfile.experience.publicServices') },
+    { id: 'healthcare', label: t('aiProfile.experience.healthcare') },
+    { id: 'finance', label: t('aiProfile.experience.finance') },
+    { id: 'technology', label: t('aiProfile.experience.technology') },
+    { id: 'education', label: t('aiProfile.experience.education') },
+    { id: 'retail', label: t('aiProfile.experience.retail') },
+    { id: 'other', label: t('aiProfile.experience.other') }
+  ];
+
   const steps = [
-    { id: 1, label: 'Partner Type', helper: 'Choose how you want to engage' },
-    { id: 2, label: 'Services', helper: 'Select the services you want' },
-    { id: 3, label: 'Industries', helper: 'Pick your focus industries' },
-    { id: 4, label: 'Experience', helper: 'Share your background' },
-    { id: 5, label: 'Bio', helper: 'Tell us about yourself' }
+    { id: 1, label: t('aiProfile.steps.partnerType.label'), helper: t('aiProfile.steps.partnerType.helper') },
+    { id: 2, label: t('aiProfile.steps.services.label'), helper: t('aiProfile.steps.services.helper') },
+    { id: 3, label: t('aiProfile.steps.industries.label'), helper: t('aiProfile.steps.industries.helper') },
+    { id: 4, label: t('aiProfile.steps.experience.label'), helper: t('aiProfile.steps.experience.helper') },
+    { id: 5, label: t('aiProfile.steps.bio.label'), helper: t('aiProfile.steps.bio.helper') }
   ];
 
   const selectOption = (step, value) => {
@@ -265,11 +378,11 @@ const AIProfileModal = ({ isOpen, onClose, partnerData, onSubmitted }) => {
         }, 1800);
       } else {
         console.error('AI Profile submission failed:', result.message);
-        alert('Submission failed. Please try again.');
+        alert(t('aiProfile.submitFailed'));
       }
     } catch (error) {
       console.error('Error submitting AI Profile:', error);
-      alert('Submission failed. Please try again.');
+      alert(t('aiProfile.submitFailed'));
     } finally {
       setIsSubmitting(false);
     }
@@ -300,16 +413,16 @@ const AIProfileModal = ({ isOpen, onClose, partnerData, onSubmitted }) => {
 
   return (
     <div className="fixed inset-0 bg-slate-900/30 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div className="ai-profile-modal ai-modal-shell max-w-6xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="ai-modal-header flex flex-wrap items-start justify-between gap-4">
+      <div className={`ai-profile-modal ai-modal-shell max-w-6xl w-full max-h-[90vh] overflow-y-auto ${textAlign}`}>
+        <div className={`ai-modal-header flex flex-wrap items-start justify-between gap-4 ${rowDirection}`}>
           <div>
-            <h2 className="text-2xl font-bold text-slate-900">AI Partner Profile</h2>
-            <p className="text-slate-600">Complete your profile in five quick steps</p>
+            <h2 className="text-2xl font-bold text-slate-900">{t('aiProfile.title')}</h2>
+            <p className="text-slate-600">{t('aiProfile.subtitle')}</p>
           </div>
-          <div className="ml-auto text-right">
+          <div className={`${autoMargin} ${textAlign}`}>
             <div className="text-xs text-slate-500">
-              <strong>Your Profile ID:</strong> {partnerData?.email || 'N/A'} |{' '}
-              <strong>Name:</strong> {partnerData?.firstName} {partnerData?.lastName}
+              <strong>{t('aiProfile.profileIdLabel')}</strong> {partnerData?.email || t('aiProfile.notAvailable')} |{' '}
+              <strong>{t('aiProfile.nameLabel')}</strong> {partnerData?.firstName} {partnerData?.lastName}
             </div>
           </div>
           <button onClick={onClose} className="ai-close-btn" aria-label="Close">
@@ -320,7 +433,7 @@ const AIProfileModal = ({ isOpen, onClose, partnerData, onSubmitted }) => {
         <div className="ai-modal-body">
           <aside className="ai-modal-rail">
             <div className="ai-rail-card">
-              <div className="ai-rail-title">Progress</div>
+              <div className="ai-rail-title">{t('aiProfile.progressTitle')}</div>
               <div className="ai-rail-steps">
                 {steps.map(step => (
                   <div
@@ -336,7 +449,7 @@ const AIProfileModal = ({ isOpen, onClose, partnerData, onSubmitted }) => {
                 ))}
               </div>
               <div className="ai-rail-note">
-                Your responses help us match you with the right opportunities.
+                {t('aiProfile.progressNote')}
               </div>
             </div>
           </aside>
@@ -350,7 +463,9 @@ const AIProfileModal = ({ isOpen, onClose, partnerData, onSubmitted }) => {
                     style={{ width: `${(currentStep / steps.length) * 100}%` }}
                   />
                 </div>
-                <div className="ai-progress-text">Step {currentStep} of {steps.length}</div>
+                <div className="ai-progress-text">
+                  {t('aiProfile.stepCount', { current: currentStep, total: steps.length })}
+                </div>
               </div>
 
               {isSubmitted ? (
@@ -362,28 +477,28 @@ const AIProfileModal = ({ isOpen, onClose, partnerData, onSubmitted }) => {
                       </svg>
                     </div>
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">Thank you for filling the details</h3>
-                  <p className="text-gray-600 text-lg">Your AI Partner Profile has been submitted.</p>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">{t('aiProfile.submittedTitle')}</h3>
+                  <p className="text-gray-600 text-lg">{t('aiProfile.submittedSubtitle')}</p>
                 </div>
               ) : (
                 <div className="ai-step-content">
           {currentStep === 1 && (
             <div className="mb-6">
-              <h3 className="text-xl font-semibold mb-4">Which type of partner you want to become?</h3>
+              <h3 className="text-xl font-semibold mb-4">{t('aiProfile.questions.partnerType')}</h3>
               <div className="space-y-3">
                 {partnerTypeOptions.map((option) => {
                   const Icon = option.icon || FaUsers;
                   return (
-                    <label key={option.value} className="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
+                    <label key={option.value} className={`flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50 ${rowDirection} ${textAlign}`}>
                       <input
                         type="radio"
                         name="partner-type"
                         value={option.value}
                         checked={formData.partnerType === option.value}
                         onChange={() => selectOption(1, option.value)}
-                        className="mr-3"
+                        className={inputMargin}
                       />
-                      <span className="mr-2 text-black">
+                      <span className={`${iconMargin} text-black`}>
                         <Icon size={18} />
                       </span>
                       <span className="font-semibold">{option.label}</span>
@@ -396,40 +511,36 @@ const AIProfileModal = ({ isOpen, onClose, partnerData, onSubmitted }) => {
 
           {currentStep === 2 && (
             <div className="mb-6">
-              <h3 className="text-xl font-semibold mb-2">What type of services you are interested in?</h3>
-              <p className="text-sm text-gray-600 mb-4">(You can select multiple options)</p>
+              <h3 className="text-xl font-semibold mb-2">{t('aiProfile.questions.services')}</h3>
+              <p className="text-sm text-gray-600 mb-4">{t('aiProfile.multiSelectHint')}</p>
               <div className="grid grid-cols-2 gap-3">
-                {[
-                  'cyber-security', 'data-privacy', 'internal-audit', 'sop', 'esg', 'ifrs',
-                  'finance-advisory', 'finance-tax-compliance', 'manpower-requirement', 
-                  'valuation', 'virtual-cfo', 'training-provider', 'other'
-                ].map(service => {
-                  const Icon = serviceIcons[service] || FaBriefcase;
+                {serviceOptions.map((service) => {
+                  const Icon = serviceIcons[service.id] || FaBriefcase;
                   return (
-                    <label key={service} className="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
+                    <label key={service.id} className={`flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50 ${rowDirection} ${textAlign}`}>
                       <input
                         type="checkbox"
-                        checked={formData.services.includes(service)}
-                        onChange={() => toggleService(service)}
-                        className="mr-3"
+                        checked={formData.services.includes(service.id)}
+                        onChange={() => toggleService(service.id)}
+                        className={inputMargin}
                       />
-                      <span className="mr-2 text-black">
+                      <span className={`${iconMargin} text-black`}>
                         <Icon size={18} />
                       </span>
-                      <span className="capitalize font-semibold">{service.replace(/-/g, ' ')}</span>
+                      <span className="font-semibold">{service.label}</span>
                     </label>
                   );
                 })}
               </div>
               {formData.services.includes('other') && (
                 <div className="mt-4">
-                  <label className="block text-sm font-medium mb-2">Please specify</label>
+                  <label className="block text-sm font-medium mb-2">{t('aiProfile.otherServiceLabel')}</label>
                   <input
                     type="text"
                     ref={otherServiceRef}
                     value={formData.otherService}
                     onChange={(e) => setFormData(prev => ({ ...prev, otherService: e.target.value }))}
-                    placeholder="Type your service"
+                    placeholder={t('aiProfile.otherServicePlaceholder')}
                     className="w-full p-3 border rounded-lg"
                   />
                 </div>
@@ -439,38 +550,22 @@ const AIProfileModal = ({ isOpen, onClose, partnerData, onSubmitted }) => {
 
           {currentStep === 3 && (
             <div className="mb-6">
-              <h3 className="text-xl font-semibold mb-2">Which industries do you work with for this service/solution?</h3>
-              <p className="text-sm text-gray-600 mb-4">(You can select multiple options)</p>
+              <h3 className="text-xl font-semibold mb-2">{t('aiProfile.questions.industries')}</h3>
+              <p className="text-sm text-gray-600 mb-4">{t('aiProfile.multiSelectHint')}</p>
               <div className="space-y-4">
-                {[
-                  { id: 'public-services', name: 'Public Services', subs: ['Ministries', 'Semi-government', 'Justice', 'Science', 'Special Economic Zones', 'Free Zone Authorities', 'Financial Centers'] },
-                  { id: 'healthcare', name: 'Healthcare', subs: ['Healthcare Providers & Services', 'Healthcare Equipment & Supplies', 'Biotechnology & Life Sciences', 'Pharmaceuticals'] },
-                  { id: 'real-estate', name: 'Real Estate & Construction', subs: ['Real Estate Investment', 'Infrastructure Development', 'Asset Management', 'Real Estate Services', 'Real Estate Consulting', 'Project Management', 'Construction & Engineering'] },
-                  { id: 'education', name: 'Education', subs: ['Public & Private Schools', 'Universities', 'Skilling and Vocational Institutes', 'Education Technology', 'Libraries'] },
-                  { id: 'retail', name: 'Retail', subs: ['Consumer Electronics & Appliances', 'Textiles & Apparel', 'Accessories & Luxury Goods', 'Food & Beverage', 'Household & Personal Products', 'Stores', 'Trading & Distribution', 'Automotive'] },
-                  { id: 'finance', name: 'Finance', subs: ['Banking', 'Consumer Financial Services', 'Microfinance', 'Insurance', 'Private Equity', 'Capital Markets', 'Sovereign Wealth Funds', 'Investment & Wealth Management'] },
-                  { id: 'social', name: 'Social', subs: ['NGO', 'Intergovernmental Organizations', 'Social Enterprises', 'Credit Unions', 'Co-operatives', 'Community Enterprises', 'Fair Trade Organizations'] },
-                  { id: 'leisure', name: 'Leisure', subs: ['Hotels', 'Resorts & Cruise Lines', 'Restaurants & Catering Services', 'Tourism', 'Leisure & Recreation', 'Event Management', 'Sporting'] },
-                  { id: 'materials', name: 'Materials', subs: ['Paper & Forest Products', 'Precious Metals', 'Industrial Metals', 'Chemicals', 'Plastics', 'Specialty Mining & Metals', 'Mining Support Services & Equipment', 'Construction Materials', 'Primary Resources'] },
-                  { id: 'energy', name: 'Energy', subs: ['Exploration & Production (Upstream)', 'Refining & Marketing (Downstream)', 'Storage & Transportation (Midstream)', 'Equipment & Services', 'Coal', 'Natural Gas', 'Nuclear Energy', 'Utilities', 'Renewable Energy'] },
-                  { id: 'industrial', name: 'Industrial', subs: ['Aerospace', 'Defense', 'Electrical Components & Equipment', 'Industrial Conglomerates', 'Construction Machinery & Heavy Trucks', 'Shipbuilding', 'Agricultural & Farm Machinery', 'Industrial Machinery'] },
-                  { id: 'technology', name: 'Technology', subs: ['Telecom Services', 'Communication Equipment', 'Semiconductors', 'Software', 'Internet & Ecommerce', 'IT Consulting & Services', 'Hardware & Equipment'] },
-                  { id: 'media', name: 'Media', subs: ['Advertising', 'Broadcasting', 'Digital', 'Cable & Satellite', 'Entertainment', 'Publishing'] },
-                  { id: 'transport', name: 'Transport', subs: ['Logistics', 'Airlines', 'Marine', 'Road & Rail', 'Leasing & Rental', 'Infrastructure'] },
-                  { id: 'business-services', name: 'Business Services', subs: ['Employment Services', 'Business Support', 'Consulting', 'Research', 'Assurance'] }
-                ].map(industry => (
+                {industryOptions.map(industry => (
                   <div key={industry.id}>
                     {(() => {
                       const Icon = industryIcons[industry.id] || FaIndustry;
                       return (
-                        <label className="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
+                        <label className={`flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50 ${rowDirection} ${textAlign}`}>
                           <input
                             type="checkbox"
                             checked={formData.mainIndustries.includes(industry.id)}
                             onChange={() => toggleMainIndustry(industry.id)}
-                            className="mr-3"
+                            className={inputMargin}
                           />
-                          <span className="mr-2 text-black">
+                          <span className={`${iconMargin} text-black`}>
                             <Icon size={18} />
                           </span>
                           <span className="font-semibold">{industry.name}</span>
@@ -479,17 +574,17 @@ const AIProfileModal = ({ isOpen, onClose, partnerData, onSubmitted }) => {
                     })()}
                     <div
                       id={`sub-${industry.id}`}
-                      className={`ml-6 mt-2 space-y-2 ${expandedIndustries[industry.id] ? 'block' : 'hidden'}`}
+                      className={`${expandMargin} mt-2 space-y-2 ${expandedIndustries[industry.id] ? 'block' : 'hidden'}`}
                     >
                       {industry.subs.map(sub => (
-                        <label key={sub} className="flex items-center p-2 text-sm cursor-pointer">
+                        <label key={sub} className={`flex items-center p-2 text-sm cursor-pointer ${rowDirection} ${textAlign}`}>
                           <input
                             type="checkbox"
                             checked={formData.industries.includes(sub)}
                             onChange={() => toggleSubIndustry(sub)}
-                            className="mr-2"
+                            className={iconMargin}
                           />
-                          <span className="mr-2 text-black">
+                          <span className={`${iconMargin} text-black`}>
                             <SubIndustryIcon size={14} />
                           </span>
                           <span className="font-semibold">{sub}</span>
@@ -504,49 +599,51 @@ const AIProfileModal = ({ isOpen, onClose, partnerData, onSubmitted }) => {
 
           {currentStep === 4 && (
             <div className="mb-6">
-              <h3 className="text-xl font-semibold mb-4">In which industry do you have experience?</h3>
-              <p className="text-sm text-gray-600 mb-4">(You can select multiple options)</p>
+              <h3 className="text-xl font-semibold mb-4">{t('aiProfile.questions.experience')}</h3>
+              <p className="text-sm text-gray-600 mb-4">{t('aiProfile.multiSelectHint')}</p>
               <div className="space-y-3 mb-6">
-                {['public-services', 'healthcare', 'finance', 'technology', 'education', 'retail', 'other'].map(industry => {
-                  const Icon = experienceIcons[industry] || FaBriefcase;
-                  const details = formData.experienceDetails[industry];
+                {experienceIndustryOptions.map((industry) => {
+                  const Icon = experienceIcons[industry.id] || FaBriefcase;
+                  const details = formData.experienceDetails[industry.id];
                   return (
-                    <div key={industry} className="border rounded-lg p-3">
-                      <label className="flex items-center cursor-pointer hover:bg-gray-50 rounded-md">
+                    <div key={industry.id} className="border rounded-lg p-3">
+                      <label className={`flex items-center cursor-pointer hover:bg-gray-50 rounded-md ${rowDirection} ${textAlign}`}>
                         <input
                           type="checkbox"
-                          checked={formData.experienceIndustries.includes(industry)}
-                          onChange={() => selectExperienceIndustry(industry)}
-                          className="mr-3"
+                          checked={formData.experienceIndustries.includes(industry.id)}
+                          onChange={() => selectExperienceIndustry(industry.id)}
+                          className={inputMargin}
                         />
-                        <span className="mr-2 text-black">
+                        <span className={`${iconMargin} text-black`}>
                           <Icon size={18} />
                         </span>
-                        <span className="capitalize font-semibold">{industry.replace('-', ' ')}</span>
+                        <span className="font-semibold">{industry.label}</span>
                       </label>
-                      {formData.experienceIndustries.includes(industry) && (
+                      {formData.experienceIndustries.includes(industry.id) && (
                         <div className="mt-4 flex flex-col md:flex-row gap-4">
                           <div className="flex-1">
-                            <label className="block text-sm font-medium mb-2">Experience</label>
+                            <label className="block text-sm font-medium mb-2">{t('aiProfile.experience.yearsLabel')}</label>
                             <select
                               value={details?.years || ''}
-                              onChange={(e) => updateExperienceDetail(industry, 'years', e.target.value)}
+                              onChange={(e) => updateExperienceDetail(industry.id, 'years', e.target.value)}
                               className="w-full p-3 border rounded-lg"
                             >
-                              <option value="">Select years of experience</option>
+                              <option value="">{t('aiProfile.experience.selectYears')}</option>
                               {Array.from({ length: 20 }, (_, i) => (
-                                <option key={i + 1} value={i + 1}>{i + 1} year{i > 0 ? 's' : ''}</option>
+                                <option key={i + 1} value={i + 1}>
+                                  {t('aiProfile.experience.yearsOption', { count: i + 1 })}
+                                </option>
                               ))}
-                              <option value="20+">20+ years</option>
+                              <option value="20+">{t('aiProfile.experience.yearsPlus')}</option>
                             </select>
                           </div>
                           <div className="flex-1">
-                            <label className="block text-sm font-medium mb-2">Organisation Name</label>
+                            <label className="block text-sm font-medium mb-2">{t('aiProfile.experience.orgNameLabel')}</label>
                             <input
                               type="text"
                               value={details?.organisationName || ''}
-                              onChange={(e) => updateExperienceDetail(industry, 'organisationName', e.target.value)}
-                              placeholder="Enter organisation name"
+                              onChange={(e) => updateExperienceDetail(industry.id, 'organisationName', e.target.value)}
+                              placeholder={t('aiProfile.experience.orgNamePlaceholder')}
                               className="w-full p-3 border rounded-lg"
                             />
                           </div>
@@ -561,7 +658,7 @@ const AIProfileModal = ({ isOpen, onClose, partnerData, onSubmitted }) => {
 
           {currentStep === 5 && (
             <div className="mb-6">
-              <h3 className="text-xl font-semibold mb-4">Add your bio / Write about Yourself</h3>
+              <h3 className="text-xl font-semibold mb-4">{t('aiProfile.questions.bio')}</h3>
               <textarea
                 value={formData.bio}
                 onChange={(e) => {
@@ -570,11 +667,14 @@ const AIProfileModal = ({ isOpen, onClose, partnerData, onSubmitted }) => {
                     setFormData(prev => ({ ...prev, bio: e.target.value }));
                   }
                 }}
-                placeholder="Tell us about yourself, your experience, skills, and what makes you a great partner..."
+                placeholder={t('aiProfile.bioPlaceholder')}
                 className="w-full p-4 border rounded-lg h-32 resize-none"
               />
               <div className="text-right text-sm text-gray-500 mt-1">
-                {formData.bio.split(/\s+/).filter(word => word.length > 0).length}/100 words
+                {t('aiProfile.wordsCount', {
+                  count: formData.bio.split(/\s+/).filter(word => word.length > 0).length,
+                  max: 100
+                })}
               </div>
             </div>
           )}
@@ -587,14 +687,14 @@ const AIProfileModal = ({ isOpen, onClose, partnerData, onSubmitted }) => {
 
         {!isSubmitted && (
         <div className="ai-modal-footer">
-          <div className="ai-footer-hint">Keep going, you are almost done.</div>
+          <div className="ai-footer-hint">{t('aiProfile.footerHint')}</div>
           <div className="flex space-x-3">
             {currentStep > 1 && (
               <button
                 onClick={previousQuestion}
                 className="ai-btn-secondary"
               >
-                Previous
+                {t('aiProfile.buttons.previous')}
               </button>
             )}
             {currentStep < 5 ? (
@@ -603,7 +703,7 @@ const AIProfileModal = ({ isOpen, onClose, partnerData, onSubmitted }) => {
                 disabled={!canProceed()}
                 className="ai-btn-primary"
               >
-                Next
+                {t('aiProfile.buttons.next')}
               </button>
             ) : (
               <button
@@ -611,7 +711,7 @@ const AIProfileModal = ({ isOpen, onClose, partnerData, onSubmitted }) => {
                 disabled={!canProceed() || isSubmitting}
                 className="ai-btn-primary"
               >
-                {isSubmitting ? 'Submitting...' : 'Submit'}
+                {isSubmitting ? t('aiProfile.buttons.submitting') : t('aiProfile.buttons.submit')}
               </button>
             )}
           </div>

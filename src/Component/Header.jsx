@@ -39,14 +39,19 @@ const Header = () => {
   };
 
   const isActivePath = (path) => location.pathname === path;
+  const isRtl = i18n.language === 'ar';
+  const headerPadding = isRtl ? 'pr-16 pl-4' : 'pl-16 pr-4';
+  const rightPadding = isRtl ? 'pr-2 ml-12' : 'pl-2 mr-12';
+  const rowDirection = isRtl ? 'flex-row-reverse' : 'flex-row';
+  const underlineAlign = isRtl ? 'right-0' : 'left-0';
 
   return (
     <>
       <header className="fixed top-0 left-0 right-0 bg-white shadow-lg z-40 rounded-b-3xl">
-        <div className="w-full pl-16 pr-4">
-          <div className="flex items-center justify-between h-19">
+        <div className={`w-full ${headerPadding}`}>
+          <div className={`flex items-center justify-between h-19 ${rowDirection}`}>
             {/* Left Section */}
-            <div className="flex items-center space-x-3 pr-0">
+            <div className={`flex items-center gap-3 pr-0 ${isRtl ? 'flex-row-reverse' : ''}`}>
               {/* Sidebar Menu Button */}
               <button 
                 className="flex flex-col space-y-1"
@@ -60,7 +65,7 @@ const Header = () => {
               </button>
               
               {/* Logo + Company Name */}
-              <Link to="/" className="flex items-center space-x-2">
+              <Link to="/" className="flex items-center gap-2">
                 <img 
                   src="https://static.wixstatic.com/media/0446e3_50ff54e1251b45ef8a1066bca3a75b0e~mv2.png/v1/fill/w_256,h_256,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/b%20nc%20global.png" 
                   alt="BnC Global" 
@@ -85,7 +90,7 @@ const Header = () => {
                   >
                     {t('header.home')}
                     <span
-                      className={`absolute bottom-0 left-0 h-0.5 bg-[#2C5AA0] transition-all duration-300 ${
+                      className={`absolute bottom-0 ${underlineAlign} h-0.5 bg-[#2C5AA0] transition-all duration-300 ${
                         isActivePath('/') ? 'w-full' : 'w-0 group-hover:w-full'
                       }`}
                     ></span>
@@ -99,7 +104,7 @@ const Header = () => {
                 >
                   {t('countries.india')}
                   <span
-                    className={`absolute bottom-0 left-0 h-0.5 bg-[#2C5AA0] transition-all duration-300 ${
+                    className={`absolute bottom-0 ${underlineAlign} h-0.5 bg-[#2C5AA0] transition-all duration-300 ${
                       isActivePath('/services/india') ? 'w-full' : 'w-0 group-hover:w-full'
                     }`}
                   ></span>
@@ -112,7 +117,7 @@ const Header = () => {
                 >
                   {t('countries.saudi')}
                   <span
-                    className={`absolute bottom-0 left-0 h-0.5 bg-[#2C5AA0] transition-all duration-300 ${
+                    className={`absolute bottom-0 ${underlineAlign} h-0.5 bg-[#2C5AA0] transition-all duration-300 ${
                       isActivePath('/services/saudi-arabia') ? 'w-full' : 'w-0 group-hover:w-full'
                     }`}
                   ></span>
@@ -123,9 +128,9 @@ const Header = () => {
                     isActivePath('/services/global') ? 'text-[#2C5AA0] font-semibold' : 'text-gray-700 hover:text-[#2C5AA0]'
                   }`}
                 >
-                  Global
+                  {t('countries.global')}
                   <span
-                    className={`absolute bottom-0 left-0 h-0.5 bg-[#2C5AA0] transition-all duration-300 ${
+                    className={`absolute bottom-0 ${underlineAlign} h-0.5 bg-[#2C5AA0] transition-all duration-300 ${
                       isActivePath('/services/global') ? 'w-full' : 'w-0 group-hover:w-full'
                     }`}
                   ></span>
@@ -134,9 +139,9 @@ const Header = () => {
             </div>
 
             {/* Right Section */}
-            <div className="flex items-center pl-2 mr-12">
+            <div className={`flex items-center ${rightPadding}`}>
               {isLoggedIn ? (
-                <div className="flex items-center space-x-3">
+                <div className="flex items-center gap-3">
                   <Link 
                     to="/dashboard"
                     className="hidden md:inline-block bg-white border border-[#2C5AA0] text-[#2C5AA0] hover:bg-[#2C5AA0] hover:text-white px-4 py-2 rounded-lg font-poppins font-semibold text-sm transition-colors duration-300"

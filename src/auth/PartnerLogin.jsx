@@ -1,7 +1,13 @@
 ﻿import React, { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { useTranslation } from 'react-i18next';
 
 const PartnerLogin = () => {
+  const { i18n } = useTranslation();
+  const isRtl = i18n.language === 'ar';
+  const inputAlign = isRtl ? 'text-right' : 'text-left';
+  const passPadding = isRtl ? 'pl-12' : 'pr-12';
+  const eyePosition = isRtl ? 'left-3' : 'right-3';
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -108,7 +114,7 @@ const PartnerLogin = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#2C5AA0] focus:border-transparent ${
+                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#2C5AA0] focus:border-transparent ${inputAlign} ${
                   errors.email ? 'border-red-500' : 'border-gray-300'
                 }`}
                 placeholder="Enter your email / User ID"
@@ -126,7 +132,7 @@ const PartnerLogin = () => {
                   name="password"
                   value={formData.password}
                   onChange={handleChange}
-                  className={`w-full px-4 py-3 pr-12 border rounded-lg focus:ring-2 focus:ring-[#2C5AA0] focus:border-transparent ${
+                  className={`w-full px-4 py-3 ${passPadding} border rounded-lg focus:ring-2 focus:ring-[#2C5AA0] focus:border-transparent ${inputAlign} ${
                     errors.password ? 'border-red-500' : 'border-gray-300'
                   }`}
                   placeholder="Enter your password"
@@ -134,7 +140,7 @@ const PartnerLogin = () => {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                  className={`absolute ${eyePosition} top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700`}
                 >
                   {showPassword ? <FaEyeSlash size={18} /> : <FaEye size={18} />}
                 </button>

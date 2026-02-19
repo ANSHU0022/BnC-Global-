@@ -1,7 +1,9 @@
 import React, { useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { FaTimes, FaFileSignature } from 'react-icons/fa';
 
 const TermsAgreementModal = ({ isOpen, onClose, partnerData, onSubmitted }) => {
+  const { t, i18n } = useTranslation();
   const [signatureName, setSignatureName] = useState('');
   const [accepted, setAccepted] = useState(false);
   const [error, setError] = useState('');
@@ -14,8 +16,8 @@ const TermsAgreementModal = ({ isOpen, onClose, partnerData, onSubmitted }) => {
 
   const email = partnerData?.email || 'N/A';
   const dateText = useMemo(
-    () => new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }),
-    [isOpen]
+    () => new Date().toLocaleDateString(i18n.language === 'ar' ? 'ar' : 'en-GB', { day: '2-digit', month: 'short', year: 'numeric' }),
+    [i18n.language, isOpen]
   );
 
   const resetForm = () => {
@@ -33,11 +35,11 @@ const TermsAgreementModal = ({ isOpen, onClose, partnerData, onSubmitted }) => {
     event.preventDefault();
     const trimmed = signatureName.trim();
     if (!trimmed) {
-      setError('Please type your full name for the e-signature.');
+      setError(t('termsAgreement.errors.signatureRequired'));
       return;
     }
     if (!accepted) {
-      setError('Please confirm you have read and agree to the terms.');
+      setError(t('termsAgreement.errors.acceptRequired'));
       return;
     }
     setError('');
@@ -56,8 +58,8 @@ const TermsAgreementModal = ({ isOpen, onClose, partnerData, onSubmitted }) => {
               <FaFileSignature className="h-5 w-5" />
             </div>
             <div>
-              <h2 className="font-poppins text-xl font-semibold text-slate-900">Terms & Conditions Agreement</h2>
-              <p className="text-sm text-slate-500">Please review and sign to complete your partner agreement.</p>
+              <h2 className="font-poppins text-xl font-semibold text-slate-900">{t('termsAgreement.title')}</h2>
+              <p className="text-sm text-slate-500">{t('termsAgreement.subtitle')}</p>
             </div>
           </div>
           <button onClick={handleClose} className="text-slate-400 hover:text-slate-600">
@@ -67,13 +69,11 @@ const TermsAgreementModal = ({ isOpen, onClose, partnerData, onSubmitted }) => {
 
         <div className="p-6">
           <div className="max-h-64 overflow-y-auto text-sm text-slate-600 leading-relaxed pr-3">
-            <p className="font-poppins text-lg font-semibold text-slate-900 mb-3">Agreement Summary</p>
+            <p className="font-poppins text-lg font-semibold text-slate-900 mb-3">{t('termsAgreement.summaryTitle')}</p>
             <ul className="space-y-2">
-              <li>Partner commits to accurate, timely service delivery and ethical business practices.</li>
-              <li>Confidential information must be protected and used solely for collaboration purposes.</li>
-              <li>All engagements are subject to BnC Global quality standards and compliance policies.</li>
-              <li>Any disputes will be handled in good faith and resolved per applicable laws.</li>
-              <li>Agreement remains valid until terminated by either party with written notice.</li>
+              {t('termsAgreement.summaryItems', { returnObjects: true }).map((item) => (
+                <li key={item}>{item}</li>
+              ))}
             </ul>
           </div>
 
@@ -86,12 +86,12 @@ const TermsAgreementModal = ({ isOpen, onClose, partnerData, onSubmitted }) => {
               </div>
 
               <div>
-                <label className="block text-xs uppercase tracking-wide text-slate-900 mb-2">E-Signature</label>
+                <label className="block text-xs uppercase tracking-wide text-slate-900 mb-2">{t('termsAgreement.eSignatureLabel')}</label>
                 <input
                   type="text"
                   value={signatureName}
                   onChange={(event) => setSignatureName(event.target.value)}
-                  placeholder="Type your full name"
+                  placeholder={t('termsAgreement.eSignaturePlaceholder')}
                   className="w-full rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-slate-900 placeholder:text-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-300 focus:border-amber-300"
                 />
               </div>
@@ -104,7 +104,7 @@ const TermsAgreementModal = ({ isOpen, onClose, partnerData, onSubmitted }) => {
                 onChange={(event) => setAccepted(event.target.checked)}
                 className="mt-1 h-4 w-4 rounded border-slate-300 text-[#2C5AA0] focus:ring-[#2C5AA0]"
               />
-              <span>I have read and agree to the Terms & Conditions and the Partner Agreement.</span>
+              <span>{t('termsAgreement.acceptText')}</span>
             </label>
 
             {error && <p className="text-sm text-rose-600">{error}</p>}
@@ -115,13 +115,13 @@ const TermsAgreementModal = ({ isOpen, onClose, partnerData, onSubmitted }) => {
                 onClick={handleClose}
                 className="w-full sm:w-auto px-5 py-2.5 rounded-full border border-slate-200 text-slate-700 hover:bg-slate-50"
               >
-                Cancel
+                {t('termsAgreement.cancel')}
               </button>
               <button
                 type="submit"
                 className="w-full sm:w-auto px-6 py-2.5 rounded-full bg-gradient-to-r from-[#2C5AA0] to-[#1e3a8a] text-white font-semibold shadow-sm hover:shadow-md"
               >
-                Submit Agreement
+                {t('termsAgreement.submit')}
               </button>
             </div>
           </form>

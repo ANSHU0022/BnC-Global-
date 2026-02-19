@@ -7,6 +7,11 @@ import PartnerFormModal from './PartnerFormModal';
 const Sidebar = ({ isOpen, onClose, isLoggedIn, user, onLogout }) => {
   const { t, i18n } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const isRtl = i18n.language === 'ar';
+  const textAlign = isRtl ? 'text-right' : 'text-left';
+  const rowDirection = isRtl ? 'flex-row-reverse' : 'flex-row';
+  const sidePosition = isRtl ? 'right-0 rounded-l-3xl' : 'left-0 rounded-r-3xl';
+  const hiddenTranslate = isRtl ? 'translate-x-full' : '-translate-x-full';
 
   const handleApplyNowClick = () => {
     onClose();
@@ -25,11 +30,11 @@ const Sidebar = ({ isOpen, onClose, isLoggedIn, user, onLogout }) => {
           onClick={onClose}
         ></div>
         
-        <div className={`absolute left-0 top-0 h-full w-80 bg-gradient-to-b from-white via-[#f7f9ff] to-[#edf2fb] shadow-2xl rounded-r-3xl transform transition-all duration-300 ease-out ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-          <div className="p-6 h-full flex flex-col">
+        <div className={`absolute top-0 h-full w-80 bg-gradient-to-b from-white via-[#f7f9ff] to-[#edf2fb] shadow-2xl transform transition-all duration-300 ease-out ${sidePosition} ${isOpen ? 'translate-x-0' : hiddenTranslate}`}>
+          <div className={`p-6 h-full flex flex-col ${textAlign}`}>
             {/* Header */}
-            <div className="flex items-start justify-between mb-6">
-              <div className="flex items-center space-x-3">
+            <div className={`flex items-start justify-between mb-6 ${rowDirection}`}>
+              <div className={`flex items-center gap-3 ${rowDirection}`}>
                 <img 
                   src="https://static.wixstatic.com/media/0446e3_50ff54e1251b45ef8a1066bca3a75b0e~mv2.png/v1/fill/w_256,h_256,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/b%20nc%20global.png" 
                   alt="BnC Global" 
@@ -85,7 +90,7 @@ const Sidebar = ({ isOpen, onClose, isLoggedIn, user, onLogout }) => {
                     <Link 
                       key={item.to}
                       to={item.to} 
-                      className="group flex items-center gap-3 px-2 py-2.5 rounded-lg transition-all duration-200 hover:bg-white/70"
+                      className={`group flex items-center gap-3 px-2 py-2.5 rounded-lg transition-all duration-200 hover:bg-white/70 ${rowDirection} ${textAlign}`}
                       onClick={onClose}
                     >
                       <Icon size={18} className="text-[#2C5AA0]/80 transition-colors duration-300 group-hover:text-[#1e3a8a]" />
@@ -100,7 +105,7 @@ const Sidebar = ({ isOpen, onClose, isLoggedIn, user, onLogout }) => {
                 <>
                   <Link 
                     to={isLoggedIn ? "/dashboard" : "/login"}
-                    className="group flex items-center gap-3 px-2 py-2.5 rounded-lg transition-all duration-200 hover:bg-white/70"
+                    className={`group flex items-center gap-3 px-2 py-2.5 rounded-lg transition-all duration-200 hover:bg-white/70 ${rowDirection} ${textAlign}`}
                     onClick={onClose}
                   >
                     <FaTachometerAlt size={18} className="text-[#2C5AA0]/80 transition-colors duration-300 group-hover:text-[#1e3a8a]" />
@@ -108,7 +113,7 @@ const Sidebar = ({ isOpen, onClose, isLoggedIn, user, onLogout }) => {
                   </Link>
                   <Link
                     to={isLoggedIn ? "/dashboard?open=ai-profile" : "/login"}
-                    className="group flex items-center gap-3 px-2 py-2.5 rounded-lg transition-all duration-200 hover:bg-white/70"
+                    className={`group flex items-center gap-3 px-2 py-2.5 rounded-lg transition-all duration-200 hover:bg-white/70 ${rowDirection} ${textAlign}`}
                     onClick={onClose}
                   >
                     <FaRobot size={18} className="text-[#2C5AA0]/80 transition-colors duration-300 group-hover:text-[#1e3a8a]" />
@@ -116,7 +121,7 @@ const Sidebar = ({ isOpen, onClose, isLoggedIn, user, onLogout }) => {
                   </Link>
                   <Link
                     to="/bnc-services?from=sidebar"
-                    className="group flex items-center gap-3 px-2 py-2.5 rounded-lg transition-all duration-200 hover:bg-white/70"
+                    className={`group flex items-center gap-3 px-2 py-2.5 rounded-lg transition-all duration-200 hover:bg-white/70 ${rowDirection} ${textAlign}`}
                     onClick={onClose}
                   >
                     <FaServicestack size={18} className="text-[#2C5AA0]/80 transition-colors duration-300 group-hover:text-[#1e3a8a]" />
@@ -124,7 +129,7 @@ const Sidebar = ({ isOpen, onClose, isLoggedIn, user, onLogout }) => {
                   </Link>
                   <Link
                     to="/services/india"
-                    className="group flex items-center gap-3 px-2 py-2.5 rounded-lg transition-all duration-200 hover:bg-white/70"
+                    className={`group flex items-center gap-3 px-2 py-2.5 rounded-lg transition-all duration-200 hover:bg-white/70 ${rowDirection} ${textAlign}`}
                     onClick={onClose}
                   >
                     <FaMapMarkerAlt size={18} className="text-[#2C5AA0]/80 transition-colors duration-300 group-hover:text-[#1e3a8a]" />
@@ -134,7 +139,7 @@ const Sidebar = ({ isOpen, onClose, isLoggedIn, user, onLogout }) => {
                   </Link>
                   <Link
                     to="/services/saudi-arabia"
-                    className="group flex items-center gap-3 px-2 py-2.5 rounded-lg transition-all duration-200 hover:bg-white/70"
+                    className={`group flex items-center gap-3 px-2 py-2.5 rounded-lg transition-all duration-200 hover:bg-white/70 ${rowDirection} ${textAlign}`}
                     onClick={onClose}
                   >
                     <FaMapMarkerAlt size={18} className="text-[#2C5AA0]/80 transition-colors duration-300 group-hover:text-[#1e3a8a]" />
@@ -146,9 +151,9 @@ const Sidebar = ({ isOpen, onClose, isLoggedIn, user, onLogout }) => {
                 {!isLoggedIn && (
                   <button 
                     onClick={handleApplyNowClick} 
-                    className="group flex items-center gap-3 px-2 py-2.5 rounded-lg transition-all duration-200 text-slate-700 hover:bg-white/70 w-full text-left"
+                    className={`group flex items-center gap-3 px-2 py-2.5 rounded-lg transition-all duration-200 text-slate-700 hover:bg-white/70 w-full ${rowDirection} ${textAlign}`}
                   >
-                    <FaPaperPlane size={18} className="text-[#2C5AA0]/80 transition-colors duration-300 group-hover:text-[#1e3a8a]" />
+                    <FaPaperPlane size={18} className="text-[#2C5AA0]/80 transition-colors duration-300 group-hover:text-[#1e3a8a] flipInRtl" />
                     <span className="font-geist font-semibold transition-colors duration-300 group-hover:text-[#1e3a8a]">{t('sidebar.applyNow')}</span>
                   </button>
                 )}
@@ -160,7 +165,7 @@ const Sidebar = ({ isOpen, onClose, isLoggedIn, user, onLogout }) => {
               <div className="space-y-3">
                 {isLoggedIn ? (
                   <>
-                    <div className="flex items-center space-x-3 py-3 px-4 border border-[#2C5AA0] rounded-xl bg-gradient-to-r from-[#2C5AA0] to-[#1e3a8a] shadow-md">
+                    <div className={`flex items-center gap-3 py-3 px-4 border border-[#2C5AA0] rounded-xl bg-gradient-to-r from-[#2C5AA0] to-[#1e3a8a] shadow-md ${rowDirection}`}>
                       <FaUser size={20} className="text-white" />
                       <div>
                         <div className="font-geist font-semibold text-white">{user?.firstName} {user?.lastName}</div>
@@ -173,7 +178,7 @@ const Sidebar = ({ isOpen, onClose, isLoggedIn, user, onLogout }) => {
                         onClose();
                         onLogout();
                       }}
-                      className="flex items-center space-x-3 py-3 px-4 rounded-xl border border-red-200 transition-all duration-300 hover:bg-red-500 hover:text-white hover:border-red-500 text-red-700 bg-red-100 w-full text-left"
+                      className={`flex items-center gap-3 py-3 px-4 rounded-xl border border-red-200 transition-all duration-300 hover:bg-red-500 hover:text-white hover:border-red-500 text-red-700 bg-red-100 w-full ${rowDirection} ${textAlign}`}
                     >
                       <FaUser size={20} className="transition-colors duration-300" />
                       <span className="font-geist font-medium transition-colors duration-300">{t('sidebar.logout')}</span>
@@ -193,7 +198,7 @@ const Sidebar = ({ isOpen, onClose, isLoggedIn, user, onLogout }) => {
                     <Link 
                       to="/login" 
                       onClick={onClose} 
-                      className="flex items-center space-x-3 py-3 px-4 rounded-xl border border-[#2C5AA0] bg-gradient-to-r from-[#2C5AA0] to-[#1e3a8a] text-white shadow-md"
+                      className={`flex items-center gap-3 py-3 px-4 rounded-xl border border-[#2C5AA0] bg-gradient-to-r from-[#2C5AA0] to-[#1e3a8a] text-white shadow-md ${rowDirection}`}
                     >
                       <FaUser size={20} className="transition-colors duration-300" />
                       <span className="font-geist font-medium transition-colors duration-300">{t('sidebar.partnerLogin')}</span>
@@ -202,7 +207,7 @@ const Sidebar = ({ isOpen, onClose, isLoggedIn, user, onLogout }) => {
                     <Link 
                       to="/login?type=admin" 
                       onClick={onClose} 
-                      className="flex items-center space-x-3 py-3 px-4 rounded-xl border border-gray-200 transition-all duration-300 hover:text-white hover:border-blue-500 text-gray-700 bg-white/70 hover:bg-gradient-to-r hover:from-[#2C5AA0] hover:to-[#1e3a8a]"
+                      className={`flex items-center gap-3 py-3 px-4 rounded-xl border border-gray-200 transition-all duration-300 hover:text-white hover:border-blue-500 text-gray-700 bg-white/70 hover:bg-gradient-to-r hover:from-[#2C5AA0] hover:to-[#1e3a8a] ${rowDirection}`}
                     >
                       <FaShieldAlt size={20} className="transition-colors duration-300" />
                       <span className="font-geist font-medium transition-colors duration-300">{t('sidebar.adminLogin')}</span>

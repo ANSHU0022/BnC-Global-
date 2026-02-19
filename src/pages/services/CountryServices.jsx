@@ -1,10 +1,19 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../Component/Header';
 import Footer from '../../Component/Footer';
 import { getServicesByCountry } from '../../data/services';
 
 const CountryServices = ({ country, title, description }) => {
+  const { t, i18n } = useTranslation();
+  const isRtl = i18n.language === 'ar';
+  const textAlign = isRtl ? 'text-right' : 'text-left';
+  const rowDirection = isRtl ? 'flex-row-reverse' : 'flex-row';
+  const mdRowDirection = isRtl ? 'md:flex-row-reverse' : 'md:flex-row';
+  const inputAlign = isRtl ? 'text-right' : 'text-left';
+  const searchButtonPos = isRtl ? 'left-2' : 'right-2';
+  const cardButtonPos = isRtl ? 'left-6' : 'right-6';
   const navigate = useNavigate();
   const services = getServicesByCountry(country);
   const [searchQuery, setSearchQuery] = useState('');
@@ -13,9 +22,9 @@ const CountryServices = ({ country, title, description }) => {
   const [isSuggestionsOpen, setIsSuggestionsOpen] = useState(false);
 
   const tagOptions = [
-    { key: 'high-demand', label: 'High Demand Service' },
-    { key: 'high-selling', label: 'Hot Selling' },
-    { key: 'specialized', label: 'Specialized' }
+    { key: 'high-demand', label: t('countryServices.tags.highDemand') },
+    { key: 'high-selling', label: t('countryServices.tags.highSelling') },
+    { key: 'specialized', label: t('countryServices.tags.specialized') }
   ];
 
   const visibleServices = useMemo(() => {
@@ -63,12 +72,16 @@ const CountryServices = ({ country, title, description }) => {
           id: service.id,
           title: service.title,
           hint: bulletMatch || (idMatch ? service.id : ''),
-          type: bulletMatch ? 'Sub service' : idMatch ? 'Service ID' : 'Service'
+          type: bulletMatch
+            ? t('countryServices.suggestions.subService')
+            : idMatch
+              ? t('countryServices.suggestions.serviceId')
+              : t('countryServices.suggestions.service')
         };
       })
       .filter(Boolean)
       .slice(0, 6);
-  }, [searchQuery, visibleServices]);
+  }, [searchQuery, t, visibleServices]);
 
   const handleOpenService = (serviceId) => {
     navigate(`/services/${country}/${serviceId}`);
@@ -78,7 +91,7 @@ const CountryServices = ({ country, title, description }) => {
     event.preventDefault();
     const term = searchQuery.trim().toLowerCase();
     if (!term) {
-      setSearchError('Please enter a service name or sub service.');
+      setSearchError(t('countryServices.searchErrorEmpty'));
       return;
     }
 
@@ -103,7 +116,7 @@ const CountryServices = ({ country, title, description }) => {
       return;
     }
 
-    setSearchError('No matching service found.');
+    setSearchError(t('countryServices.searchErrorNoMatch'));
   };
 
   const handleSelectSuggestion = (serviceId) => {
@@ -152,7 +165,7 @@ const CountryServices = ({ country, title, description }) => {
             <div className="h-full w-full animate-pulse bg-[linear-gradient(110deg,rgba(226,232,240,0.35),rgba(255,255,255,0.8),rgba(226,232,240,0.35))] bg-[length:200%_100%]" />
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="rounded-full border border-slate-200 bg-white/80 px-3 py-1 text-xs font-geist text-slate-500 shadow-sm">
-                Preparing preview
+                {t('countryServices.preparingPreview')}
               </div>
             </div>
           </div>
@@ -172,11 +185,11 @@ const CountryServices = ({ country, title, description }) => {
               <div className="absolute -right-20 -top-24 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
               <div className="absolute -left-16 -bottom-24 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
             </div>
-            <div className="relative z-10 p-8 md:p-10 text-white">
-              <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+            <div className={`relative z-10 p-8 md:p-10 text-white ${textAlign}`}>
+              <div className={`flex flex-col gap-5 ${mdRowDirection} md:items-center md:justify-between`}>
                 <div>
                   <p className="font-geist text-blue-100 text-sm uppercase tracking-[0.2em]">
-                    Country Services
+                    {t('countryServices.label')}
                   </p>
                   <h1 className="font-poppins text-3xl md:text-4xl font-bold mt-2">
                     {title}
@@ -190,7 +203,7 @@ const CountryServices = ({ country, title, description }) => {
           </div>
 
           <div className="mb-8">
-            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+            <div className={`flex flex-col ${isRtl ? 'lg:flex-row-reverse' : 'lg:flex-row'} lg:items-center lg:justify-between gap-4`}>
               <form onSubmit={handleSearchSubmit} className="relative w-full max-w-xl">
                 <input
                   type="text"
@@ -201,14 +214,14 @@ const CountryServices = ({ country, title, description }) => {
                     setIsSuggestionsOpen(true);
                   }}
                   onFocus={() => setIsSuggestionsOpen(true)}
-                  placeholder="Search by service name or Keyword..."
-                  className="w-full bg-white border border-black rounded-2xl px-4 py-3 text-sm font-geist shadow-sm focus:outline-none focus:ring-2 focus:ring-[#2C5AA0]/20"
+                  placeholder={t('countryServices.searchPlaceholder')}
+                  className={`w-full bg-white border border-black rounded-2xl px-4 py-3 text-sm font-geist shadow-sm focus:outline-none focus:ring-2 focus:ring-[#2C5AA0]/20 ${inputAlign}`}
                 />
                 <button
                   type="submit"
-                  className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#2C5AA0] text-white px-4 py-2 rounded-xl text-sm font-semibold shadow hover:bg-[#1e3a8a] transition"
+                  className={`absolute ${searchButtonPos} top-1/2 -translate-y-1/2 bg-[#2C5AA0] text-white px-4 py-2 rounded-xl text-sm font-semibold shadow hover:bg-[#1e3a8a] transition`}
                 >
-                  Search
+                  {t('countryServices.searchButton')}
                 </button>
                 {isSuggestionsOpen && suggestions.length > 0 && (
                   <div
@@ -220,7 +233,7 @@ const CountryServices = ({ country, title, description }) => {
                         key={suggestion.id}
                         type="button"
                         onClick={() => handleSelectSuggestion(suggestion.id)}
-                        className="w-full text-left px-4 py-3 hover:bg-slate-50 transition-colors"
+                        className={`w-full px-4 py-3 hover:bg-slate-50 transition-colors ${isRtl ? 'text-right' : 'text-left'}`}
                       >
                         <div className="text-sm font-semibold text-slate-800">
                           {suggestion.title}
@@ -274,26 +287,26 @@ const CountryServices = ({ country, title, description }) => {
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center text-gray-500 text-sm font-geist">
-                        Video coming soon
+                        {t('countryServices.videoComingSoon')}
                       </div>
                     )}
                   </div>
                 </div>
-                <div className="p-5 pb-16">
-                  <div className="flex items-center justify-between">
+                <div className={`p-5 pb-16 ${textAlign}`}>
+                  <div className={`flex items-center justify-between ${rowDirection}`}>
                     <h2 className="font-poppins text-xl font-semibold text-gray-900">
                       {service.title}
                     </h2>
                     {service.bullets.length > 0 && (
                       <span className="inline-flex items-center gap-1 whitespace-nowrap text-xs font-geist font-semibold text-[#2C5AA0] bg-blue-50 px-2.5 py-1 rounded-full">
-                        {service.bullets.length} Services
+                        {t('countryServices.servicesCount', { count: service.bullets.length })}
                       </span>
                     )}
                   </div>
                   {service.bullets.length > 0 && (
                     <>
                       <div className="h-1 w-16 bg-gradient-to-r from-[#2C5AA0] to-[#1e3a8a] rounded-full mt-3" />
-                      <ul className="mt-4 space-y-2 text-sm text-gray-700 list-disc list-inside">
+                      <ul className={`mt-4 space-y-2 text-sm text-gray-700 list-disc list-inside ${textAlign}`}>
                         {service.bullets.map((item) => (
                           <li key={item} className="font-geist">
                             {item}
@@ -304,18 +317,18 @@ const CountryServices = ({ country, title, description }) => {
                   )}
                   {!service.videoUrl && (
                     <p className="font-geist text-gray-500 text-xs mt-4">
-                      Services will be available soon.
+                      {t('countryServices.servicesComingSoon')}
                     </p>
                   )}
                 </div>
                 <button
                   type="button"
                   onClick={() => handleOpenService(service.id)}
-                  className="absolute bottom-4 right-6 inline-flex items-center gap-2 text-sm font-semibold font-geist text-white rounded-full px-5 py-2.5 bg-gradient-to-r from-[#2C5AA0] to-[#1e3a8a] shadow-lg shadow-[#2C5AA0]/20 transition-all duration-300 hover:shadow-xl hover:shadow-[#2C5AA0]/30 hover:-translate-y-0.5 hover:from-[#1e3a8a] hover:to-[#163062] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2C5AA0]/40"
+                  className={`absolute bottom-4 ${cardButtonPos} inline-flex items-center gap-2 text-sm font-semibold font-geist text-white rounded-full px-5 py-2.5 bg-gradient-to-r from-[#2C5AA0] to-[#1e3a8a] shadow-lg shadow-[#2C5AA0]/20 transition-all duration-300 hover:shadow-xl hover:shadow-[#2C5AA0]/30 hover:-translate-y-0.5 hover:from-[#1e3a8a] hover:to-[#163062] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2C5AA0]/40`}
                 >
-                  View more
+                  {t('countryServices.viewMore')}
                   <span className="inline-flex items-center justify-center h-5 w-5 rounded-full bg-white/20 text-white text-xs transition-transform duration-300 group-hover:translate-x-0.5">
-                    →
+                    <span className="flipInRtl">&#8594;</span>
                   </span>
                 </button>
               </div>
