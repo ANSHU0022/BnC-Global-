@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 
 const Login = () => {
   const location = useLocation();
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const isRtl = i18n.language === 'ar';
   const textAlign = isRtl ? 'text-right' : 'text-left';
   const inputAlign = isRtl ? 'text-right' : 'text-left';
@@ -50,19 +50,19 @@ const Login = () => {
     if (activeTab === 'admin') {
       // Admin validation
       if (!formData.email.trim()) {
-        newErrors.email = 'Admin ID is required';
+        newErrors.email = t('login.errors.adminIdRequired');
       }
     } else {
       // Partner validation
       if (!formData.email.trim()) {
-        newErrors.email = 'Email is required';
+        newErrors.email = t('login.errors.emailRequired');
       } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-        newErrors.email = 'Please enter a valid email address';
+        newErrors.email = t('login.errors.emailInvalid');
       }
     }
     
     if (!formData.password.trim()) {
-      newErrors.password = 'Password is required';
+      newErrors.password = t('login.errors.passwordRequired');
     }
     
     setErrors(newErrors);
@@ -105,11 +105,11 @@ const Login = () => {
       if (result.success) {
         if (activeTab === 'admin') {
           localStorage.setItem('adminUser', JSON.stringify(result.admin));
-          alert('Admin login successful!');
+          alert(t('login.alerts.adminSuccess'));
           window.location.href = '/admin-dashboard';
         } else {
           localStorage.setItem('partnerUser', JSON.stringify(result.user));
-          alert('Login successful! Welcome ' + result.user.firstName);
+          alert(t('login.alerts.partnerSuccess', { name: result.user.firstName }));
           window.location.href = '/dashboard';
         }
       } else {
@@ -117,7 +117,7 @@ const Login = () => {
       }
     } catch (error) {
       console.error('Login error:', error);
-      setErrors({ general: 'Login failed. Please try again.' });
+      setErrors({ general: t('login.errors.loginFailed') });
     } finally {
       setIsLoading(false);
     }
@@ -145,12 +145,11 @@ const Login = () => {
                   <p className="text-xs uppercase tracking-[0.3em] text-white/70">
                     BnC Global
                   </p>
-                  <h1 className="text-2xl font-semibold mt-1">Welcome Back</h1>
+                  <h1 className="text-2xl font-semibold mt-1">{t('login.welcomeBack')}</h1>
                 </div>
               </div>
               <p className="mt-6 text-sm text-white/80 leading-relaxed">
-                Access your partner or admin dashboard and manage services, enquiries,
-                and registrations in one place.
+                {t('login.sidePanel.description')}
               </p>
             </div>
             <div className="relative space-y-4 text-sm text-white/80">
@@ -158,13 +157,13 @@ const Login = () => {
                 <div className="h-9 w-9 rounded-xl bg-white/15 flex items-center justify-center">
                   <FaShieldAlt />
                 </div>
-                Secure role-based access
+                {t('login.sidePanel.secureAccess')}
               </div>
               <div className={`flex items-center gap-3 ${rowDirection}`}>
                 <div className="h-9 w-9 rounded-xl bg-white/15 flex items-center justify-center">
                   <FaUser />
                 </div>
-                Partner onboarding updates
+                {t('login.sidePanel.onboardingUpdates')}
               </div>
               <div className="flex items-center justify-center pt-2">
                 <div className="grid gap-3 w-full max-w-sm">
@@ -174,7 +173,7 @@ const Login = () => {
                   >
                     <div>
                       <p className="text-xs uppercase tracking-[0.3em] text-white/60">
-                        Email
+                        {t('login.sidePanel.email')}
                       </p>
                       <p className="text-sm font-semibold text-white">info@bncglobal.in</p>
                     </div>
@@ -198,7 +197,7 @@ const Login = () => {
                     >
                       <div>
                         <p className="text-xs uppercase tracking-[0.3em] text-white/60">
-                          WhatsApp
+                        {t('login.sidePanel.whatsapp')}
                         </p>
                       <p className="text-sm font-semibold text-white whitespace-nowrap">+91 99587 11796</p>
                     </div>
@@ -219,7 +218,7 @@ const Login = () => {
                     >
                       <div>
                         <p className="text-xs uppercase tracking-[0.3em] text-white/60">
-                          Call
+                        {t('login.sidePanel.call')}
                         </p>
                       <p className="text-sm font-semibold text-white whitespace-nowrap">+91 9304002266</p>
                     </div>
@@ -250,8 +249,8 @@ const Login = () => {
                   className="h-10 w-10 object-contain"
                 />
               </div>
-              <h1 className="text-2xl font-bold text-gray-800">Welcome Back</h1>
-              <p className="text-gray-500 text-sm">Sign in to your BnC Global account</p>
+              <h1 className="text-2xl font-bold text-gray-800">{t('login.welcomeBack')}</h1>
+              <p className="text-gray-500 text-sm">{t('login.subtitle')}</p>
             </div>
 
             {/* Tabs */}
@@ -265,7 +264,7 @@ const Login = () => {
                 }`}
               >
                 <FaUser />
-                Partner Login
+                {t('login.partnerLogin')}
               </button>
               <button
                 onClick={() => setActiveTab('admin')}
@@ -276,7 +275,7 @@ const Login = () => {
                 }`}
               >
                 <FaShieldAlt />
-                Admin Login
+                {t('login.adminLogin')}
               </button>
             </div>
 
@@ -291,7 +290,7 @@ const Login = () => {
               <div>
                 <label className={`flex items-center gap-2 text-sm font-medium text-gray-700 mb-2 ${rowDirection}`}>
                   <FaIdCard className="text-[#2C5AA0]" />
-                  {activeTab === 'admin' ? 'Admin ID' : 'User ID (Email)'}
+                  {activeTab === 'admin' ? t('login.adminId') : t('login.userIdEmail')}
                 </label>
                 <input
                   type={activeTab === 'admin' ? 'text' : 'email'}
@@ -302,11 +301,11 @@ const Login = () => {
                   className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-[#2C5AA0]/30 focus:border-transparent ${inputAlign} ${
                     errors.email ? 'border-red-500' : 'border-gray-300'
                   }`}
-                  placeholder={activeTab === 'admin' ? 'Enter admin ID' : 'Enter your email address'}
+                  placeholder={activeTab === 'admin' ? t('login.enterAdminId') : t('login.enterEmail')}
                 />
                 {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
                 <p className="text-[11px] text-gray-400 mt-1">
-                  {activeTab === 'admin' ? 'Use your admin ID' : 'Use the email address you registered with'}
+                  {activeTab === 'admin' ? t('login.useAdminId') : t('login.useRegisteredEmail')}
                 </p>
               </div>
 
@@ -314,7 +313,7 @@ const Login = () => {
               <div>
                 <label className={`flex items-center gap-2 text-sm font-medium text-gray-700 mb-2 ${rowDirection}`}>
                   <FaLock className="text-[#2C5AA0]" />
-                  Password
+                  {t('login.password')}
                 </label>
                 <div className="relative">
                   <input
@@ -326,7 +325,7 @@ const Login = () => {
                     className={`w-full px-4 py-2.5 ${passPadding} border rounded-lg focus:ring-2 focus:ring-[#2C5AA0]/30 focus:border-transparent ${inputAlign} ${
                       errors.password ? 'border-red-500' : 'border-gray-300'
                     }`}
-                    placeholder="Enter your password"
+                    placeholder={t('login.enterPassword')}
                   />
                   <button
                     type="button"
@@ -345,13 +344,13 @@ const Login = () => {
                 disabled={isLoading}
                 className="w-full bg-gradient-to-r from-[#2C5AA0] to-[#1e3f73] hover:from-[#1e3f73] hover:to-[#163062] text-white py-2.5 px-4 rounded-lg font-semibold transition-colors flex items-center justify-center disabled:opacity-50 shadow-lg shadow-[#2C5AA0]/20"
               >
-                {isLoading ? 'Signing in...' : `Sign In as ${activeTab === 'partner' ? 'Partner' : 'Admin'}`}
+                {isLoading ? t('login.signingIn') : t('login.signInAs', { role: activeTab === 'partner' ? t('login.partnerLogin') : t('login.adminLogin') })}
               </button>
               <Link
                 to="/?open=partner"
                 className="w-full border border-[#2C5AA0]/30 text-[#1e3f73] py-2.5 px-4 rounded-lg font-semibold transition-colors flex items-center justify-center hover:bg-[#2C5AA0]/10"
               >
-                Create an account
+                {t('login.createAccount')}
               </Link>
             </form>
 
@@ -362,7 +361,7 @@ const Login = () => {
                 className="inline-flex items-center text-[#2C5AA0] hover:text-[#1e3f73] font-medium"
               >
                 <FaArrowLeft className={isRtl ? 'ml-2 flipInRtl' : 'mr-2'} />
-                Back to Registration
+                {t('login.backToRegistration')}
               </Link>
             </div>
           </div>

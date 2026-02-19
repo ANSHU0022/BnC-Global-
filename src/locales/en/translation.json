@@ -28,7 +28,17 @@
     "titlePrefix": "Partner with",
     "subtitle": "Join India's leading accounting outsourcing network and unlock limitless revenue opportunities",
     "becomePartner": "Become a Partner",
-    "partnerLogin": "Partner Login"
+    "partnerLogin": "Partner Login",
+    "highlights": {
+      "finance": "Strategic Finance Control",
+      "manpower": "Rapid Manpower Deployment",
+      "dataAi": "Data & AI Technology"
+    },
+    "stats": {
+      "global": "Global Partners",
+      "indian": "Indian Partners",
+      "countries": "Countries Served"
+    }
   },
   "partnershipsPage": {
     "heroTitle": "Partnership Opportunities",
@@ -247,7 +257,11 @@
     },
     "submitting": "Submitting...",
     "loginRequired": "Please log in so we can pre-fill your details before submitting.",
-    "submitFailed": "Submission failed. Please try again."
+    "submitFailed": "Submission failed. Please try again.",
+    "documentsLabels": {
+      "bncGlobal": "BNC Global",
+      "bncGlobalKsa": "BNC Global (KSA)"
+    }
   },
   "countries": {
     "india": "India",
@@ -282,6 +296,14 @@
     "alerts": {
       "adminSuccess": "Admin login successful!",
       "partnerSuccess": "Login successful! Welcome {{name}}"
+    },
+    "sidePanel": {
+      "description": "Access your partner or admin dashboard and manage services, enquiries, and registrations in one place.",
+      "secureAccess": "Secure role-based access",
+      "onboardingUpdates": "Partner onboarding updates",
+      "email": "Email",
+      "whatsapp": "WhatsApp",
+      "call": "Call"
     }
   },
   "globalServices": {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaHome, FaPaperPlane, FaUser, FaShieldAlt, FaTimes, FaTachometerAlt, FaServicestack, FaRobot, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaHome, FaPaperPlane, FaUser, FaShieldAlt, FaTimes, FaMapMarkerAlt } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
 import PartnerFormModal from './PartnerFormModal';
 
@@ -101,32 +101,8 @@ const Sidebar = ({ isOpen, onClose, isLoggedIn, user, onLogout }) => {
                   );
                 })}
                 
-                {/* Dashboard or Apply Now */}
+                {/* Country services */}
                 <>
-                  <Link 
-                    to={isLoggedIn ? "/dashboard" : "/login"}
-                    className={`group flex items-center gap-3 px-2 py-2.5 rounded-lg transition-all duration-200 hover:bg-white/70 ${rowDirection} ${textAlign}`}
-                    onClick={onClose}
-                  >
-                    <FaTachometerAlt size={18} className="text-[#2C5AA0]/80 transition-colors duration-300 group-hover:text-[#1e3a8a]" />
-                    <span className="font-geist font-semibold text-slate-700 transition-colors duration-300 group-hover:text-[#1e3a8a]">{t('sidebar.dashboard')}</span>
-                  </Link>
-                  <Link
-                    to={isLoggedIn ? "/dashboard?open=ai-profile" : "/login"}
-                    className={`group flex items-center gap-3 px-2 py-2.5 rounded-lg transition-all duration-200 hover:bg-white/70 ${rowDirection} ${textAlign}`}
-                    onClick={onClose}
-                  >
-                    <FaRobot size={18} className="text-[#2C5AA0]/80 transition-colors duration-300 group-hover:text-[#1e3a8a]" />
-                    <span className="font-geist font-semibold text-slate-700 transition-colors duration-300 group-hover:text-[#1e3a8a]">{t('sidebar.aiProfiling')}</span>
-                  </Link>
-                  <Link
-                    to="/bnc-services?from=sidebar"
-                    className={`group flex items-center gap-3 px-2 py-2.5 rounded-lg transition-all duration-200 hover:bg-white/70 ${rowDirection} ${textAlign}`}
-                    onClick={onClose}
-                  >
-                    <FaServicestack size={18} className="text-[#2C5AA0]/80 transition-colors duration-300 group-hover:text-[#1e3a8a]" />
-                    <span className="font-geist font-semibold text-slate-700 transition-colors duration-300 group-hover:text-[#1e3a8a]">{t('sidebar.services')}</span>
-                  </Link>
                   <Link
                     to="/services/india"
                     className={`group flex items-center gap-3 px-2 py-2.5 rounded-lg transition-all duration-200 hover:bg-white/70 ${rowDirection} ${textAlign}`}
@@ -145,6 +121,16 @@ const Sidebar = ({ isOpen, onClose, isLoggedIn, user, onLogout }) => {
                     <FaMapMarkerAlt size={18} className="text-[#2C5AA0]/80 transition-colors duration-300 group-hover:text-[#1e3a8a]" />
                     <span className="font-geist font-semibold text-slate-700 transition-colors duration-300 group-hover:text-[#1e3a8a]">
                       {t('countries.saudi')}
+                    </span>
+                  </Link>
+                  <Link
+                    to="/services/global"
+                    className={`group flex items-center gap-3 px-2 py-2.5 rounded-lg transition-all duration-200 hover:bg-white/70 ${rowDirection} ${textAlign}`}
+                    onClick={onClose}
+                  >
+                    <FaMapMarkerAlt size={18} className="text-[#2C5AA0]/80 transition-colors duration-300 group-hover:text-[#1e3a8a]" />
+                    <span className="font-geist font-semibold text-slate-700 transition-colors duration-300 group-hover:text-[#1e3a8a]">
+                      {t('countries.global')}
                     </span>
                   </Link>
                 </>

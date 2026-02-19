@@ -16,6 +16,22 @@ const CountryServices = ({ country, title, description }) => {
   const cardButtonPos = isRtl ? 'left-6' : 'right-6';
   const navigate = useNavigate();
   const services = getServicesByCountry(country);
+  const localizedServices = useMemo(() => (
+    services.map((service) => {
+      const localizedTitle = t(`servicesData.${service.id}.title`, {
+        defaultValue: service.title
+      });
+      const localizedBullets = t(`servicesData.${service.id}.bullets`, {
+        returnObjects: true,
+        defaultValue: service.bullets
+      });
+      return {
+        ...service,
+        title: localizedTitle,
+        bullets: Array.isArray(localizedBullets) ? localizedBullets : service.bullets
+      };
+    })
+  ), [services, t, i18n.language]);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchError, setSearchError] = useState('');
   const [activeTag, setActiveTag] = useState('');
@@ -29,10 +45,10 @@ const CountryServices = ({ country, title, description }) => {
 
   const visibleServices = useMemo(() => {
     if (!activeTag) {
-      return services;
+      return localizedServices;
     }
-    return services.filter((service) => (service.tags || []).includes(activeTag));
-  }, [activeTag, services]);
+    return localizedServices.filter((service) => (service.tags || []).includes(activeTag));
+  }, [activeTag, localizedServices]);
 
   const filteredServices = useMemo(() => {
     const term = searchQuery.trim().toLowerCase();

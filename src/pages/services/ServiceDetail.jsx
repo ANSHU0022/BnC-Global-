@@ -45,8 +45,39 @@ const ServiceDetail = () => {
     if (!found || !found.country.includes(country)) {
       return null;
     }
-    return found;
-  }, [country, serviceId]);
+
+    const localizedTitle = t(`servicesData.${found.id}.title`, {
+      defaultValue: found.title
+    });
+    const localizedSummary = t(`servicesData.${found.id}.summary`, {
+      defaultValue: found.summary
+    });
+    const localizedBullets = t(`servicesData.${found.id}.bullets`, {
+      returnObjects: true,
+      defaultValue: found.bullets
+    });
+    const localizedDescription = t(`servicesData.${found.id}.description`, {
+      returnObjects: true,
+      defaultValue: found.description
+    });
+    const localizedManpower = t(`servicesData.${found.id}.manpowerDescription`, {
+      defaultValue: found.manpowerDescription
+    });
+    const localizedDocuments = t(`servicesData.${found.id}.documents`, {
+      returnObjects: true,
+      defaultValue: found.documents || []
+    });
+
+    return {
+      ...found,
+      title: localizedTitle,
+      summary: localizedSummary,
+      bullets: Array.isArray(localizedBullets) ? localizedBullets : found.bullets,
+      description: Array.isArray(localizedDescription) ? localizedDescription : found.description,
+      manpowerDescription: localizedManpower,
+      documents: Array.isArray(localizedDocuments) ? localizedDocuments : found.documents
+    };
+  }, [country, serviceId, t, i18n.language]);
 
   const countryLabelMap = {
     india: t('countries.india'),
@@ -57,13 +88,13 @@ const ServiceDetail = () => {
   const countryLabel = countryLabelMap[country] || (country ? country.replace('-', ' ') : '');
   const commonDocuments = [
     {
-      label: 'BNC Global',
+      label: t('serviceDetail.documentsLabels.bncGlobal'),
       url: 'https://drive.google.com/file/d/1U44K-42bhLuTntT2xOdWAIqBW1KzMMpp/view?usp=sharing'
     }
   ];
   const saudiOnlyDocuments = [
     {
-      label: 'BNC Global (KSA)',
+      label: t('serviceDetail.documentsLabels.bncGlobalKsa'),
       url: 'https://drive.google.com/file/d/1XV4OlKqt_7YhIR4B4koFVXYISw7Oa8Er/view?usp=sharing'
     }
   ];

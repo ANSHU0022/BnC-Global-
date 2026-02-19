@@ -148,7 +148,20 @@ const PartnerDashboard = () => {
 
   const embeddedCountryKey = selectedCountry === 'global' ? 'other' : selectedCountry;
   const embeddedServices = useMemo(() => {
-    const services = getServicesByCountry(embeddedCountryKey);
+    const services = getServicesByCountry(embeddedCountryKey).map((service) => {
+      const localizedTitle = t(`servicesData.${service.id}.title`, {
+        defaultValue: service.title
+      });
+      const localizedBullets = t(`servicesData.${service.id}.bullets`, {
+        returnObjects: true,
+        defaultValue: service.bullets
+      });
+      return {
+        ...service,
+        title: localizedTitle,
+        bullets: Array.isArray(localizedBullets) ? localizedBullets : service.bullets
+      };
+    });
     const term = searchTerm.trim().toLowerCase();
     if (!term) return services;
     return services.filter((service) => {
@@ -156,7 +169,7 @@ const PartnerDashboard = () => {
       if (service.id.toLowerCase().includes(term)) return true;
       return (service.bullets || []).some((item) => item.toLowerCase().includes(term));
     });
-  }, [embeddedCountryKey, searchTerm]);
+  }, [embeddedCountryKey, searchTerm, t, i18n.language]);
 
   const LazyVideo = ({ src, title }) => {
     const containerRef = React.useRef(null);

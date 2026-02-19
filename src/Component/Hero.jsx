@@ -78,9 +78,7 @@ const Hero = () => {
                       <path d="M8.5 12.5l2.4 2.4 4.6-5.2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </span>
-                  <p className="font-geist text-sm md:text-base">
-                    Strategic Finance Control
-                  </p>
+                  <p className="font-geist text-sm md:text-base">{t('hero.highlights.finance')}</p>
                 </div>
                 <div className="mt-3 flex items-center gap-3 text-slate-700">
                   <span className="inline-flex h-4 w-4 items-center justify-center text-[#2C5AA0]">
@@ -89,9 +87,7 @@ const Hero = () => {
                       <path d="M8.5 12.5l2.4 2.4 4.6-5.2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </span>
-                  <p className="font-geist text-sm md:text-base">
-                    Rapid Manpower Deployment
-                  </p>
+                  <p className="font-geist text-sm md:text-base">{t('hero.highlights.manpower')}</p>
                 </div>
                 <div className="mt-3 flex items-center gap-3 text-slate-700">
                   <span className="inline-flex h-4 w-4 items-center justify-center text-[#2C5AA0]">
@@ -100,9 +96,7 @@ const Hero = () => {
                       <path d="M8.5 12.5l2.4 2.4 4.6-5.2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </span>
-                  <p className="font-geist text-sm md:text-base">
-                    Data &amp; AI Technology
-                  </p>
+                  <p className="font-geist text-sm md:text-base">{t('hero.highlights.dataAi')}</p>
                 </div>
               </div>
 
@@ -130,15 +124,15 @@ const Hero = () => {
                   <div className="relative grid grid-cols-3 gap-2 text-center">
                     <div>
                       <p className="font-poppins text-xl sm:text-2xl font-semibold text-slate-900">50+</p>
-                      <p className="text-[11px] sm:text-xs text-slate-600">Global Partners</p>
+                      <p className="text-[11px] sm:text-xs text-slate-600">{t('hero.stats.global')}</p>
                     </div>
                     <div>
                       <p className="font-poppins text-xl sm:text-2xl font-semibold text-slate-900">25+</p>
-                      <p className="text-[11px] sm:text-xs text-slate-600">Indian Partners</p>
+                      <p className="text-[11px] sm:text-xs text-slate-600">{t('hero.stats.indian')}</p>
                     </div>
                     <div>
                       <p className="font-poppins text-xl sm:text-2xl font-semibold text-slate-900">14+</p>
-                      <p className="text-[11px] sm:text-xs text-slate-600">Countries Served</p>
+                      <p className="text-[11px] sm:text-xs text-slate-600">{t('hero.stats.countries')}</p>
                     </div>
                   </div>
                 </div>
