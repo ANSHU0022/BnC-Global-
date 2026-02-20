@@ -192,11 +192,19 @@ const StartChatting = () => {
     sendMessage(`${title} - ${subtitle}`);
   };
 
+  const sanitizeSpeechText = (text) =>
+    text.replace(/\*\*/g, '').replace(/\*/g, '').replace(/\s+/g, ' ').trim();
+
   const handleSpeak = (text, idx) => {
     if (!text) return;
     if (!window.speechSynthesis) return;
+    if (speakingIndex === idx) {
+      window.speechSynthesis.cancel();
+      setSpeakingIndex(null);
+      return;
+    }
     window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(text);
+    const utterance = new SpeechSynthesisUtterance(sanitizeSpeechText(text));
     utterance.onend = () => setSpeakingIndex(null);
     utterance.onerror = () => setSpeakingIndex(null);
     setSpeakingIndex(idx);
@@ -347,7 +355,7 @@ const StartChatting = () => {
                         <Building2 className="h-4 w-4 text-[#2C5AA0]" />
                       </div>
                     )}
-                    <div className="max-w-[75%]">
+                    <div className="max-w-[90%] lg:max-w-[75%]">
                       <div
                         className={`px-4 py-2.5 rounded-2xl text-sm relative ${
                           msg.type === 'user'
@@ -465,16 +473,17 @@ const StartChatting = () => {
           </div>
 
           {/* Right Panel - Scrollable */}
-          <div
-            className="w-full h-full bg-gray-50 overflow-y-auto overflow-x-hidden p-6 scroll-smooth scrollbar-thin-bnc"
-            style={{
-              WebkitOverflowScrolling: 'touch',
-              overscrollBehavior: 'contain',
-              touchAction: 'pan-y',
-              width: isDesktop ? `${100 - leftWidth}%` : '100%'
-            }}
-          >
-            <div className="space-y-6 max-w-xl mx-auto min-h-full">
+          {isDesktop && (
+            <div
+              className="w-full h-full bg-gray-50 overflow-y-auto overflow-x-hidden p-6 scroll-smooth scrollbar-thin-bnc"
+              style={{
+                WebkitOverflowScrolling: 'touch',
+                overscrollBehavior: 'contain',
+                touchAction: 'pan-y',
+                width: `${100 - leftWidth}%`
+              }}
+            >
+              <div className="space-y-6 max-w-xl mx-auto min-h-full">
               <div className="bg-white rounded-2xl p-5 shadow-[0_18px_40px_rgba(15,23,42,0.08)] border border-transparent hover:border-[#2C5AA0]/15 transition-all">
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-2">
@@ -560,8 +569,9 @@ const StartChatting = () => {
                   ))}
                 </div>
               </div>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </div>
