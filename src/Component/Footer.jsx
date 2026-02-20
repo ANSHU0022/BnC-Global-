@@ -1,8 +1,14 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 const Footer = () => {
   const { t } = useTranslation();
+  const location = useLocation();
+
+  if (location.pathname === '/start-chatting') {
+    return null;
+  }
 
   return (
     <footer className="bg-white py-16">

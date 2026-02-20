@@ -139,7 +139,13 @@ const Header = () => {
             </div>
 
             {/* Right Section */}
-            <div className={`flex items-center ${rightPadding}`}>
+            <div className={`flex items-center gap-3 ${rightPadding}`}>
+              <Link
+                to="/start-chatting"
+                className="hidden md:inline-flex items-center bg-white border border-[#2C5AA0] text-[#2C5AA0] hover:bg-[#2C5AA0] hover:text-white px-4 py-2 rounded-lg font-poppins font-semibold text-sm transition-colors duration-300"
+              >
+                {t('header.aiChatting')}
+              </Link>
               {isLoggedIn ? (
                 <div className="flex items-center gap-3">
                   <Link 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaHome, FaPaperPlane, FaUser, FaShieldAlt, FaTimes, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaHome, FaPaperPlane, FaUser, FaShieldAlt, FaTimes, FaMapMarkerAlt, FaRocketchat } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
 import PartnerFormModal from './PartnerFormModal';
 
@@ -19,7 +19,8 @@ const Sidebar = ({ isOpen, onClose, isLoggedIn, user, onLogout }) => {
   };
 
   const navigationItems = [
-    { to: '/', icon: FaHome, label: t('sidebar.home') }
+    { to: '/', icon: FaHome, label: t('sidebar.home') },
+    { to: '/start-chatting', icon: FaRocketchat, label: 'Start Chatting' }
   ];
 
   return (

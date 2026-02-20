@@ -12,6 +12,7 @@ import IndiaServices from './pages/services/india/IndiaServices';
 import SaudiArabiaServices from './pages/services/saudi-arabia/SaudiArabiaServices';
 import GlobalServices from './pages/services/global/GlobalServices';
 import ServiceDetail from './pages/services/ServiceDetail';
+import StartChatting from './pages/StartChatting';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -36,6 +37,7 @@ function App() {
           <Route path="/services/saudi-arabia" element={<SaudiArabiaServices />} />
           <Route path="/services/global" element={<GlobalServices />} />
           <Route path="/services/:country/:serviceId" element={<ServiceDetail />} />
+          <Route path="/start-chatting" element={<StartChatting />} />
           <Route path="/*" element={
             <>
               <Header />

@@ -211,3 +211,33 @@ html[dir="rtl"] elevenlabs-convai {
   inset-inline-start: 24px !important;
   inset-inline-end: auto !important;
 }
+
+/* Thin scrollbar for right-side panel */
+.scrollbar-thin-bnc::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollbar-thin-bnc::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thin-bnc::-webkit-scrollbar-thumb {
+  background: rgba(17, 24, 39, 0.18);
+  border-radius: 999px;
+}
+
+.scrollbar-thin-bnc {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(17, 24, 39, 0.35) transparent;
+}
+
+/* Hide scrollbar but keep scroll enabled */
+.scrollbar-hidden::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
+.scrollbar-hidden {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}

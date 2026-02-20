@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaHandshake, FaUsers, FaCogs, FaUserTie, FaCheckCircle, FaArrowRight } from 'react-icons/fa';
+import { FaHandshake, FaUsers, FaCogs, FaUserTie, FaCheckCircle } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
 
 const PartnershipOpportunities = () => {
@@ -51,11 +51,8 @@ const PartnershipOpportunities = () => {
                   </li>
                 ))}
               </ul>
-              <button className="mt-auto inline-flex items-center gap-2 font-poppins text-white px-6 py-2.5 rounded-full font-semibold bg-gradient-to-r from-[#2C5AA0] to-[#1e3f73] transition-all duration-300 hover:shadow-lg hover:shadow-[#2C5AA0]/25">
+              <button className="mt-auto w-full inline-flex items-center justify-center font-poppins text-white px-6 py-2.5 rounded-full font-semibold bg-gradient-to-r from-[#2C5AA0] to-[#1e3f73] transition-all duration-300 hover:shadow-lg hover:shadow-[#2C5AA0]/25">
                 {t('partnershipOpportunities.learnMore')}
-                <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-white/20 text-white text-sm transition-transform duration-300 group-hover:translate-x-0.5">
-                  <FaArrowRight className="h-3.5 w-3.5 flipInRtl" />
-                </span>
               </button>
             </div>
           ))}
