@@ -20,7 +20,7 @@ const Sidebar = ({ isOpen, onClose, isLoggedIn, user, onLogout }) => {
 
   const navigationItems = [
     { to: '/', icon: FaHome, label: t('sidebar.home') },
-    { to: '/start-chatting', icon: FaRocketchat, label: 'Start Chatting' }
+    { to: '/start-chatting', icon: FaRocketchat, label: t('header.aiChatting') }
   ];
 
   return (

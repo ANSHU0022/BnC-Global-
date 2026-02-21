@@ -7,6 +7,7 @@ import { WorldMap } from '../components/ui/world-map';
 const Hero = () => {
   const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [mapKey, setMapKey] = useState(0);
   const location = useLocation();
 
   useEffect(() => {
@@ -14,6 +15,69 @@ const Hero = () => {
       setIsModalOpen(true);
     }
   }, [location]);
+
+  const mapDots = [
+    {
+      start: { lat: 17.6139, lng: 77.209, label: 'New Delhi' },
+      end: { lat: 53.5461, lng: -113.4938, label: 'CAN' },
+    },
+    {
+      start: { lat: 17.6139, lng: 77.209, label: 'New Delhi' },
+      end: { lat: 25.5199, lng: -105.8701, label: 'USA' },
+    },
+    {
+      start: { lat: 17.6139, lng: 77.209, label: 'New Delhi' },
+      end: { lat: 51.5074, lng: -0.1278, label: 'UK' },
+    },
+    {
+      start: { lat: 17.6139, lng: 77.209, label: 'New Delhi' },
+      end: { lat: 22.9375, lng: 14.3754, label: 'MLT' },
+    },
+    {
+      start: { lat: 17.6139, lng: 77.209, label: 'New Delhi' },
+      end: { lat: -15.3875, lng: 28.3228, label: 'ZMB' },
+    },
+    {
+      start: { lat: 17.6139, lng: 77.209, label: 'New Delhi' },
+      end: { lat: 30.0444, lng: 31.2357, label: 'EGY' },
+    },
+    {
+      start: { lat: 17.6139, lng: 77.209, label: 'New Delhi' },
+      end: { lat: 10.7136, lng: 42.6753, label: 'KSA' },
+    },
+    {
+      start: { lat: 17.6139, lng: 77.209, label: 'New Delhi' },
+      end: { lat: 7.2048, lng: 55.2708, label: 'UAE' },
+    },
+    {
+      start: { lat: 17.6139, lng: 77.209, label: 'New Delhi' },
+      end: { lat: -17.3521, lng: 103.8198, label: 'SGP' },
+    },
+    {
+      start: { lat: 17.6139, lng: 77.209, label: 'New Delhi' },
+      end: { lat: -37.8136, lng: 144.9631, label: 'Australia' },
+    },
+    {
+      start: { lat: 17.6139, lng: 77.209, label: 'New Delhi' },
+      end: { lat: -5.8797, lng: 121.774, label: 'PHL' },
+    },
+  ];
+
+  useEffect(() => {
+    const drawDuration = 1.2;
+    const stagger = 0.5;
+    const loopPause = 1.8;
+    const totalCycleMs = Math.max(
+      1,
+      (mapDots.length - 1) * stagger + drawDuration + loopPause
+    ) * 1000;
+
+    const interval = setInterval(() => {
+      setMapKey((prev) => prev + 1);
+    }, totalCycleMs);
+
+    return () => clearInterval(interval);
+  }, [mapDots.length]);
 
   return (
     <>
@@ -41,22 +105,9 @@ const Hero = () => {
                 </span>
               </div>
 
-              <h1 className="font-poppins text-4xl md:text-6xl font-bold mb-3 leading-tight -mt-3 sm:-mt-5">
-                {t('hero.titlePrefix')}{' '}
-                <span style={{ color: '#2C5AA0' }} className="wave-text">
-                  {'BnC Global'.split('').map((letter, index) => (
-                    <span
-                      key={index}
-                      className="wave-letter"
-                      style={{
-                        animationDelay: `${index * 0.1}s`,
-                        display: letter === ' ' ? 'inline' : 'inline-block'
-                      }}
-                    >
-                      {letter === ' ' ? '\u00A0' : letter}
-                    </span>
-                  ))}
-                </span>
+              <h1 className="font-sora text-4xl md:text-6xl font-extrabold mb-3 leading-tight -mt-3 sm:-mt-5">
+                Partner with
+                <span className="block" style={{ color: '#2C5AA0' }}>BnC Global</span>
               </h1>
 
               <p className="font-geist text-lg md:text-xl mb-8 max-w-2xl mx-auto lg:mx-0 text-slate-600">
@@ -142,53 +193,11 @@ const Hero = () => {
             <div className="relative flex justify-center lg:justify-end z-10">
               <div className="relative w-full max-w-[1500px] -mt-8 lg:-mt-68 lg:translate-x-28 xl:translate-x-36 lg:scale-[1.55] xl:scale-[1.7] 2xl:scale-[1.85] origin-top-right">
                 <WorldMap
+                  key={mapKey}
                   lineColor="#2C5AA0"
-                  dots={[
-                    {
-                      start: { lat: 17.6139, lng: 77.209, label: 'New Delhi' },
-                      end: { lat: 53.5461, lng: -113.4938, label: 'CAN' },
-                    },
-                    {
-                      start: { lat: 17.6139, lng: 77.209, label: 'New Delhi' },
-                      end: { lat: 25.5199, lng: -105.8701, label: 'USA' },
-                    },
-                    {
-                      start: { lat: 17.6139, lng: 77.209, label: 'New Delhi' },
-                      end: { lat: 51.5074, lng: -0.1278, label: 'UK' },
-                    },
-                    {
-                      start: { lat: 17.6139, lng: 77.209, label: 'New Delhi' },
-                      end: { lat: 22.9375, lng: 14.3754, label: 'MLT' },
-                    },
-                    {
-                      start: { lat: 17.6139, lng: 77.209, label: 'New Delhi' },
-                      end: { lat: -15.3875, lng: 28.3228, label: 'ZMB' },
-                    },
-                    {
-                      start: { lat: 17.6139, lng: 77.209, label: 'New Delhi' },
-                      end: { lat: 30.0444, lng: 31.2357, label: 'EGY' },
-                    },
-                    {
-                      start: { lat: 17.6139, lng: 77.209, label: 'New Delhi' },
-                      end: { lat: 10.7136, lng: 42.6753, label: 'KSA' },
-                    },
-                    {
-                      start: { lat: 17.6139, lng: 77.209, label: 'New Delhi' },
-                      end: { lat: 7.2048, lng: 55.2708, label: 'UAE' },
-                    },
-                    {
-                      start: { lat: 17.6139, lng: 77.209, label: 'New Delhi' },
-                      end: { lat: -17.3521, lng: 103.8198, label: 'SGP' },
-                    },
-                    {
-                      start: { lat: 17.6139, lng: 77.209, label: 'New Delhi' },
-                      end: { lat: -37.8136, lng: 144.9631, label: 'Australia' },
-                    },
-                    {
-                      start: { lat: 17.6139, lng: 77.209, label: 'New Delhi' },
-                      end: { lat: -5.8797, lng: 121.774, label: 'PHL' },
-                    },
-                  ]}
+                  dots={mapDots}
+                  drawDuration={1.2}
+                  stagger={0.5}
                 />
               </div>
             </div>

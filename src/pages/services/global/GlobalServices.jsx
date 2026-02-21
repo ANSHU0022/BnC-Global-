@@ -54,10 +54,22 @@ const countries = [
     logo: 'https://cdn-icons-png.flaticon.com/128/197/197496.png'
   },
   {
+    key: 'uae',
+    value: 'UAE',
+    labelKey: 'globalServices.countries.uae',
+    logo: 'https://cdn-icons-png.flaticon.com/128/5373/5373320.png'
+  },
+  {
     key: 'philippines',
     value: 'Philippines',
     labelKey: 'globalServices.countries.philippines',
     logo: 'https://cdn-icons-png.flaticon.com/128/16022/16022850.png'
+  },
+  {
+    key: 'africanCountry',
+    value: 'African Country',
+    labelKey: 'globalServices.countries.africanCountry',
+    logo: 'https://cdn-icons-png.flaticon.com/128/16023/16023035.png'
   },
   {
     key: 'egypt',
@@ -206,7 +218,7 @@ const GlobalServices = () => {
                       <img
                         src={country.logo}
                         alt={t('globalServices.countryFlagAlt', { country: t(country.labelKey) })}
-                        className={`h-12 w-12 object-contain transition-transform duration-300 ${
+                        className={`h-12 w-12 rounded-full object-cover border border-white shadow-sm transition-transform duration-300 ${
                           selectedCountry.key === country.key ? 'scale-105' : 'group-hover:scale-105'
                         }`}
                         loading="lazy"

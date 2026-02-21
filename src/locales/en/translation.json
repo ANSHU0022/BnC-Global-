@@ -176,8 +176,8 @@
         "description": "Detailed overview of this service, scope, and delivery model."
       },
       "manpower": {
-        "label": "Want manpower supply",
-        "heading": "Want manpower supply",
+        "label": "Looking for manpower support",
+        "heading": "Looking for manpower support",
         "description": "Tell us your manpower requirements and we will align the right team."
       },
       "enquiry": {
@@ -186,8 +186,8 @@
         "description": "Share your enquiry and our team will respond with the right guidance."
       },
       "training": {
-        "label": "Training support",
-        "heading": "Training support",
+        "label": "Looking for training support",
+        "heading": "Looking for training support",
         "description": "We help your teams learn, practice, and deliver with confidence."
       },
       "contact": {
@@ -322,25 +322,27 @@
       "germany": "Germany",
       "france": "France",
       "singapore": "Singapore",
+      "uae": "UAE",
       "philippines": "Philippines",
+      "africanCountry": "African Country",
       "egypt": "Egypt"
     },
     "asideTitle": "Global Services",
     "asideSubtitle": "Tailored delivery, compliance-ready support, and regional execution.",
     "sections": {
       "manpower": {
-        "label": "Manpower support",
-        "heading": "Manpower support",
+        "label": "Looking for manpower support",
+        "heading": "Looking for manpower support",
         "description": "Tell us your manpower requirements and we will align the right team."
       },
       "enquiry": {
-        "label": "Consumer support",
-        "heading": "Consumer support",
+        "label": "Looking for consulting support",
+        "heading": "Looking for consulting support",
         "description": "Share your enquiry and our team will respond with the right guidance."
       },
       "training": {
-        "label": "Training support",
-        "heading": "Training support",
+        "label": "Looking for training support",
+        "heading": "Looking for training support",
         "description": "We help your teams learn, practice, and deliver with confidence."
       },
       "contact": {
